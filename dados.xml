@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dados>
     <users>
-        <user id="A7CBCF56CD2840709A10A34ACD7E4DB9">
-            <name>admin</name>
+        <user>
+            <id>A7CBCF56CD2840709A10A34ACD7E4DB9</id>
+            <email>admin@admin.com</email>
             <senha>admin</admin>
         </user>
     </users>
