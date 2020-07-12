@@ -41,7 +41,6 @@ if (isset($_SESSION['cookieuser'])) {
 </head>
 
 <body>
-
     <div class="container">
         <nav class="navbar navbar-dark bg-dark">
             <a class="navbar-brand" href="<?php echo $_SERVER["PHP_SELF"]; ?>">iCARE</a>
