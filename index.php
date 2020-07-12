@@ -1,5 +1,13 @@
 <?php
 session_start();
+
+if ($_COOKIE["user"] != null) {
+    echo $_COOKIE["user"];
+    $_SESSION['cookieuser'] =  base64_decode(htmlspecialchars($_COOKIE["user"]));
+    header("Location: login.php");
+} else {
+    setCookie('user');
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -16,10 +24,10 @@ session_start();
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
     <script src="index.js"></script>
-    <?php 
-    if(isset($_SESSION['erro'])){
+    <?php
+    if (isset($_SESSION['erro'])) {
         echo $_SESSION['erro'];
-        unset ($_SESSION['erro']);
+        unset($_SESSION['erro']);
     }
     ?>
 </head>
@@ -55,7 +63,7 @@ session_start();
                             </div>
                             <div class="form-group form-check">
                                 <label class="form-check-label">
-                                    <input class="form-check-input" type="checkbox"> Lembrar-me
+                                    <input class="form-check-input" type="checkbox" id="lembrar"> Lembrar-me
                                 </label>
                             </div>
                             <input type="submit" id="btnlogin" class="btn btn-lg btn-primary btn-block text-uppercase" name="btnlogin" value="Login" disabled>

@@ -3,8 +3,8 @@ session_start();
 
 require_once 'utilities.php';
 try {
-   
-    $_email = $_senha = '';
+
+    $_email = $_senha = $_id = $_tipo = '';
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ((isset($_POST['email'])) && (isset($_POST['password']))) {
 
@@ -26,19 +26,55 @@ try {
                 $_senha = remove_inseguro($_POST["password"]);
             }
 
-
-            //$xml = simplexml_load_file('dados.xml', 'r');
-            //$user = $xml->xpath('/users/user[email="' . $_email . '" && senha="' . $_senha . '"]');
-            //if ($user != null){
-            //$_SESSION['mensagem'] = $user;
-            header("Location: home.php");
-            //}
+            $xmlStr = file_get_contents('dados.xml');
+            $xml = new SimpleXMLElement($xmlStr);
+            
+            $users = $xml->users[0];
+            foreach ($users->children() as $child) {
+                if ($child->email == $_email && $child->senha == $_senha) {
+                    $_id = $child['id'];
+                    $_tipo = $child['tipo'];
+                }
+            }
+            if (!empty($_id)) {
+                $_SESSION['user'] = $_id;
+                $_SESSION['tipo'] = $_tipo;
+                if (isset($_POST['lembrar'])) {
+                    $_SESSION['cookieuser'] = $_id;
+                }
+                header("Location: home.php");
+            } else {
+                $_SESSION['erro'] = maketoast('Entrada Inválida', 'Os dados de e-mail e senha não existem na base de dados!');
+                header("Location: index.php");
+            }
         } else {
             $_SESSION['erro'] = maketoast('Entrada Inválida', 'Os dados de e-mail e senha não foram recebidos!');
             header("Location: index.php");
         }
-    }else{
-        $_SESSION['erro'] = maketoast('Erro de execução', 'Método de requisição inválido: '.$_SERVER['REQUEST_METHOD']);
+    } else if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+        $xmlStr = file_get_contents('dados.xml');
+        $xml = new SimpleXMLElement($xmlStr);
+        $users = $xml->users[0];
+
+        foreach ($users->children() as $child) {
+            if ($child['id'] == $_SESSION['cookieuser']) {
+                $_id = $child['id'];
+                $_tipo = $child['tipo'];
+            }
+        }
+        if (!empty($_id)) {
+            $_SESSION['user'] = $_id;
+            $_SESSION['tipo'] = $_tipo;
+            if (isset($_POST['lembrar'])) {
+                $_SESSION['cookieuser'] = $_id;
+            }
+            header("Location: home.php");
+        } else {
+            $_SESSION['erro'] = maketoast('Entrada Inválida', 'Os dados de e-mail e senha não existem na base de dados!');
+            header("Location: index.php");
+        }
+    } else {
+        $_SESSION['erro'] = maketoast('Erro de execução', 'Método de requisição inválido: ' . $_SERVER['REQUEST_METHOD']);
         header("Location: index.php");
     }
 } catch (Exception $e) {
