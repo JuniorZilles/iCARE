@@ -1,4 +1,5 @@
 <?php
+session_start();
 //Nome, Endereço, Telefone, E-mail, Gênero, Idade, CPF, ...
 //validar entradas
 //não pode ter com mesmo nome

@@ -1,4 +1,5 @@
 <?php
+session_start();
 //nome, endereço, telefone, email, especialidade, CRM,...
 //validar entradas
 //não pode ter com mesmo nome

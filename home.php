@@ -49,19 +49,19 @@ if (isset($_SESSION['cookieuser'])) {
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="<?php echo $_SERVER["PHP_SELF"];?>">Home </a>                    
+                        <a class="nav-link" href="<?php echo $_SERVER["PHP_SELF"];?>">Home</a>                    
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Cadastrar Médicos</a>
+                        <a class="nav-link" href="cadastro_medico.php">Cadastrar Médicos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Cadastrar Laboratórios</a>
+                        <a class="nav-link" href="cadastro_laboratorio.php">Cadastrar Laboratórios</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Cadastrar Pacientes</a>
+                        <a class="nav-link" href="cadastro_paciente.php">Cadastrar Pacientes</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Logout</a>
+                        <a class="nav-link" href="logout.php">Logout</a>
                     </li>
                 </ul>
             </div>
