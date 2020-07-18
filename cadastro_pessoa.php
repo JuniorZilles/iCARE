@@ -83,130 +83,144 @@ if (!isset($_SESSION['user'])) {
     </div>
     <br>
     <div class="container">
-        <form action="_cadastro.php" method="POST">
-            <div class="form-group">
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="paciente">
-                    <label class="form-check-label" for="inlineRadio1">Paciente</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="medico">
-                    <label class="form-check-label" for="inlineRadio2">Médico</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="laboratorio">
-                    <label class="form-check-label" for="inlineRadio3">Laboratório</label>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="nome">Nome</label>
-                <input type="text" class="form-control is-valid" id="nome" placeholder="Seu nome">
-            </div>
-            <div class="form-group">
-                <label for="rua">Endereço</label>
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label for="rua">Rua</label>
-                        <input type="text" class="form-control is-invalid" id="rua" placeholder="Nome da rua/avenida">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title text-center"><?php
+                                                    if ($_SESSION['tipo'] == 'admin') {
+                                                        echo 'Cadastro de Usuário';
+                                                    } else {
+                                                        echo 'Editar Perfil';
+                                                    }
+                                                    ?></h5>
+                <form action="_cadastro.php" method="POST">
+                    <div class="form-row">
+                        <div class="form-group col-md-8">
+                            <label>Tipo de Usuário</label><br>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="paciente">
+                                <label class="form-check-label" for="inlineRadio1">Paciente</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="medico">
+                                <label class="form-check-label" for="inlineRadio2">Médico</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="laboratorio">
+                                <label class="form-check-label" for="inlineRadio3">Laboratório</label>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label for="numero">Número</label>
-                        <input type="text" class="form-control" id="numero" maxlength="5" placeholder="Número da rua">
+                    <div class="form-row">
+                        <div class="form-group col-md-8">
+                            <label for="nome">Nome</label>
+                            <input type="text" class="form-control is-valid" id="nome" placeholder="Seu nome">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="telefone">Telefone</label>
+                            <input type="text" class="form-control" id="telefone" placeholder="Seu telefone">
+                        </div>
                     </div>
-                    <div class="form-group col-md-6">
-                        <label for="bairro">Bairro</label>
-                        <input type="text" class="form-control" id="bairro" placeholder="Nome do bairro">
+                    <div class="form-row">
+                        <div class="form-group col-md-8">
+                            <label for="rua">Endereço</label>
+                            <input type="text" class="form-control is-invalid" id="rua" placeholder="Nome da rua/avenida">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="numero">Número</label>
+                            <input type="text" class="form-control" id="numero" maxlength="5" placeholder="Número da rua">
+                        </div>
                     </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label for="complemento">Complemento</label>
-                        <input type="text" class="form-control" id="complemento" placeholder="Complemento bloco/apartamento/fundos">
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label for="cidade">Cidade</label>
-                        <input type="text" class="form-control" id="cidade" placeholder="Nome da cidade">
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label for="estado">Estado</label>
-                        <select id="estado" class="form-control">
-                            <option selected>Escolher...</option>
-                            <option>montar com dados do xml</option>
-                        </select>
-                    </div>
-                    <div class="form-group col-md-2">
-                        <label for="cep">CEP</label>
-                        <input type="text" class="form-control" id="cep">
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="telefone">Telefone</label>
-                <input type="text" class="form-control" id="telefone" placeholder="Seu telefone">
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="genero">Gênero</label>
-                    <select id="genero" class="form-control">
-                        <option selected>Escolher...</option>
-                        <option>Feminino</option>
-                        <option>Masculino</option>
-                        <option>Outro</option>
-                    </select>
-                </div>
-                <div class="form-group col-md-2">
-                    <label for="idade">Idade</label>
-                    <input type="number" class="form-control" maxlength="3" id="idade" placeholder="Sua idade">
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="cpf">CPF</label>
-                    <input type="text" class="form-control" maxlength="" id="cpf" placeholder="Seu CPF">
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="tipoexame">Tipo de Exames</label>
-                    <select id="tipoexame" class="form-control">
-                        <option selected>Escolher...</option>
-                        <option>montar pelo xml fazer um opção que vai adicionano</option>
-                    </select>
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="cnpj">CNPJ</label>
-                    <input type="text" class="form-control" id="cnpj" placeholder="Seu CNPJ">
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="especialidade">Especialidade</label>
-                    <select id="especialidade" class="form-control">
-                        <option selected>Escolher...</option>
-                        <option>montar pelo xml</option>
-                    </select>
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="crm">CRM</label>
-                    <input type="text" class="form-control" id="crm" placeholder="Seu CRM">
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="email">Endereço de email</label>
-                    <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Seu email">
-                    <small id="emailHelp" class="form-text text-muted">Nunca vamos compartilhar seu email, com ninguém.</small>
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="senha">Senha</label>
-                    <input type="password" class="form-control" id="senha" placeholder="Crie uma senha de acesso">
-                </div>
-            </div>
+                    <div class="form-row">
 
-            <button type="button" class="btn btn-primary">Salvar</button>
-        </form>
+                        <div class="form-group col-md-6">
+                            <label for="bairro">Bairro</label>
+                            <input type="text" class="form-control" id="bairro" placeholder="Nome do bairro">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="complemento">Complemento</label>
+                            <input type="text" class="form-control" id="complemento" placeholder="Complemento bloco/apartamento/fundos">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="cidade">Cidade</label>
+                            <input type="text" class="form-control" id="cidade" placeholder="Nome da cidade">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="estado">Estado</label>
+                            <select id="estado" class="form-control">
+                                <option selected>Escolher...</option>
+                                <option>montar com dados do xml</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="cep">CEP</label>
+                            <input type="text" class="form-control" id="cep">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="genero">Gênero</label>
+                            <select id="genero" class="form-control">
+                                <option selected>Escolher...</option>
+                                <option>Feminino</option>
+                                <option>Masculino</option>
+                                <option>Outro</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="idade">Idade</label>
+                            <input type="number" class="form-control" maxlength="3" id="idade" placeholder="Sua idade">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="cpf">CPF</label>
+                            <input type="text" class="form-control" maxlength="" id="cpf" placeholder="Seu CPF">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="tipoexame">Tipo de Exames</label>
+                            <select id="tipoexame" class="form-control">
+                                <option selected>Escolher...</option>
+                                <option>montar pelo xml fazer um opção que vai adicionano</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="cnpj">CNPJ</label>
+                            <input type="text" class="form-control" id="cnpj" placeholder="Seu CNPJ">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="especialidade">Especialidade</label>
+                            <select id="especialidade" class="form-control">
+                                <option selected>Escolher...</option>
+                                <option>montar pelo xml</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="crm">CRM</label>
+                            <input type="text" class="form-control" id="crm" placeholder="Seu CRM">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="email">Endereço de email</label>
+                            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Seu email">
+                            <small id="emailHelp" class="form-text text-muted">Nunca vamos compartilhar seu email, com ninguém.</small>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="senha">Senha</label>
+                            <input type="password" class="form-control" id="senha" placeholder="Crie uma senha de acesso">
+                        </div>
+                    </div>
+                    <div class=text-right>
+                        <button type="reset" class="btn btn-primary">Limpar</button>
+                        <button type="button" class="btn btn-primary">Salvar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
     <div aria-live="polite" aria-atomic="true" style="position: relative; min-height: 200px;">
         <div class="toast" data-delay="1500" style="position: absolute; top: 0; right: 0;">
