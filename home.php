@@ -1,9 +1,9 @@
 <?php
 session_start();
 
-require_once 'utilities.php';
-require_once 'menu.php';
-require_once 'cards.php';
+require_once '_utilities.php';
+require_once '_menu.php';
+require_once '_cards.php';
 
 if (!isset($_SESSION['user'])) {
     $_SESSION['erro'] = maketoast('Usuário não logado', 'Necessário realizar login para utilizar os recursos!');
@@ -66,7 +66,7 @@ if (isset($_SESSION['cookieuser'])) {
                     }
                     ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="logout.php">Logout</a>
+                        <a class="nav-link" href="_logout.php">Logout</a>
                     </li>
                 </ul>
             </div>
@@ -86,6 +86,19 @@ if (isset($_SESSION['cookieuser'])) {
         echo makecardsmedico();
     }
     ?>
+    <div aria-live="polite" aria-atomic="true" style="position: relative; min-height: 200px;">
+        <div class="toast" data-delay="1500" style="position: absolute; top: 0; right: 0;">
+            <div class="toast-header">
+                <strong class="mr-auto"><span id='titulo'></span></strong>
+                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="toast-body">
+                <span id='conteudo'></span>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>

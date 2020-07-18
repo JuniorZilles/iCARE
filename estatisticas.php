@@ -2,8 +2,8 @@
 session_start();
 //mostrar por usuario os gráficos e a quantidade de consultas
 
-require_once 'utilities.php';
-require_once 'menu.php';
+require_once '_utilities.php';
+require_once '_menu.php';
 
 if (!isset($_SESSION['user'])) {
     $_SESSION['erro'] = maketoast('Usuário não logado', 'Necessário realizar login para utilizar os recursos!');
@@ -60,7 +60,7 @@ if (!isset($_SESSION['user'])) {
                     }
                     ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="logout.php">Logout</a>
+                        <a class="nav-link" href="_logout.php">Logout</a>
                     </li>
                 </ul>
             </div>

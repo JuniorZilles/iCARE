@@ -9,8 +9,8 @@ function remove_inseguro($valor)
 function maketoast($title, $message){
     return "<script>
     $(function(){
-        $('#titulo').html('$title')
-        $('#conteudo').html('$message')
+        $('#titulo').html('$title');
+        $('#conteudo').html('$message');
         $('.toast').toast('show');
     });  
 </script>";

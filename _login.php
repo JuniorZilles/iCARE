@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-require_once 'utilities.php';
+require_once '_utilities.php';
 try {
 
     $_email = $_senha = $_id = $_tipo = '';
@@ -25,12 +25,12 @@ try {
             } else {
                 $_senha = remove_inseguro($_POST["password"]);
             }
-
-            $xmlStr = file_get_contents('dados.xml');
-            $xml = new SimpleXMLElement($xmlStr);
             
-            $users = $xml->users[0];
-            foreach ($users->children() as $child) {
+            $xml = simplexml_load_file('dados.xml');
+
+            $users = $xml->users->children();
+            
+            foreach ($users as $child) {
                 if ($child->email == $_email && $child->senha == $_senha) {
                     $_id = $child['id'];
                     $_tipo = $child['tipo'];
@@ -54,9 +54,9 @@ try {
     } else if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         $xmlStr = file_get_contents('dados.xml');
         $xml = new SimpleXMLElement($xmlStr);
-        $users = $xml->users[0];
+        $users = $xml->users->children();
 
-        foreach ($users->children() as $child) {
+        foreach ($users as $child) {
             if ($child['id'] == $_SESSION['cookieuser']) {
                 $_id = $child['id'];
                 $_tipo = $child['tipo'];
@@ -77,7 +77,10 @@ try {
         $_SESSION['erro'] = maketoast('Erro de execução', 'Método de requisição inválido: ' . $_SERVER['REQUEST_METHOD']);
         header("Location: index.php");
     }
+} catch (Throwable $e) {
+    $_SESSION['erro'] = maketoast('Erro de execução', $e->getMessage() . PHP_EOL);
+    header("Location: index.php");
 } catch (Exception $e) {
-    $_SESSION['erro'] = maketoast('Erro de execução', $e->getMessage());
+    $_SESSION['erro'] = maketoast('Erro de execução', $e->getMessage() . PHP_EOL);
     header("Location: index.php");
 }

@@ -3,13 +3,13 @@
 function makemenuadmin()
 {
     return "<li class='nav-item'>
-                <a class='nav-link' href='cadastro_medico.php'>Cadastrar Médicos</a>
+                <a class='nav-link' href='cadastro_pessoa.php'>Cadastrar Médicos</a>
             </li>
             <li class='nav-item'>
-                <a class='nav-link' href='cadastro_laboratorio.php'>Cadastrar Laboratórios</a>
+                <a class='nav-link' href='cadastro_pessoa.php'>Cadastrar Laboratórios</a>
             </li>
             <li class='nav-item'>
-                <a class='nav-link' href='cadastro_paciente.php'>Cadastrar Pacientes</a>
+                <a class='nav-link' href='cadastro_pessoa.php'>Cadastrar Pacientes</a>
             </li>
             <li class='nav-item'>
                 <a class='nav-link' href='estatisticas.php'>Estatisticas Gerais</a>
@@ -36,7 +36,7 @@ function makemenumedico()
                 <a class='nav-link' href='cadastro_consulta.php'>Cadastrar Consultas</a>
             </li>
             <li class='nav-item'>
-                <a class='nav-link' href='cadastro_medico.php'>Alterar Cadastro</a>
+                <a class='nav-link' href='cadastro_pessoa.php'>Alterar Cadastro</a>
             </li>
             <li class='nav-item'>
                 <a class='nav-link' href='estatisticas.php'>Estatisticas Gerais</a>
@@ -52,7 +52,7 @@ function makemenulaboratorio()
                 <a class='nav-link' href='cadastro_exame.php'>Cadastrar Exames</a>
             </li>
             <li class='nav-item'>
-                <a class='nav-link' href='cadastro_laboratorio.php'>Alterar Cadastro</a>
+                <a class='nav-link' href='cadastro_pessoa.php'>Alterar Cadastro</a>
             </li>
             <li class='nav-item'>
                 <a class='nav-link' href='estatisticas.php'>Estatisticas Gerais</a>

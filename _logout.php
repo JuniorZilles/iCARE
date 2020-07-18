@@ -1,7 +1,7 @@
 <?php 
 session_start();
 
-require_once 'utilities.php';
+require_once '_utilities.php';
 
 setcookie("user", "", time() - 3600, "/");
 

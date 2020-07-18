@@ -1,10 +1,11 @@
 <?php
 session_start();
-
-if ($_COOKIE["user"] != null) {
-    echo $_COOKIE["user"];
-    $_SESSION['cookieuser'] =  base64_decode(htmlspecialchars($_COOKIE["user"]));
-    header("Location: login.php");
+if (count($_COOKIE) > 0) {
+    if (isset($_COOKIE["user"])) {
+        echo $_COOKIE["user"];
+        $_SESSION['cookieuser'] =  base64_decode(htmlspecialchars($_COOKIE["user"]));
+        header("Location: _login.php");
+    }
 } else {
     setCookie('user');
 }
@@ -52,7 +53,7 @@ if ($_COOKIE["user"] != null) {
                 <div class="card card-signin my-5">
                     <div class="card-body">
                         <h5 class="card-title text-center">Login</h5>
-                        <form id="loginform" method="POST" action="login.php">
+                        <form id="loginform" method="POST" action="_login.php">
                             <div class="form-group">
                                 <label for="email">E-mail:</label>
                                 <input type="email" id="email" name="email" class="form-control" placeholder="Email de acesso" required autofocus>
