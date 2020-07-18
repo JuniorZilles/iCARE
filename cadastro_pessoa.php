@@ -42,7 +42,8 @@ if (!isset($_SESSION['user'])) {
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-    <script src=""></script>
+    <script src="http://twitter.github.io/typeahead.js/releases/latest/typeahead.bundle.js"></script>
+    <script src="cadastro_pessoa.js"></script>
     <?php
     if (isset($_SESSION['erro'])) {
         echo $_SESSION['erro'];
@@ -150,7 +151,6 @@ if (!isset($_SESSION['user'])) {
                             <label for="estado">Estado</label>
                             <select id="estado" class="form-control">
                                 <option selected>Escolher...</option>
-                                <option>montar com dados do xml</option>
                             </select>
                         </div>
                         <div class="form-group col-md-2">
@@ -163,14 +163,14 @@ if (!isset($_SESSION['user'])) {
                             <label for="genero">Gênero</label>
                             <select id="genero" class="form-control">
                                 <option selected>Escolher...</option>
-                                <option>Feminino</option>
-                                <option>Masculino</option>
-                                <option>Outro</option>
+                                <option value="feminino">Feminino</option>
+                                <option value="masculino">Masculino</option>
+                                <option value="outro">Outro</option>
                             </select>
                         </div>
                         <div class="form-group col-md-2">
-                            <label for="idade">Idade</label>
-                            <input type="number" class="form-control" maxlength="3" id="idade" placeholder="Sua idade">
+                            <label for="datanascimento">Data de Nascimento</label>
+                            <input type="date" class="form-control" maxlength="10" id="datanascimento" placeholder="Data de Nascimento">
                         </div>
                         <div class="form-group col-md-4">
                             <label for="cpf">CPF</label>
@@ -182,7 +182,7 @@ if (!isset($_SESSION['user'])) {
                             <label for="tipoexame">Tipo de Exames</label>
                             <select id="tipoexame" class="form-control">
                                 <option selected>Escolher...</option>
-                                <option>montar pelo xml fazer um opção que vai adicionano</option>
+                                <option>montar pelo xml fazer um opção que vai adicionando</option>
                             </select>
                         </div>
                         <div class="form-group col-md-6">
