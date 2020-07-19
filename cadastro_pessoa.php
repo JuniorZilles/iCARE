@@ -37,7 +37,7 @@ if (!isset($_SESSION['user'])) {
     <!-- Bootstrap -->
     <!-- CSS only -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="cadastro_pessoa.css">
     <!-- JS, Popper.js, and jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -99,16 +99,16 @@ if (!isset($_SESSION['user'])) {
                         <div class="form-group col-md-8">
                             <label>Tipo de Usuário</label><br>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="paciente">
-                                <label class="form-check-label" for="inlineRadio1">Paciente</label>
+                                <input class="form-check-input" type="radio" name="tipouser" id="tipouser1" value="paciente" checked>
+                                <label class="form-check-label" for="tipouser1">Paciente</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="medico">
-                                <label class="form-check-label" for="inlineRadio2">Médico</label>
+                                <input class="form-check-input" type="radio" name="tipouser" id="tipouser2" value="medico">
+                                <label class="form-check-label" for="tipouser2">Médico</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="laboratorio">
-                                <label class="form-check-label" for="inlineRadio3">Laboratório</label>
+                                <input class="form-check-input" type="radio" name="tipouser" id="tipouser3" value="laboratorio">
+                                <label class="form-check-label" for="tipouser3">Laboratório</label>
                             </div>
                         </div>
                     </div>
@@ -116,20 +116,24 @@ if (!isset($_SESSION['user'])) {
                         <div class="form-group col-md-8">
                             <label for="nome">Nome</label>
                             <input type="text" class="form-control is-valid" id="nome" placeholder="Seu nome">
+                            <div class="invalid-feedback" id="invalidnome"> </div>
                         </div>
                         <div class="form-group col-md-4">
                             <label for="telefone">Telefone</label>
                             <input type="text" class="form-control" id="telefone" placeholder="Seu telefone">
+                            <div class="invalid-feedback" id="invalidtelefone"> </div>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-8">
                             <label for="rua">Endereço</label>
                             <input type="text" class="form-control is-invalid" id="rua" placeholder="Nome da rua/avenida">
+                            <div class="invalid-feedback" id="invalidendereco"> </div>
                         </div>
                         <div class="form-group col-md-4">
                             <label for="numero">Número</label>
                             <input type="text" class="form-control" id="numero" maxlength="5" placeholder="Número da rua">
+                            <div class="invalid-feedback" id="invalidnumero"> </div>
                         </div>
                     </div>
                     <div class="form-row">
@@ -137,6 +141,7 @@ if (!isset($_SESSION['user'])) {
                         <div class="form-group col-md-6">
                             <label for="bairro">Bairro</label>
                             <input type="text" class="form-control" id="bairro" placeholder="Nome do bairro">
+                            <div class="invalid-feedback" id="invalidbairro"> </div>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="complemento">Complemento</label>
@@ -147,20 +152,23 @@ if (!isset($_SESSION['user'])) {
                         <div class="form-group col-md-6">
                             <label for="cidade">Cidade</label>
                             <input type="text" class="form-control" id="cidade" placeholder="Nome da cidade">
+                            <div class="invalid-feedback" id="invalidcidade"> </div>
                         </div>
                         <div class="form-group col-md-4">
                             <label for="estado">Estado</label>
                             <select id="estado" class="form-control">
                                 <option selected>Escolher...</option>
                             </select>
+                            <div class="invalid-feedback" id="invalidestado"> </div>
                         </div>
                         <div class="form-group col-md-2">
                             <label for="cep">CEP</label>
                             <input type="text" class="form-control" id="cep">
+                            <div class="invalid-feedback" id="invalidcep"> </div>
                         </div>
                     </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
+                    <div id="paciente" class="form-row">
+                        <div class="form-group col-md-4">
                             <label for="genero">Gênero</label>
                             <select id="genero" class="form-control">
                                 <option selected>Escolher...</option>
@@ -168,40 +176,42 @@ if (!isset($_SESSION['user'])) {
                                 <option value="masculino">Masculino</option>
                                 <option value="outro">Outro</option>
                             </select>
+                            <div class="invalid-feedback" id="invalidgenero"> </div>
                         </div>
-                        <div class="form-group col-md-2">
+                        <div class="form-group col-md-4">
                             <label for="datanascimento">Data de Nascimento</label>
                             <input type="date" class="form-control" maxlength="10" id="datanascimento" placeholder="Data de Nascimento">
+                            <div class="invalid-feedback" id="invaliddate"> </div>
                         </div>
                         <div class="form-group col-md-4">
                             <label for="cpf">CPF</label>
                             <input type="text" class="form-control" maxlength="" id="cpf" placeholder="Seu CPF">
+                            <div class="invalid-feedback" id="invalidcpf"> </div>
                         </div>
                     </div>
-                    <div class="form-row">
+                    <div id="laboratorio" class="form-row">
                         <div class="form-group col-md-6">
                             <label for="tipoexame">Tipo de Exames</label>
-                            <select id="tipoexame" class="form-control">
-                                <option selected>Escolher...</option>
-                                <option>montar pelo xml fazer um opção que vai adicionando</option>
-                            </select>
+                            <input type="text" class="form-control" id="tipoexame" placeholder="Busque o tipo de exame">
+                            <div class="invalid-feedback" id="invalidtipoexame"> </div>
+                            <div id="tiposexamesselecionados" > </div>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="cnpj">CNPJ</label>
                             <input type="text" class="form-control" id="cnpj" placeholder="Seu CNPJ">
+                            <div class="invalid-feedback" id="invalidcnpj"> </div>
                         </div>
                     </div>
-                    <div class="form-row">
+                    <div id="medico" class="form-row">
                         <div class="form-group col-md-6">
                             <label for="especialidade">Especialidade</label>
-                            <select id="especialidade" class="form-control">
-                                <option selected>Escolher...</option>
-                                <option>montar pelo xml</option>
-                            </select>
+                            <input type="text" class="form-control" id="especialidade" placeholder="Busque pela especialidade">
+                            <div class="invalid-feedback" id="invalidespecialidade"> </div>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="crm">CRM</label>
                             <input type="text" class="form-control" id="crm" placeholder="Seu CRM">
+                            <div class="invalid-feedback" id="invalidcrm"> </div>
                         </div>
                     </div>
                     <div class="form-row">
@@ -209,10 +219,12 @@ if (!isset($_SESSION['user'])) {
                             <label for="email">Endereço de email</label>
                             <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Seu email">
                             <small id="emailHelp" class="form-text text-muted">Nunca vamos compartilhar seu email, com ninguém.</small>
+                            <div class="invalid-feedback" id="invalidemail"> </div>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="senha">Senha</label>
                             <input type="password" class="form-control" id="senha" placeholder="Crie uma senha de acesso">
+                            <div class="invalid-feedback" id="invalidsenha"> </div>
                         </div>
                     </div>
                     <div class=text-right>

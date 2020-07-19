@@ -1,26 +1,48 @@
 $(document).ready(function () {
+    esconde_campos();
+    $("input[type='radio']").click(function(){
+        esconde_campos();
+    });
+
     $.get("cadastro.json", function (data) {
         $.each(data, function (key, val) {
             if (key == 'especialidades') {
-                especialidadeautocomplete(val);
+                especialidade_autocomplete(val);
             }
             if (key == 'exames') {
-                especialidadeautocomplete(val);
+                tipoexames_autocomplete(val);
             }
             if (key == 'estados') {
-                estadosdrop(val);
+                estados_drop(val);
             }
         });
     }, "JSON");
 });
 
-function estadosdrop(list) {
+function esconde_campos() {
+    var radioValue = $("input[name='tipouser']:checked").val();
+    if(radioValue == 'paciente'){
+        $("#medico").hide();
+        $("#laboratorio").hide();
+      $('#paciente').show();
+    }else if(radioValue == 'medico'){
+        $("#paciente").hide();
+        $("#laboratorio").hide();
+      $('#medico').show();
+    }else if(radioValue == 'laboratorio'){
+        $("#medico").hide();
+        $("#paciente").hide();
+      $('#laboratorio').show();
+    }
+}
+
+function estados_drop(list) {
     $.each(list, function (key, item) {
         $('#estado').append('<option value="' + item.sigla + '">' + item.nome + '</option>');
     });
 }
 
-function especialidadeautocomplete(list) {
+function especialidade_autocomplete(list) {
     var especialidade = new Bloodhound({
         datumTokenizer: Bloodhound.tokenizers.whitespace,
         queryTokenizer: Bloodhound.tokenizers.whitespace,
@@ -28,17 +50,18 @@ function especialidadeautocomplete(list) {
     });
 
     $('#especialidade').typeahead({
-        hint: true,
+        hint: false,
         highlight: true,
         minLength: 1
     },
         {
-            name: 'Especialidade',
+            name: 'especialidade',
             source: especialidade
         });
+    $('.twitter-typeahead').removeAttr('style');
 }
 
-function tipoexamesautocomplete(list) {
+function tipoexames_autocomplete(list) {
     var tipoexames = new Bloodhound({
         datumTokenizer: Bloodhound.tokenizers.whitespace,
         queryTokenizer: Bloodhound.tokenizers.whitespace,
@@ -46,7 +69,7 @@ function tipoexamesautocomplete(list) {
     });
 
     $('#tipoexame').typeahead({
-        hint: true,
+        hint: false,
         highlight: true,
         minLength: 1
     },
@@ -54,4 +77,5 @@ function tipoexamesautocomplete(list) {
             name: 'tipoexame',
             source: tipoexames
         });
+    $('.twitter-typeahead').removeAttr('style');
 }
