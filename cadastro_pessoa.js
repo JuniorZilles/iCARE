@@ -15,7 +15,7 @@ $(document).ready(function () {
 });
 
 function estadosdrop(list) {
-    $.each(list, function (item) {
+    $.each(list, function (key, item) {
         $('#estado').append('<option value="' + item.sigla + '">' + item.nome + '</option>');
     });
 }
