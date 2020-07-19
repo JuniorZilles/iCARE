@@ -43,6 +43,7 @@ if (!isset($_SESSION['user'])) {
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
     <script src="http://twitter.github.io/typeahead.js/releases/latest/typeahead.bundle.js"></script>
     <script src="cadastro_pessoa.js"></script>
     <?php
@@ -120,7 +121,7 @@ if (!isset($_SESSION['user'])) {
                         </div>
                         <div class="form-group col-md-4">
                             <label for="telefone">Telefone</label>
-                            <input type="text" class="form-control" id="telefone" placeholder="Seu telefone">
+                            <input type="text" class="form-control" id="telefone" pattern="\([0-9]{2}\)[\s][0-9]{4,5}-[0-9]{4}" placeholder="Seu telefone">
                             <div class="invalid-feedback" id="invalidtelefone"> </div>
                         </div>
                     </div>
@@ -132,7 +133,7 @@ if (!isset($_SESSION['user'])) {
                         </div>
                         <div class="form-group col-md-4">
                             <label for="numero">Número</label>
-                            <input type="text" class="form-control" id="numero" maxlength="5" placeholder="Número da rua">
+                            <input type="text" class="form-control" id="numero" maxlength="5" placeholder="Número da casa/condomínio">
                             <div class="invalid-feedback" id="invalidnumero"> </div>
                         </div>
                     </div>
@@ -163,7 +164,7 @@ if (!isset($_SESSION['user'])) {
                         </div>
                         <div class="form-group col-md-2">
                             <label for="cep">CEP</label>
-                            <input type="text" class="form-control" id="cep">
+                            <input type="text" class="form-control" pattern="[0-9]{2}.[0-9]{3}-[0-9]{3}" id="cep">
                             <div class="invalid-feedback" id="invalidcep"> </div>
                         </div>
                     </div>
@@ -185,7 +186,7 @@ if (!isset($_SESSION['user'])) {
                         </div>
                         <div class="form-group col-md-4">
                             <label for="cpf">CPF</label>
-                            <input type="text" class="form-control" maxlength="" id="cpf" placeholder="Seu CPF">
+                            <input type="text" class="form-control" maxlength="" pattern="[0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2}" id="cpf" placeholder="Seu CPF">
                             <div class="invalid-feedback" id="invalidcpf"> </div>
                         </div>
                     </div>
@@ -198,7 +199,7 @@ if (!isset($_SESSION['user'])) {
                         </div>
                         <div class="form-group col-md-6">
                             <label for="cnpj">CNPJ</label>
-                            <input type="text" class="form-control" id="cnpj" placeholder="Seu CNPJ">
+                            <input type="text" class="form-control" id="cnpj" pattern="[0-9]{2}.[0-9]{3}.[0-9]{3}/[0-9]{4}-[0-9]{2}" placeholder="Seu CNPJ">
                             <div class="invalid-feedback" id="invalidcnpj"> </div>
                         </div>
                     </div>
