@@ -23,12 +23,12 @@ $(document).ready(function () {
         }
     });
 
-    $("#password").keyup(function validaemail() {
+    $("#password").keyup(function validasenha() {
         var password = $("#password").val();
         if (password == "") {
             $('#btnlogin').prop('disabled', true);
             $('#titulo').html('Entrada Inválida')
-            $('#conteudo').html('E-mail não pode ficar em branco!')
+            $('#conteudo').html('Senha não pode ficar em branco!')
             $('.toast').toast('show');
             verpassword = 0;
         } else {

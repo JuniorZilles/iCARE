@@ -25,11 +25,11 @@ try {
             } else {
                 $_senha = remove_inseguro($_POST["password"]);
             }
-            
+
             $xml = simplexml_load_file('dados.xml');
 
             $users = $xml->users->children();
-            
+
             foreach ($users as $child) {
                 if ($child->email == $_email && $child->senha == $_senha) {
                     $_id = $child['id'];
@@ -39,6 +39,11 @@ try {
             if (!empty($_id)) {
                 $_SESSION['user'] = $_id;
                 $_SESSION['tipo'] = $_tipo;
+                if ($_tipo == 'admin'){
+                    $_SESSION['isadmin'] = true;
+                }else{
+                    $_SESSION['isadmin'] = false;
+                }
                 if (isset($_POST['lembrar'])) {
                     $_SESSION['cookieuser'] = $_id;
                 }
@@ -58,13 +63,14 @@ try {
 
         foreach ($users as $child) {
             if ($child['id'] == $_SESSION['cookieuser']) {
-                $_id = $child['id'];
-                $_tipo = $child['tipo'];
+                $_id = $child['id'][0];
+                $_tipo = $child['tipo'][0];
             }
         }
         if (!empty($_id)) {
             $_SESSION['user'] = $_id;
             $_SESSION['tipo'] = $_tipo;
+            $_SESSION['isadmin'] = $_tipo == 'admin' ? true : false;
             if (isset($_POST['lembrar'])) {
                 $_SESSION['cookieuser'] = $_id;
             }

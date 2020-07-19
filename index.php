@@ -64,10 +64,10 @@ if (count($_COOKIE) > 0) {
                             </div>
                             <div class="form-group form-check">
                                 <label class="form-check-label">
-                                    <input class="form-check-input" type="checkbox" id="lembrar"> Lembrar-me
+                                    <input class="form-check-input" type="checkbox" id="lembrar" name="lembrar" value="lembrar"> Lembrar-me
                                 </label>
                             </div>
-                            <input type="submit" id="btnlogin" class="btn btn-lg btn-primary btn-block text-uppercase" name="btnlogin" value="Login" disabled>
+                            <input type="submit" id="btnlogin" class="btn btn-lg btn-outline-primary btn-block text-uppercase" name="btnlogin" value="Login" disabled>
                         </form>
                     </div>
                 </div>
