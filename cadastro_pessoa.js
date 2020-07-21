@@ -241,15 +241,18 @@ function esconde_campos() {
     if (radioValue == 'paciente') {
         $("#medico").hide();
         $("#laboratorio").hide();
+        $('#laboratoriobtn').hide();
         $('#paciente').show();
     } else if (radioValue == 'medico') {
         $("#paciente").hide();
         $("#laboratorio").hide();
+        $('#laboratoriobtn').hide();
         $('#medico').show();
     } else if (radioValue == 'laboratorio') {
         $("#medico").hide();
         $("#paciente").hide();
         $('#laboratorio').show();
+        $('#laboratoriobtn').show();
     }
 }
 
@@ -297,7 +300,7 @@ function tipoexames_autocomplete(list) {
     ).on('typeahead:selected', function (event, selection) {
         var tipos = $('#tipoexame').val();
         $('#tipoexame').val(tipos+selection+',');
-        $('#tipoexamebtns').append("<button type='button' id='" + removeInvalid(selection) + "' class='btn btn-outline-secondary' onclick='removetiposexames(this.value)' value='"+selection+"' >" + selection + " &nbsp;<i class='fa fa-trash' aria-hidden='true'></i></button>");
+        $('#tipoexamebtns').append("<button type='button' id='" + removeInvalid(selection) + "' class='btn btn-outline-secondary btn-sm' onclick='removetiposexames(this.value)' value='"+selection+"' >" + selection + " &nbsp;<i class='fa fa-trash' aria-hidden='true'></i></button>");
         $('#tipoexameauto').typeahead('val', '');
     });;
     $('.twitter-typeahead').removeAttr('style');
@@ -313,7 +316,7 @@ function mostratiposexames() {
     var tipos = $('#tipoexame').val();
     if (tipos.trim() != '') {
         $.each(tipos.split(','), function (key, item) {
-            $('#tipoexamebtns').append("<button type='button' id='" + removeInvalid(selection) + "' class='btn btn-outline-secondary' onclick='removetiposexames(this.value)' value='"+selection+"' >" + selection + " &nbsp;<i class='fa fa-trash' aria-hidden='true'></i></button>");
+            $('#tipoexamebtns').append("<button type='button' id='" + removeInvalid(selection) + "' class='btn btn-outline-secondary btn-sm' onclick='removetiposexames(this.value)' value='"+selection+"' >" + selection + " &nbsp;<i class='fa fa-trash' aria-hidden='true'></i></button>");
         });
     }
 }

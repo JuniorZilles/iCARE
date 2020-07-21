@@ -198,12 +198,15 @@ if (!isset($_SESSION['user'])) {
                             <input type="text" class="form-control" id="tipoexameauto" placeholder="Busque o tipo de exame">
                             <div class="invalid-feedback" id="invalidtipoexame"> </div>
                             <input type="hidden" name="tipoexame" id="tipoexame" value="<?php if (isset($_SESSION['tipoexame'])) echo $_SESSION['tipoexame']; ?>">
-                            <div id="tipoexamebtns"></div>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="cnpj">CNPJ</label>
                             <input type="text" class="form-control" id="cnpj" pattern="[0-9]{2}.[0-9]{3}.[0-9]{3}/[0-9]{4}-[0-9]{2}" placeholder="Seu CNPJ" value="<?php if (isset($_SESSION['cnpj'])) echo $_SESSION['cnpj']; ?>">
                             <div class="invalid-feedback" id="invalidcnpj"> </div>
+                        </div>
+                    </div>
+                    <div id="laboratoriobtn" class="form-row">
+                        <div id="tipoexamebtns">
                         </div>
                     </div>
                     <div id="medico" class="form-row">
