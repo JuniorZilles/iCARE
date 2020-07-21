@@ -232,26 +232,29 @@ if (!isset($_SESSION['user'])) {
                         </div>
                     </div>
                     <div class=text-right>
-                        <button type="reset" class="btn btn-outline-primary">Limpar</button>
+                        <button type="reset" class="btn btn-outline-danger">Limpar</button>
                         <button type="button" id="btnregister" class="btn btn-outline-primary" disabled>Salvar</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-    <div aria-live="polite" aria-atomic="true" style="position: relative; min-height: 200px;">
-        <div class="toast" data-delay="1500" style="position: absolute; top: 0; right: 0;">
-            <div class="toast-header">
-                <strong class="mr-auto"><span id='titulo'></span></strong>
-                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="toast-body">
-                <span id='conteudo'></span>
+    <div style="display: none;">
+        <div aria-live="polite" aria-atomic="true" style="position: relative; min-height: 200px;">
+            <div class="toast" data-delay="1500" style="position: absolute; top: 0; right: 0;">
+                <div class="toast-header">
+                    <strong class="mr-auto"><span id='titulo'></span></strong>
+                    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="toast-body">
+                    <span id='conteudo'></span>
+                </div>
             </div>
         </div>
     </div>
+
 </body>
 
 </html>

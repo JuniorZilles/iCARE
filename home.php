@@ -86,16 +86,18 @@ if (isset($_SESSION['cookieuser'])) {
         echo makecardsmedico();
     }
     ?>
-    <div aria-live="polite" aria-atomic="true" style="position: relative; min-height: 200px;">
-        <div class="toast" data-delay="1500" style="position: absolute; top: 0; right: 0;">
-            <div class="toast-header">
-                <strong class="mr-auto"><span id='titulo'></span></strong>
-                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="toast-body">
-                <span id='conteudo'></span>
+    <div style="display: none;">
+        <div aria-live="polite" aria-atomic="true" style="position: relative; min-height: 200px;">
+            <div class="toast" data-delay="1500" style="position: absolute; top: 0; right: 0;">
+                <div class="toast-header">
+                    <strong class="mr-auto"><span id='titulo'></span></strong>
+                    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="toast-body">
+                    <span id='conteudo'></span>
+                </div>
             </div>
         </div>
     </div>
