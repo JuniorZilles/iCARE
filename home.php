@@ -53,7 +53,7 @@ if (isset($_SESSION['cookieuser'])) {
                         <a class="nav-link" href="<?php echo $_SERVER["PHP_SELF"]; ?>">Home</a>
                     </li>
                     <?php
-                     if ($_SESSION['isadmin']) {
+                     if ($_SESSION['tipo'] == 'admin') {
                         echo makemenuadmin();
                     } else if ($_SESSION['tipo'] == 'paciente') {
                         echo makemenupaciente();
@@ -74,7 +74,7 @@ if (isset($_SESSION['cookieuser'])) {
     </div>
     <br>
     <?php
-    if ($_SESSION['isadmin']) {
+    if ($_SESSION['tipo'] == 'admin') {
         echo makecardsadmin();
     } else if ($_SESSION['tipo'] == 'paciente') {
         echo makecardspaciente();

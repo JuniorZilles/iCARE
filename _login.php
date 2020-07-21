@@ -39,10 +39,6 @@ try {
             if (!empty($_id)) {
                 $_SESSION['user'] = $_id;
                 $_SESSION['tipo'] = $_tipo;
-                $_SESSION['isadmin'] = false;
-                if ($_tipo == 'admin') {
-                    $_SESSION['isadmin'] = true;
-                }
                 if (isset($_POST['lembrar'])) {
                     $_SESSION['cookieuser'] = $_id;
                 }
@@ -56,10 +52,9 @@ try {
             header("Location: index.php");
         }
     } else if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-        $xmlStr = file_get_contents('dados.xml');
-        $xml = new SimpleXMLElement($xmlStr);
-        $users = $xml->users->children();
+        $xml = simplexml_load_file('dados.xml');
 
+        $users = $xml->users->children();
         foreach ($users as $child) {
             if ($child['id'] == $_SESSION['cookieuser']) {
                 $_id = (string)$child['id'];
@@ -69,13 +64,6 @@ try {
         if (!empty($_id)) {
             $_SESSION['user'] = $_id;
             $_SESSION['tipo'] = $_tipo;
-            $_SESSION['isadmin'] = false;
-            if ($_tipo == 'admin') {
-                $_SESSION['isadmin'] = true;
-            }
-            if (isset($_POST['lembrar'])) {
-                $_SESSION['cookieuser'] = $_id;
-            }
             header("Location: home.php");
         } else {
             $_SESSION['erro'] = maketoast('Entrada Inválida', 'Os dados de e-mail e senha não existem na base de dados!');

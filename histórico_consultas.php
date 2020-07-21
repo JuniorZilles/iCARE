@@ -49,15 +49,13 @@ if (!isset($_SESSION['user'])) {
                         <a class="nav-link" href="home.php">Home</a>
                     </li>
                     <?php
-                     if ($_SESSION['isadmin']) {
+                    if ($_SESSION['tipo'] == 'admin') {
                         echo makemenuadmin();
                     } else if ($_SESSION['tipo'] == 'paciente') {
                         echo makemenupaciente();
-                    }
-                    else if ($_SESSION['tipo'] == 'laboratorio') {
+                    } else if ($_SESSION['tipo'] == 'laboratorio') {
                         echo makemenulaboratorio();
-                    }
-                    else if ($_SESSION['tipo'] == 'medico') {
+                    } else if ($_SESSION['tipo'] == 'medico') {
                         echo makemenumedico();
                     }
                     ?>
