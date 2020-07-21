@@ -33,8 +33,43 @@ $(document).ready(function () {
         processaojson(data);
     }, "JSON");
 
-    $("#email").blur(validaemail());
-    $("#senha").keyup(validasenha());
+    $("#email").blur(function () {
+        var email = $("#email").val();
+        var expressao = /^[A-Za-z0-9_\-\.]+@[A-Za-z0-9_\-\.]{2,}\.[A-Za-z0-9]{2,}(\.[A-Za-z0-9])?/;
+        if (email == "") {
+            $('#btnregister').prop('disabled', true);
+            $("#email").attr('class', 'form-control is-invalid')
+            $('#invalidemail').html('E-mail não pode ficar em branco!')
+            veremail = 0;
+        } else if (!expressao.test(email)) {
+            $('#btnregister').prop('disabled', true);
+            $("#email").attr('class', 'form-control is-invalid')
+            $('#invalidemail').html('E-mail contém formato inválido!')
+            veremail = 0;
+        } else {
+            veremail = 1;
+            $("#email").attr('class', 'form-control is-valid')
+            habilitabtn();
+        }
+    });
+    $("#senha").keyup(function () {
+        var password = $("#senha").val();
+        if (password == "") {
+            $('#btnregister').prop('disabled', true);
+            $("#senha").attr('class', 'form-control is-invalid')
+            $('#invalidsenha').html('Senha não pode ficar em branco!')
+            verpassword = 0;
+        } else if (count(password) < 6) {
+            $('#btnregister').prop('disabled', true);
+            $("#senha").attr('class', 'form-control is-invalid')
+            $('#invalidsenha').html('Senha deve conter mais de 6 caracteres!')
+            verpassword = 0;
+        } else {
+            $("#senha").attr('class', 'form-control is-valid')
+            verpassword = 1;
+            habilitabtn();
+        }
+    });
     $("#nome").blur(function () {
         vernome = validacampobasico("#nome", '#invalidnome', 'Nome não pode ficar em branco!');
         if (vernome == 1)
@@ -54,7 +89,7 @@ $(document).ready(function () {
         vernumero = validacampobasico("#numero", '#invalidnumero', 'Número da casa não pode ficar em branco!');
         if (vernumero == 1)
             habilitabtn()
-    });   
+    });
     $("#bairro").blur(function () {
         verbairro = validacampobasico("#bairro", '#invalidbairro', 'Bairro não pode ficar em branco!');
         if (verbairro == 1)
@@ -132,45 +167,6 @@ function validacampobasico(campo, campovalidacao, mensagem) {
         return 1;
     }
 }
-
-function validasenha() {
-    var password = $("#senha").val();
-    if (password == "") {
-        $('#btnregister').prop('disabled', true);
-        $("#senha").attr('class', 'form-control is-invalid')
-        $('#invalidsenha').html('Senha não pode ficar em branco!')
-        verpassword = 0;
-    } else if (count(password) < 6) {
-        $('#btnregister').prop('disabled', true);
-        $("#senha").attr('class', 'form-control is-invalid')
-        $('#invalidsenha').html('Senha deve conter mais de 6 caracteres!')
-        verpassword = 0;
-    } else {
-        $("#senha").attr('class', 'form-control is-valid')
-        verpassword = 1;
-        habilitabtn();
-    }
-}
-
-function validaemail() {
-    var email = $("#email").val();
-    var expressao = /^[A-Za-z0-9_\-\.]+@[A-Za-z0-9_\-\.]{2,}\.[A-Za-z0-9]{2,}(\.[A-Za-z0-9])?/;
-    if (email == "") {
-        $('#btnregister').prop('disabled', true);
-        $("#email").attr('class', 'form-control is-invalid')
-        $('#invalidemail').html('E-mail não pode ficar em branco!')
-        veremail = 0;
-    } else if (!expressao.test(email)) {
-        $('#btnregister').prop('disabled', true);
-        $("#email").attr('class', 'form-control is-invalid')
-        $('#invalidemail').html('E-mail contém formato inválido!')
-        veremail = 0;
-    } else {
-        veremail = 1;
-        $("#email").attr('class', 'form-control is-valid')
-        habilitabtn();
-    }
-};
 
 function habilitabtn() {
     if (tipouser == 'paciente') {
@@ -292,28 +288,36 @@ function tipoexames_autocomplete(list) {
     $('#tipoexameauto').typeahead({
         hint: false,
         highlight: true,
-        minLength: 1
+        minLength: 1,
     },
-        {
+    {
             name: 'tipoexame',
             source: tipoexames,
-            updater: function( item ) {
-                $('#tipoexamebtns').append('<button id="'+item.replace(' ','')+'" onclick="removetiposexames('+item+')">'+item+'<i class="fa fa-remove"></i></button>');
-                return '';
-            }
-        });
+        }
+    ).on('typeahead:selected', function (event, selection) {
+        var tipos = $('#tipoexame').val();
+        $('#tipoexame').val(tipos+selection+',');
+        $('#tipoexamebtns').append("<button type='button' id='" + removeInvalid(selection) + "' class='btn btn-outline-secondary' onclick='removetiposexames(this.value)' value='"+selection+"' >" + selection + " &nbsp;<i class='fa fa-trash' aria-hidden='true'></i></button>");
+        $('#tipoexameauto').typeahead('val', '');
+    });;
     $('.twitter-typeahead').removeAttr('style');
 }
 
-function removetiposexames(valor){
+function removetiposexames(valor) {
     var tipos = $('#tipoexame').val();
-    $('#tipoexame').val(tipos.replace(valor+',',''));
-    $('#'+tipos.replace(' ','')).remove();
+    $('#tipoexame').val(tipos.replace(valor + ',', ''));
+    $('#' + removeInvalid(valor)).remove();
 }
 
-function mostratiposexames(){
+function mostratiposexames() {
     var tipos = $('#tipoexame').val();
-    $.each(tipos.split(','), function (key, item) {
-        $('#tipoexamebtns').append('<button id="'+item.replace(' ','')+'" onclick="remove('+item+')">'+item+'<i class="fa fa-remove"></i></button>');
-    });
+    if (tipos.trim() != '') {
+        $.each(tipos.split(','), function (key, item) {
+            $('#tipoexamebtns').append("<button type='button' id='" + removeInvalid(selection) + "' class='btn btn-outline-secondary' onclick='removetiposexames(this.value)' value='"+selection+"' >" + selection + " &nbsp;<i class='fa fa-trash' aria-hidden='true'></i></button>");
+        });
+    }
+}
+
+function removeInvalid(value){
+    return value.replace(/\s/g, '').replace(')', '').replace('(', '')
 }

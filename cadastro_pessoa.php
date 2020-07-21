@@ -97,20 +97,20 @@ if (!isset($_SESSION['user'])) {
                                                     }
                                                     ?></h5>
                 <form action="_cadastro.php" id="cadastroform" method="POST">
-                    <input type="hidden" id="identificador" value="<?php if ($_SESSION['isadmin'])  echo $_SESSION['user'] ?>">
+                    <input type="hidden" id="identificador" value="<?php if ($_SESSION['isadmin'])  echo $_SESSION['user']; ?>">
                     <div class="form-row">
                         <div class="form-group col-md-8">
                             <label>Tipo de Usuário</label><br>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="tipouser" id="tipouser1" value="paciente" <?php if ($_SESSION['tipo'] == 'paciente' || $_SESSION['tipo'] == 'admin') echo 'checked' ?>>
+                                <input class="form-check-input" type="radio" name="tipouser" id="tipouser1" value="paciente" <?php if ($_SESSION['tipo'] == 'paciente' || $_SESSION['tipo'] == 'admin') echo 'checked'; ?>>
                                 <label class="form-check-label" for="tipouser1">Paciente</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="tipouser" id="tipouser2" value="medico" <?php if ($_SESSION['tipo'] == 'medico') echo 'checked' ?>>
+                                <input class="form-check-input" type="radio" name="tipouser" id="tipouser2" value="medico" <?php if ($_SESSION['tipo'] == 'medico') echo 'checked'; ?>>
                                 <label class="form-check-label" for="tipouser2">Médico</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="tipouser" id="tipouser3" value="laboratorio" <?php if ($_SESSION['tipo'] == 'laboratorio') echo 'checked' ?>>
+                                <input class="form-check-input" type="radio" name="tipouser" id="tipouser3" value="laboratorio" <?php if ($_SESSION['tipo'] == 'laboratorio') echo 'checked'; ?>>
                                 <label class="form-check-label" for="tipouser3">Laboratório</label>
                             </div>
                         </div>
@@ -118,24 +118,24 @@ if (!isset($_SESSION['user'])) {
                     <div class="form-row">
                         <div class="form-group col-md-8">
                             <label for="nome">Nome</label>
-                            <input type="text" class="form-control" id="nome" placeholder="Seu nome" value="<?php if (isset($_SESSION['nome'])) echo $_SESSION['nome'] ?>">
+                            <input type="text" class="form-control" id="nome" placeholder="Seu nome" value="<?php if (isset($_SESSION['nome'])) echo $_SESSION['nome']; ?>">
                             <div class="invalid-feedback" id="invalidnome"> </div>
                         </div>
                         <div class="form-group col-md-4">
                             <label for="telefone">Telefone</label>
-                            <input type="text" class="form-control" id="telefone" pattern="\([0-9]{2}\)[\s][0-9]{4,5}-[0-9]{4}" placeholder="Seu telefone" value="<?php if (isset($_SESSION['telefone'])) echo $_SESSION['telefone'] ?>">
+                            <input type="text" class="form-control" id="telefone" pattern="\([0-9]{2}\)[\s][0-9]{4,5}-[0-9]{4}" placeholder="Seu telefone" value="<?php if (isset($_SESSION['telefone'])) echo $_SESSION['telefone']; ?>">
                             <div class="invalid-feedback" id="invalidtelefone"> </div>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-8">
                             <label for="rua">Endereço</label>
-                            <input type="text" class="form-control" id="rua" placeholder="Nome da rua/avenida" value="<?php if (isset($_SESSION['rua'])) echo $_SESSION['rua'] ?>">
+                            <input type="text" class="form-control" id="rua" placeholder="Nome da rua/avenida" value="<?php if (isset($_SESSION['rua'])) echo $_SESSION['rua']; ?>">
                             <div class="invalid-feedback" id="invalidendereco"> </div>
                         </div>
                         <div class="form-group col-md-4">
                             <label for="numero">Número</label>
-                            <input type="text" class="form-control" id="numero" maxlength="5" placeholder="Número da casa/condomínio" value="<?php if (isset($_SESSION['numero'])) echo $_SESSION['numero'] ?>">
+                            <input type="text" class="form-control" id="numero" maxlength="5" placeholder="Número da casa/condomínio" value="<?php if (isset($_SESSION['numero'])) echo $_SESSION['numero']; ?>">
                             <div class="invalid-feedback" id="invalidnumero"> </div>
                         </div>
                     </div>
@@ -143,37 +143,37 @@ if (!isset($_SESSION['user'])) {
 
                         <div class="form-group col-md-6">
                             <label for="bairro">Bairro</label>
-                            <input type="text" class="form-control" id="bairro" placeholder="Nome do bairro" value="<?php if (isset($_SESSION['bairro'])) echo $_SESSION['bairro'] ?>">
+                            <input type="text" class="form-control" id="bairro" placeholder="Nome do bairro" value="<?php if (isset($_SESSION['bairro'])) echo $_SESSION['bairro']; ?>">
                             <div class="invalid-feedback" id="invalidbairro"> </div>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="complemento">Complemento</label>
-                            <input type="text" class="form-control" id="complemento" placeholder="Complemento bloco/apartamento/fundos" value="<?php if (isset($_SESSION['complemento'])) echo $_SESSION['complemento'] ?>">
+                            <input type="text" class="form-control" id="complemento" placeholder="Complemento bloco/apartamento/fundos" value="<?php if (isset($_SESSION['complemento'])) echo $_SESSION['complemento']; ?>">
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="cidade">Cidade</label>
-                            <input type="text" class="form-control" id="cidade" placeholder="Nome da cidade" value="<?php if (isset($_SESSION['cidade'])) echo $_SESSION['cidade'] ?>">
+                            <input type="text" class="form-control" id="cidade" placeholder="Nome da cidade" value="<?php if (isset($_SESSION['cidade'])) echo $_SESSION['cidade']; ?>">
                             <div class="invalid-feedback" id="invalidcidade"> </div>
                         </div>
                         <div class="form-group col-md-4">
                             <label for="estado">Estado</label>
-                            <select id="estado" class="form-control" value="<?php if (isset($_SESSION['estado'])) echo $_SESSION['estado'] ?>">
+                            <select id="estado" class="form-control" value="<?php if (isset($_SESSION['estado'])) echo $_SESSION['estado']; ?>">
                                 <option selected>Escolher...</option>
                             </select>
                             <div class="invalid-feedback" id="invalidestado"> </div>
                         </div>
                         <div class="form-group col-md-2">
                             <label for="cep">CEP</label>
-                            <input type="text" class="form-control" pattern="[0-9]{2}.[0-9]{3}-[0-9]{3}" id="cep" value="<?php if (isset($_SESSION['cep'])) echo $_SESSION['cep'] ?>">
+                            <input type="text" class="form-control" pattern="[0-9]{2}.[0-9]{3}-[0-9]{3}" id="cep" value="<?php if (isset($_SESSION['cep'])) echo $_SESSION['cep']; ?>">
                             <div class="invalid-feedback" id="invalidcep"> </div>
                         </div>
                     </div>
                     <div id="paciente" class="form-row">
                         <div class="form-group col-md-4">
                             <label for="genero">Gênero</label>
-                            <select id="genero" class="form-control" value="<?php if (isset($_SESSION['genero'])) echo $_SESSION['genero'] ?>">
+                            <select id="genero" class="form-control" value="<?php if (isset($_SESSION['genero'])) echo $_SESSION['genero']; ?>">
                                 <option selected>Escolher...</option>
                                 <option value="feminino">Feminino</option>
                                 <option value="masculino">Masculino</option>
@@ -183,12 +183,12 @@ if (!isset($_SESSION['user'])) {
                         </div>
                         <div class="form-group col-md-4">
                             <label for="datanascimento">Data de Nascimento</label>
-                            <input type="date" class="form-control" maxlength="10" id="datanascimento" placeholder="Data de Nascimento" value="<?php if (isset($_SESSION['datanascimento'])) echo $_SESSION['datanascimento'] ?>">
+                            <input type="date" class="form-control" maxlength="10" id="datanascimento" placeholder="Data de Nascimento" value="<?php if (isset($_SESSION['datanascimento'])) echo $_SESSION['datanascimento']; ?>">
                             <div class="invalid-feedback" id="invaliddate"> </div>
                         </div>
                         <div class="form-group col-md-4">
                             <label for="cpf">CPF</label>
-                            <input type="text" class="form-control" maxlength="" pattern="[0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2}" id="cpf" placeholder="Seu CPF" value="<?php if (isset($_SESSION['cpf'])) echo $_SESSION['cpf'] ?>">
+                            <input type="text" class="form-control" maxlength="" pattern="[0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2}" id="cpf" placeholder="Seu CPF" value="<?php if (isset($_SESSION['cpf'])) echo $_SESSION['cpf']; ?>">
                             <div class="invalid-feedback" id="invalidcpf"> </div>
                         </div>
                     </div>
@@ -197,37 +197,37 @@ if (!isset($_SESSION['user'])) {
                             <label for="tipoexameauto">Tipo de Exames</label>
                             <input type="text" class="form-control" id="tipoexameauto" placeholder="Busque o tipo de exame">
                             <div class="invalid-feedback" id="invalidtipoexame"> </div>
-                            <input type="hidden" name="tipoexame" value="<?php if (isset($_SESSION['tipoexame'])) echo $_SESSION['tipoexame'] ?>">
+                            <input type="hidden" name="tipoexame" id="tipoexame" value="<?php if (isset($_SESSION['tipoexame'])) echo $_SESSION['tipoexame']; ?>">
                             <div id="tipoexamebtns"></div>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="cnpj">CNPJ</label>
-                            <input type="text" class="form-control" id="cnpj" pattern="[0-9]{2}.[0-9]{3}.[0-9]{3}/[0-9]{4}-[0-9]{2}" placeholder="Seu CNPJ" value="<?php if (isset($_SESSION['cnpj'])) echo $_SESSION['cnpj'] ?>">
+                            <input type="text" class="form-control" id="cnpj" pattern="[0-9]{2}.[0-9]{3}.[0-9]{3}/[0-9]{4}-[0-9]{2}" placeholder="Seu CNPJ" value="<?php if (isset($_SESSION['cnpj'])) echo $_SESSION['cnpj']; ?>">
                             <div class="invalid-feedback" id="invalidcnpj"> </div>
                         </div>
                     </div>
                     <div id="medico" class="form-row">
                         <div class="form-group col-md-6">
                             <label for="especialidade">Especialidade</label>
-                            <input type="text" class="form-control" id="especialidade" placeholder="Busque pela especialidade" value="<?php if (isset($_SESSION['especialidade'])) echo $_SESSION['especialidade'] ?>">
+                            <input type="text" class="form-control" id="especialidade" placeholder="Busque pela especialidade" value="<?php if (isset($_SESSION['especialidade'])) echo $_SESSION['especialidade']; ?>">
                             <div class="invalid-feedback" id="invalidespecialidade"> </div>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="crm">CRM</label>
-                            <input type="text" class="form-control" id="crm" placeholder="Seu CRM" value="<?php if (isset($_SESSION['crm'])) echo $_SESSION['crm'] ?>">
+                            <input type="text" class="form-control" id="crm" placeholder="Seu CRM" value="<?php if (isset($_SESSION['crm'])) echo $_SESSION['crm']; ?>">
                             <div class="invalid-feedback" id="invalidcrm"> </div>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="email">Endereço de email</label>
-                            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Seu email" value="<?php if (isset($_SESSION['email'])) echo $_SESSION['email'] ?>">
+                            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Seu email" value="<?php if (isset($_SESSION['email'])) echo $_SESSION['email']; ?>">
                             <small id="emailHelp" class="form-text text-muted">Nunca vamos compartilhar seu email, com ninguém.</small>
                             <div class="invalid-feedback" id="invalidemail"> </div>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="senha">Senha</label>
-                            <input type="password" class="form-control" id="senha" placeholder="Crie uma senha de acesso" value="<?php if (isset($_SESSION['senha'])) echo $_SESSION['senha'] ?>">
+                            <input type="password" class="form-control" id="senha" placeholder="Crie uma senha de acesso" value="<?php if (isset($_SESSION['senha'])) echo $_SESSION['senha']; ?>">
                             <div class="invalid-feedback" id="invalidsenha"> </div>
                         </div>
                     </div>
