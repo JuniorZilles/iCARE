@@ -32,17 +32,16 @@ try {
 
             foreach ($users as $child) {
                 if ($child->email == $_email && $child->senha == $_senha) {
-                    $_id = $child['id'];
-                    $_tipo = $child['tipo'];
+                    $_id = (string)$child['id'];
+                    $_tipo = (string)$child['tipo'];
                 }
             }
             if (!empty($_id)) {
                 $_SESSION['user'] = $_id;
                 $_SESSION['tipo'] = $_tipo;
-                if ($_tipo == 'admin'){
+                $_SESSION['isadmin'] = false;
+                if ($_tipo == 'admin') {
                     $_SESSION['isadmin'] = true;
-                }else{
-                    $_SESSION['isadmin'] = false;
                 }
                 if (isset($_POST['lembrar'])) {
                     $_SESSION['cookieuser'] = $_id;
@@ -63,14 +62,17 @@ try {
 
         foreach ($users as $child) {
             if ($child['id'] == $_SESSION['cookieuser']) {
-                $_id = $child['id'][0];
-                $_tipo = $child['tipo'][0];
+                $_id = (string)$child['id'];
+                $_tipo = (string)$child['tipo'];
             }
         }
         if (!empty($_id)) {
             $_SESSION['user'] = $_id;
             $_SESSION['tipo'] = $_tipo;
-            $_SESSION['isadmin'] = $_tipo == 'admin' ? true : false;
+            $_SESSION['isadmin'] = false;
+            if ($_tipo == 'admin') {
+                $_SESSION['isadmin'] = true;
+            }
             if (isset($_POST['lembrar'])) {
                 $_SESSION['cookieuser'] = $_id;
             }
@@ -90,3 +92,5 @@ try {
     $_SESSION['erro'] = maketoast('Erro de execução', $e->getMessage() . PHP_EOL);
     header("Location: index.php");
 }
+
+?>
