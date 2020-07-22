@@ -5,5 +5,17 @@
             <email>admin@admin.com</email>
             <senha>admin</senha>
         </user>
+        <user id="106eacd2ecdc46f5bc4a9b5a5d4dd47d" tipo="medico">
+            <email>medico@email.com</email>
+            <senha>medico</senha>
+        </user>
+        <user id="fbe2e65a854a452f80923f7b7fa97171" tipo="laboratorio">
+            <email>laboratorio@email.com</email>
+            <senha>laboratorio</senha>
+        </user>
+        <user id="a3202f335a024f0faf58c83ec7b0a095" tipo="paciente">
+            <email>paciente@email.com</email>
+            <senha>paciente</senha>
+        </user>
     </users>
 </dados>

@@ -95,7 +95,7 @@ function makecardsmedico()
         </div>
         <div class="col-sm-6">
             <div class="card">
-                <img class="card-img-top" src="images/" alt="Cadastrar Consultas">
+                <img class="card-img-top" src="images/cadastroconsulta.jpg" alt="Cadastrar Consultas">
                 <div class="card-body">
                     <h5 class="card-title">Cadastrar Consultas</h5>
                     <p class="card-text">O cadastro de consultas é feito por aqui!</p>
