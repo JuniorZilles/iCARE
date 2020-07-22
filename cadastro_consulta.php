@@ -10,7 +10,7 @@ if (!isset($_SESSION['user'])) {
     $_SESSION['erro'] = maketoast('Usuário não logado', 'Necessário realizar login para utilizar os recursos!');
     header("Location: index.php");
 }
-if(isset($_SESSION['registro']))
+if (isset($_SESSION['registro']))
     $_user = unserialize($_SESSION['registro']);
 ?>
 
@@ -75,16 +75,12 @@ if(isset($_SESSION['registro']))
     <div class="container">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title text-center"><?php
-                                                    if ($_SESSION['tipo'] == 'medico') {
-                                                        echo 'Cadastro de Consulta';
-                                                    } else {
-                                                        echo 'Editar Perfil';
-                                                    }
-                                                    ?></h5>
+                <h5 class="card-title text-center">Cadastro de Consulta</h5>
                 <form action="_cadastro.php" id="cadastroform" method="POST">
-                    <input type="hidden" id="identificador" value="<?php if ($_SESSION['tipo'] != 'medico')  echo $_user->id; ?>">
-                    <div class="form-row">
+                    
+                <!-- DÁ PRA TIRAR O COMENTADO, POR QUE ESSES DADOS JÁ VÃO ESTAR CONTIDOS NO CADASTRO DO PACIENTE -->
+
+                    <!-- <div class="form-row">
                         <div class="form-group col-md-8">
                             <label>Tipo de Usuário</label><br>
                             <?php
@@ -97,15 +93,17 @@ if(isset($_SESSION['registro']))
                             } else if ($_SESSION['tipo'] == 'medico') {
                                 echo makeradiomedico();
                             }
-                            ?>
+                            ?> 
                         </div>
-                    </div>
+                    </div> -->
                     <div class="form-row">
-                        <div class="form-group col-md-8">
+                        <div class="form-group col-md-12">
                             <label for="nome">Nome do Paciente</label>
-                            <input type="text" class="form-control" id="nome" placeholder="Nome do Paciente" value="<?php if (isset($_user->nome)) echo $_user->nome; ?>">
+                            <input type="text" class="form-control" id="nome" placeholder="Nome do Paciente" value="">
                             <div class="invalid-feedback" id="invalidnome"> </div>
                         </div>
+                    </div>
+                        <!--
                         <div class="form-group col-md-4">
                             <label for="telefone">Telefone</label>
                             <input type="text" class="form-control" id="telefone" pattern="\([0-9]{2}\)[\s][0-9]{4,5}-[0-9]{4}" placeholder="Telefone do Paciente" value="<?php if (isset($_user->telefone)) echo $_user->telefone; ?>">
@@ -154,9 +152,9 @@ if(isset($_SESSION['registro']))
                             <input type="text" class="form-control" pattern="[0-9]{2}.[0-9]{3}-[0-9]{3}" id="cep" value="<?php if (isset($_user->cep)) echo $_user->cep; ?>">
                             <div class="invalid-feedback" id="invalidcep"> </div>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="form-row">
-                        <div class="form-group col-md-4">
+                        <!-- <div class="form-group col-md-4">
                             <label for="genero">Gênero</label>
                             <select id="genero" class="form-control" value="<?php if (isset($_user->genero)) echo $_user->genero; ?>">
                                 <option selected>Escolher...</option>
@@ -175,7 +173,7 @@ if(isset($_SESSION['registro']))
                             <label for="cpf">CPF</label>
                             <input type="text" class="form-control" maxlength="" pattern="[0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2}" id="cpf" placeholder="CPF do Paciente" value="<?php if (isset($_user->cpf)) echo $_user->cpf; ?>">
                             <div class="invalid-feedback" id="invalidcpf"> </div>
-                        </div>
+                        </div> -->
                         <div class="form-group col-md-8">
                             <label for="datanascimento">Data da Consulta</label>
                             <input type="date" class="form-control" maxlength="10" id="dataconsulta" placeholder="Data de realização da consulta" value="<?php if (isset($_user->dataconsulta)) echo $_user->dataconsulta; ?>">
@@ -186,31 +184,49 @@ if(isset($_SESSION['registro']))
                             <input type="time" class="form-control" maxlength="10" id="horarioconsulta" placeholder="Horário de realização da consulta" value="<?php if (isset($_user->horarioconsulta)) echo $_user->horarioconsulta; ?>">
                             <div class="invalid-feedback" id="invaliddate"> </div>
                         </div>
-                        <div class="form-group col-md-6">
-                            <label for="qualoproblema">Qual o problema do paciente?</label>
-                            <div class="form-group col-md-8">
-                            <label class="form-check-label">
-                                    <input class="form-check-input" type="checkbox" id="febre" name="febre" value="febre"> Febre<br>
-                                    <input class="form-check-input" type="checkbox" id="dorcabeca" name="dorcabeca" value="dorcabeca"> Dor Cabeça<br>
-                                    <input class="form-check-input" type="checkbox" id="dorcorpo" name="dorcorpo" value="dorcorpo"> Dor no Corpo<br>
-                                    <input class="form-check-input" type="checkbox" id="dorpeito" name="dorpeito" value="dorpeito"> Dor no Peito<br>
-                                    <input class="form-check-input" type="checkbox" id="formigamento" name="formigamento" value="formigamento"> Formigamento<br>
-                                    <input class="form-check-input" type="checkbox" id="dorbarriga" name="dorbarriga" value="dorbarriga"> Dor de Barriga<br>
-                                    <input class="form-check-input" type="checkbox" id="vomito" name="vomito" value="vomito"> Vômito<br>
-                                    <input class="form-check-input" type="checkbox" id="nausea" name="nausea" value="nausea"> Náusea<br>
-                                    <input class="form-check-input" type="checkbox" id="perdapeso" name="perdapeso" value="perdapeso"> Perda de Peso<br>
-                                    <input class="form-check-input" type="checkbox" id="ganhopeso" name="ganhopeso" value="ganhopeso"> Ganho de Peso<br>
-                                    <input class="form-check-input" type="checkbox" id="cansaco" name="cansaco" value="cansaco"> Cansaço<br>
-                                    <input class="form-check-input" type="checkbox" id="outro" name="outro" value="outro"> Outro
-                            </label>
-                            <input type="text" class="form-control" id="especifiqueoutro" placeholder="Especifique se for outro" value="<?php if (isset($_user->outro)) echo $_user->outro; ?>">
-                            </div>
-                        </div>
-                        
-
-                        
                     </div>
-                   
+                    <div class="form-group row">
+                        <div class="col-sm-10">Qual o sintoma do paciente?</div>
+                        <div class="col-md-12">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="febre" name="febre" value="febre"> <label class="form-check-label" for="febre">Febre </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="dorcabeca" name="dorcabeca" value="dorcabeca"> <label class="form-check-label" for="dorcabeca">Dor Cabeça </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="dorcorpo" name="dorcorpo" value="dorcorpo"> <label class="form-check-label" for="dorcorpo">Dor no Corpo </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="dorpeito" name="dorpeito" value="dorpeito"> <label class="form-check-label" for="dorpeito"> Dor no Peito </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="formigamento" name="formigamento" value="formigamento"> <label class="form-check-label" for="formigamento">Formigamento </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="dorbarriga" name="dorbarriga" value="dorbarriga"> <label class="form-check-label" for="dorbarriga"> Dor de Barriga</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="vomito" name="vomito" value="vomito"> <label class="form-check-label" for="vomito">Vômito </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="nausea" name="nausea" value="nausea"> <label class="form-check-label" for="nausea">Náusea </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="perdapeso" name="perdapeso" value="perdapeso"> <label class="form-check-label" for="perdapeso">Perda de Peso </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="ganhopeso" name="ganhopeso" value="ganhopeso"> <label class="form-check-label" for="ganhopeso">Ganho de Peso </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="cansaco" name="cansaco" value="cansaco"> <label class="form-check-label" for="cansaco">Cansaço </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="outro" name="outro" value="outro"> <label class="form-check-label" for="outro">Outro </label>
+                            </div>
+                                <input type="text" class="form-control" id="especifiqueoutro" placeholder="Especifique se for outro" value="<?php if (isset($_user->outro)) echo $_user->outro; ?>">
+                        </div>
+                    </div>
                     <div class=text-right>
                         <button type="reset" class="btn btn-outline-danger">Limpar</button>
                         <button type="button" id="btnregister" class="btn btn-outline-primary" disabled>Salvar</button>
