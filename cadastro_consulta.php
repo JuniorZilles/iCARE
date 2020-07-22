@@ -76,8 +76,9 @@ if (isset($_SESSION['registro']))
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title text-center">Cadastro de Consulta</h5>
-                <form action="_cadastro.php" id="cadastroform" method="POST">
-                    
+                <form action="_consulta.php" id="cadastroform" method="POST">
+                    <!-- criar um objeto (usar exemplo do _pessoa_model.php) para permitir a edição -->
+                <input type="hidden" id="identificador" value="<?php if (isset($_SESSION['identificadordaconsulta']))  echo $_user->id; ?>">
                 <!-- DÁ PRA TIRAR O COMENTADO, POR QUE ESSES DADOS JÁ VÃO ESTAR CONTIDOS NO CADASTRO DO PACIENTE -->
                 <!-- Data, Médico, Paciente, Receita, Observações -->
                     <!-- <div class="form-row">
