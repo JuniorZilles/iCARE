@@ -27,8 +27,13 @@ if (!isset($_SESSION['user'])) {
     $_SESSION['erro'] = maketoast('Usuário não logado', 'Necessário realizar login para utilizar os recursos!');
     header("Location: index.php");
 }
-if(isset($_SESSION['registro']))
+if (isset($_SESSION['registro']))
     $_user = unserialize($_SESSION['registro']);
+
+$_check = '';
+if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+    $_check = isset($_GET['opcao']) ? remove_inseguro($_GET['opcao']) : '';
+}
 ?>
 
 <!DOCTYPE html>
@@ -37,12 +42,9 @@ if(isset($_SESSION['registro']))
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Bootstrap -->
-    <!-- CSS only -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="cadastro_pessoa.css">
-    <!-- JS, Popper.js, and jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
@@ -106,14 +108,14 @@ if(isset($_SESSION['registro']))
                             <label>Tipo de Usuário</label><br>
                             <?php
                             if ($_SESSION['tipo'] == 'admin') {
-                                echo makeradioadmin();
-                            } else if ($_SESSION['tipo'] == 'paciente') {
-                                echo makeradiopaciente();
-                            } else if ($_SESSION['tipo'] == 'laboratorio') {
-                                echo makeradiolaboratorio();
-                            } else if ($_SESSION['tipo'] == 'medico') {
-                                echo makeradiomedico();
-                            }
+                                echo makeradioadmin($_check);
+                            }// else if ($_SESSION['tipo'] == 'paciente') {
+                            //     echo makeradiopaciente();
+                            // } else if ($_SESSION['tipo'] == 'laboratorio') {
+                            //     echo makeradiolaboratorio();
+                            // } else if ($_SESSION['tipo'] == 'medico') {
+                            //     echo makeradiomedico();
+                            // }
                             ?>
                         </div>
                     </div>

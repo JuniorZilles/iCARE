@@ -10,7 +10,7 @@ function makecardsadmin()
                 <div class="card-body">
                     <h5 class="card-title">Cadastrar Médico</h5>
                     <p class="card-text">O cadastro de um novo médico é feito por aqui!</p>
-                    <a class="stretched-link" href="cadastro_pessoa.php"></a>
+                    <a class="stretched-link" href="cadastro_pessoa.php?opcao=medico"></a>
                 </div>
             </div>
         </div>
@@ -20,7 +20,7 @@ function makecardsadmin()
                 <div class="card-body">
                     <h5 class="card-title">Cadastrar Paciente</h5>
                     <p class="card-text">O cadastro de novos pacientes é feito por aqui!</p>
-                    <a class="stretched-link" href="cadastro_pessoa.php"></a>
+                    <a class="stretched-link" href="cadastro_pessoa.php?opcao=paciente"></a>
                 </div>
             </div>
         </div>
@@ -33,7 +33,7 @@ function makecardsadmin()
                 <div class="card-body">
                     <h5 class="card-title">Cadastrar Laboratório</h5>
                     <p class="card-text">O cadastro de um novo laboratório é feito por aqui!</p>
-                    <a class="stretched-link" href="cadastro_pessoa.php"></a>
+                    <a class="stretched-link" href="cadastro_pessoa.php?opcao=laboratorio"></a>
                 </div>
             </div>
         </div>
@@ -112,7 +112,7 @@ function makecardsmedico()
                 <div class="card-body">
                     <h5 class="card-title">Alterar meu Cadastro</h5>
                     <p class="card-text">Alterar sua senha e outros dados do seu perfil pode ser feito por aqui</p>
-                    <a class="stretched-link" href="cadastro_pessoa.php"></a>
+                    <a class="stretched-link" href="_cadastro.php"></a>
                 </div>
             </div>
         </div>
@@ -163,7 +163,7 @@ function makecardslaboratorio()
                 <div class="card-body">
                     <h5 class="card-title">Alterar Cadastro</h5>
                     <p class="card-text">Alterar sua senha e outros dados do seu perfil pode ser feito por aqui</p>
-                    <a class="stretched-link" href="cadastro_pessoa.php"></a>
+                    <a class="stretched-link" href="_cadastro.php"></a>
                 </div>
             </div>
         </div>
