@@ -59,7 +59,7 @@ $(document).ready(function () {
             $("#senha").attr('class', 'form-control is-invalid')
             $('#invalidsenha').html('Senha não pode ficar em branco!')
             verpassword = 0;
-        } else if (count(password) < 6) {
+        } else if (password.length < 6) {
             $('#btnregister').prop('disabled', true);
             $("#senha").attr('class', 'form-control is-invalid')
             $('#invalidsenha').html('Senha deve conter mais de 6 caracteres!')
@@ -123,11 +123,6 @@ $(document).ready(function () {
     $("#cpf").blur(function () {
         vercpf = validacampobasico("#cpf", '#invalidcpf', 'Necessário informar o CPF!');
         if (vercpf == 1)
-            habilitabtn()
-    });
-    $("#tipoexame").blur(function () {
-        vertipoexame = validacampobasico("#tipoexame", '#invalidtipoexame', 'Necessário selecionar ao menos um tipo de exame!');
-        if (vertipoexame == 1)
             habilitabtn()
     });
     $("#cnpj").blur(function () {
@@ -301,19 +296,37 @@ function tipoexames_autocomplete(list) {
         var tipos = $('#tipoexame').val();
         $('#tipoexame').val(tipos+selection+',');
         $('#tipoexamebtns').append("<button type='button' id='" + removeInvalid(selection) + "' class='btn btn-outline-secondary btn-sm' onclick='removetiposexames(this.value)' value='"+selection+"' >" + selection + " &nbsp;<i class='fa fa-trash' aria-hidden='true'></i></button>");
+        vertipoexame = 1;
+        habilitabtn()
         $('#tipoexameauto').typeahead('val', '');
-    });;
+    });
     $('.twitter-typeahead').removeAttr('style');
 }
 
 function removetiposexames(valor) {
     var tipos = $('#tipoexame').val();
-    $('#tipoexame').val(tipos.replace(valor + ',', ''));
+    var tp = tipos.replace(valor + ',', '');
+    if (tp.lenght > 0){
+        vertipoexame = 1;
+        habilitabtn()
+    }else{
+        vertipoexame = 0;
+        habilitabtn()
+    }
+
+    $('#tipoexame').val(tp);
     $('#' + removeInvalid(valor)).remove();
 }
 
 function mostratiposexames() {
     var tipos = $('#tipoexame').val();
+    if (tipos.lenght > 0){
+        vertipoexame = 1;
+        habilitabtn()
+    }else{
+        vertipoexame = 0;
+        habilitabtn()
+    }
     if (tipos.trim() != '') {
         $.each(tipos.split(','), function (key, item) {
             $('#tipoexamebtns').append("<button type='button' id='" + removeInvalid(selection) + "' class='btn btn-outline-secondary btn-sm' onclick='removetiposexames(this.value)' value='"+selection+"' >" + selection + " &nbsp;<i class='fa fa-trash' aria-hidden='true'></i></button>");

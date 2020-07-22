@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dados>
     <users>
-        <user id="A7CBCF56CD2840709A10A34ACD7E4DB9" tipo="admin">
+        <user>
+            <id>A7CBCF56CD2840709A10A34ACD7E4DB9</id>
+            <tipo>admin</tipo>
             <email>admin@admin.com</email>
             <senha>admin</senha>
         </user>
@@ -16,6 +18,63 @@
         <user id="a3202f335a024f0faf58c83ec7b0a095" tipo="paciente">
             <email>paciente@email.com</email>
             <senha>paciente</senha>
+        </user>
+        <user>
+            <especialidade>Alergia e Imunologia</especialidade>
+            <crm>5165165156151</crm>
+            <id>01678638c3870972a45cfd72b51837f7</id>
+            <tipo>medico</tipo>
+            <nome>Junior Zilles</nome>
+            <telefone>(55) 51991-9528</telefone>
+            <rua>Av. Presidente Vargas, 285</rua>
+            <numero>5</numero>
+            <bairro>sasdas</bairro>
+            <complemento>ap 101</complemento>
+            <cidade>Rio Grande</cidade>
+            <estado>RS</estado>
+            <cep>96.202-336</cep>
+            <email>junior_zilles@hotmail.com</email>
+            <senha>asdasdasd</senha>
+        </user>
+        <user>
+            <genero>masculino</genero>
+            <datanascimento>2020-07-07</datanascimento>
+            <cpf>032.343.730-35</cpf>
+            <id>ccf988db96cb0004d60b03d259522e4c</id>
+            <tipo>paciente</tipo>
+            <nome>Junior Zilles</nome>
+            <telefone>(55) 51991-9528</telefone>
+            <rua>Av. Presidente Vargas, 285</rua>
+            <numero>5</numero>
+            <bairro>asdasd</bairro>
+            <complemento>ap 101</complemento>
+            <cidade>Rio Grande</cidade>
+            <estado>RS</estado>
+            <cep>96.202-336</cep>
+            <email>junior_zilles@hotmail.com</email>
+            <senha>hsgdjhasgd</senha>
+        </user>
+        <user>
+            <tipoexame>
+                <tipo>TEMPO DE TROMBOPLASTINA ATIVADA (PTTA)</tipo>
+                <tipo>CONTAGEM DE PLAQUETAS</tipo>
+                <tipo>DOSAGEM DE AMILASE</tipo>
+                <tipo/>
+            </tipoexame>
+            <cnpj>84.884.884/8171-89</cnpj>
+            <id>fbf374902ed7065542fe81a62d7219f4</id>
+            <tipo>laboratorio</tipo>
+            <nome>Junior Zilles</nome>
+            <telefone>(55) 51991-9528</telefone>
+            <rua>Av. Presidente Vargas, 285</rua>
+            <numero>5</numero>
+            <bairro>asdasd</bairro>
+            <complemento>ap 101</complemento>
+            <cidade>Rio Grande</cidade>
+            <estado>RS</estado>
+            <cep>96.202-336</cep>
+            <email>junior_zilles@hotmail.com</email>
+            <senha>11515151</senha>
         </user>
     </users>
 </dados>

@@ -28,14 +28,12 @@ try {
 
             $xml = simplexml_load_file('dados.xml');
 
-            $users = $xml->users->children();
-
-            foreach ($users as $child) {
-                if ($child->email == $_email && $child->senha == $_senha) {
-                    $_id = (string)$child['id'];
-                    $_tipo = (string)$child['tipo'];
-                }
+            $nodo = $xml->xpath("//user[email = '$_email' and senha = '$_senha']");
+            if (count($nodo) > 0) {
+                $_id = (string)$nodo[0]->id;
+                $_tipo = (string)$nodo[0]->tipo;
             }
+
             if (!empty($_id)) {
                 $_SESSION['user'] = $_id;
                 $_SESSION['tipo'] = $_tipo;
@@ -54,13 +52,12 @@ try {
     } else if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         $xml = simplexml_load_file('dados.xml');
 
-        $users = $xml->users->children();
-        foreach ($users as $child) {
-            if ($child['id'] == $_SESSION['cookieuser']) {
-                $_id = (string)$child['id'];
-                $_tipo = (string)$child['tipo'];
-            }
+        $nodo = $xml->xpath("//user[email = '$_email' and senha = '$_senha']");
+        if (count($nodo) > 0) {
+            $_id = (string)$nodo[0]->id;
+            $_tipo = (string)$nodo[0]->tipo;
         }
+
         if (!empty($_id)) {
             $_SESSION['user'] = $_id;
             $_SESSION['tipo'] = $_tipo;
@@ -80,5 +77,3 @@ try {
     $_SESSION['erro'] = maketoast('Erro de execução', $e->getMessage() . PHP_EOL);
     header("Location: index.php");
 }
-
-?>
