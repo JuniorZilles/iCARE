@@ -79,7 +79,7 @@ if (isset($_SESSION['registro']))
                 <form action="_cadastro.php" id="cadastroform" method="POST">
                     
                 <!-- DÁ PRA TIRAR O COMENTADO, POR QUE ESSES DADOS JÁ VÃO ESTAR CONTIDOS NO CADASTRO DO PACIENTE -->
-
+                <!-- Data, Médico, Paciente, Receita, Observações -->
                     <!-- <div class="form-row">
                         <div class="form-group col-md-8">
                             <label>Tipo de Usuário</label><br>

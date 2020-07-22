@@ -68,7 +68,7 @@ if (!isset($_SESSION['user'])) {
         </nav>
     </div>
     <br>
-    
+    <!-- Data, Laboratório, Paciente, TipoExame, Resultado -->
 </body>
 
 </html>
