@@ -232,7 +232,14 @@ function processaojson(data) {
 
 function esconde_campos() {
     var radioValue = $("input[name='tipouser']:checked").val();
-    tipouser = radioValue;
+    var hiddenValue = $("#tipouser").val();
+    if (radioValue != undefined){
+        tipouser = radioValue;
+    }else{
+        tipouser = hiddenValue;
+        radioValue = hiddenValue;
+    }
+    
     if (radioValue == 'paciente') {
         $("#medico").hide();
         $("#laboratorio").hide();

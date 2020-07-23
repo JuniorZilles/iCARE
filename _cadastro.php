@@ -49,8 +49,15 @@ try {
         $_especialidade =
         $_crm = $_erro = '';
     $_objeto = null;
+    $_edicao = false;
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $_id = md5(uniqid(""));
+        if (isset($_POST['identificador'])) {
+            if (!empty($_POST["identificador"])) {
+                $_id = remove_inseguro($_POST["identificador"]);
+                $_edicao = true;
+            }
+        }
         if (isset($_POST['tipouser'])) {
             if (empty($_POST["tipouser"])) {
                 $_erro += 'Tipo de usuário não informado!<br>';
@@ -199,27 +206,44 @@ try {
         } else {
             $xmlString = file_get_contents('dados.xml');
             $xml = new SimpleXMLElement( $xmlString );
-
-            $nodo = $xml->xpath("//user[nome = '$_nome' and tipo = '$_tipo']");
-            if (count($nodo) > 0) {
-                $_SESSION['erro'] = maketoast('Entrada Inválida', 'Pessoa já existe na base de dados');
-                header("Location: cadastro_pessoa.php");
-            }
-            $user = $xml->users->addChild('user');
             $array = (array) $_objeto;
+            $_termo = 'incluido';
+            if($_edicao){
+                $_termo = 'alterado';
+                $user = $xml->xpath("//user[id = '$_id']");
 
-            foreach ($array as $k => $v) {
-                if ($k == 'tipoexame') {
-                    $nos = $user->addChild($k);
-                    $tipos = explode(",", $v);
-                    foreach ($tipos as $tp) {
-                        $nos->addChild('tipo', $tp);
-                    }
-                } else
-                    $user->addChild($k, $v);
+                foreach ($user[0] as $k => $v) {
+                    if ($k == 'tipoexame') {
+                        $nos = $user[0]->$k;
+                        $tipos = explode(",",(string) $array[$k]);
+                        foreach ($tipos as $tp) {
+                            $nos->tipo = $tp;
+                        }
+                    } else
+                        $user[0]->$k = (string) $array[$k];
+                }
+            }else{
+                $nodo = $xml->xpath("//user[nome = '$_nome' and tipo = '$_tipo']");
+                if (count($nodo) > 0) {
+                    $_SESSION['erro'] = maketoast('Entrada Inválida', 'Pessoa já existe na base de dados');
+                    header("Location: cadastro_pessoa.php");
+                }
+                $user = $xml->users->addChild('user');
+
+                foreach ($array as $k => $v) {
+                    if ($k == 'tipoexame') {
+                        $nos = $user->addChild($k);
+                        $tipos = explode(",", $v);
+                        foreach ($tipos as $tp) {
+                            $nos->addChild('tipo', $tp);
+                        }
+                    } else
+                        $user->addChild($k, $v);
+                }
             }
             $xml->asXML('dados.xml');
-            $_SESSION['erro'] = maketoast('Cadastro realizado com sucesso', 'O usuário foi incluido na base de dados');
+
+            $_SESSION['erro'] = maketoast('Cadastro realizado com sucesso', 'O usuário foi '.$_termo.' na base de dados');
             header("Location: home.php");
         }
     } else if ($_SERVER['REQUEST_METHOD'] == 'GET' && $_SESSION['tipo'] != 'admin') {
@@ -235,7 +259,7 @@ try {
         //         $_objeto = obter_usuario($child);
         //     }
         // }
-        $_SESSION['registro'] = $_objeto;
+        $_SESSION['registro'] = serialize($_objeto);
         header("Location: cadastro_pessoa.php");
     }
 } catch (Throwable $e) {

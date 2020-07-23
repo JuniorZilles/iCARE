@@ -15,7 +15,7 @@ if (isset($_SESSION['registro']))
 $_check = '';
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $_check = isset($_GET['opcao']) ? remove_inseguro($_GET['opcao']) : '';
-}else if (isset($_user->tipo)){
+} else if (isset($_user->tipo)) {
     $_check = $_user->tipo;
 }
 ?>
@@ -86,17 +86,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                                                     }
                                                     ?></h5>
                 <form action="_cadastro.php" id="cadastroform" method="POST">
-                    <input type="hidden" id="identificador" value="<?php if ($_SESSION['tipo'] != 'admin')  echo $_user->id; ?>">
-                    <div class="form-row">
+                    <?php
+                    if ($_SESSION['tipo'] == 'admin') {
+                        echo '<div class="form-row">
                         <div class="form-group col-md-8">
-                            <label>Tipo de Usuário</label><br>
-                            <?php
-                            if ($_SESSION['tipo'] == 'admin') {
-                                echo makeradioadmin($_check);
-                            }
-                            ?>
-                        </div>
-                    </div>
+                            <label>Tipo de Usuário</label><br>'
+                            . makeradioadmin($_check) .
+                            '</div>
+                                </div>';
+                    } else {
+                        echo '<input type="hidden" id="identificador" name="identificador" value="' . $_user->id . '">';
+                        echo '<input type="hidden" id="tipouser" name="tipouser" value="' . $_user->tipo . '">';
+                    }
+
+                    ?>
                     <div class="form-row">
                         <div class="form-group col-md-8">
                             <label for="nome">Nome</label>
@@ -144,6 +147,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                             <select id="estado" name="estado" class="form-control" value="<?php if (isset($_user->estado)) echo $_user->estado; ?>">
                                 <option selected>Escolher...</option>
                             </select>
+                            <input type="hidden" id="selectedestado" name="selectedestado" value="<?php if (isset($_user->estado)) echo $_user->estado; ?>">
                             <div class="invalid-feedback" id="invalidestado"> </div>
                         </div>
                         <div class="form-group col-md-2">
@@ -155,11 +159,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                     <div id="paciente" class="form-row">
                         <div class="form-group col-md-4">
                             <label for="genero">Gênero</label>
-                            <select id="genero" name="genero" class="form-control" value="<?php if (isset($_user->genero)) echo $_user->genero; ?>">
-                                <option selected>Escolher...</option>
-                                <option value="feminino">Feminino</option>
-                                <option value="masculino">Masculino</option>
-                                <option value="outro">Outro</option>
+                            <select id="genero" name="genero" class="form-control">
+                                <option <?php if (!isset($_user->genero)) echo 'selected'?>>Escolher...</option>
+                                <option value="feminino" <?php if (isset($_user->genero)) if ($_user->genero == 'feminino') echo 'selected';?>>Feminino</option>
+                                <option value="masculino" <?php if (isset($_user->genero)) if ($_user->genero == 'masculino') echo 'selected';?>>Masculino</option>
+                                <option value="outro" <?php if (isset($_user->genero)) if ($_user->genero == 'outro') echo 'selected';?>>Outro</option>
                             </select>
                             <div class="invalid-feedback" id="invalidgenero"> </div>
                         </div>

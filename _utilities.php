@@ -20,8 +20,8 @@ function maketoast($title, $message){
 }
 
 function obter_usuario($child){
-    $_tipo = (string)$child['tipo'];
-    $_id = (string)$child['id'];
+    $_tipo = (string)$child->tipo;
+    $_id = (string)$child->id;
     $_senha = (string)$child->senha;
     $_email = (string)$child->email;
     $_nome = (string)$child->nome;

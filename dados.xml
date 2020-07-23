@@ -31,10 +31,10 @@
             <bairro>sasdas</bairro>
             <complemento>ap 101</complemento>
             <cidade>Rio Grande</cidade>
-            <estado>RS</estado>
+            <estado>Escolher...</estado>
             <cep>96.202-336</cep>
             <email>junior_zilles@hotmail.com</email>
-            <senha>asdasdasd</senha>
+            <senha>medico</senha>
         </user>
         <user>
             <genero>masculino</genero>
