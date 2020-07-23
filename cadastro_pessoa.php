@@ -9,6 +9,10 @@ if (!isset($_SESSION['user'])) {
     $_SESSION['erro'] = maketoast('Usuário não logado', 'Necessário realizar login para utilizar os recursos!');
     header("Location: index.php");
 }
+if ($_SESSION['tipo'] == 'paciente') {
+    $_SESSION['erro'] = maketoast('Usuário não permitido', 'O recurso não está disponível para esse usuário');
+    header("Location: home.php");
+}
 if (isset($_SESSION['registro']))
     $_user = unserialize($_SESSION['registro']);
 
@@ -59,8 +63,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                     <?php
                     if ($_SESSION['tipo'] == 'admin') {
                         echo makemenuadmin();
-                    } else if ($_SESSION['tipo'] == 'paciente') {
-                        echo makemenupaciente();
+                    // } else if ($_SESSION['tipo'] == 'paciente') {
+                    //     echo makemenupaciente();
                     } else if ($_SESSION['tipo'] == 'laboratorio') {
                         echo makemenulaboratorio();
                     } else if ($_SESSION['tipo'] == 'medico') {

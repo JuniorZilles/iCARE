@@ -12,6 +12,10 @@ if (!isset($_SESSION['user'])) {
     $_SESSION['erro'] = maketoast('Usuário não logado', 'Necessário realizar login para utilizar os recursos!');
     header("Location: index.php");
 }
+if ($_SESSION['tipo'] != 'laboratorio') {
+    $_SESSION['erro'] = maketoast('Usuário não permitido', 'O recurso não está disponível para esse usuário');
+    header("Location: home.php");
+}
 ?>
 
 <!DOCTYPE html>
@@ -47,15 +51,17 @@ if (!isset($_SESSION['user'])) {
                         <a class="nav-link" href="home.php">Home</a>
                     </li>
                     <?php
-                    if ($_SESSION['tipo'] == 'admin') {
-                        echo makemenuadmin();
-                    } else if ($_SESSION['tipo'] == 'paciente') {
-                        echo makemenupaciente();
-                    } else if ($_SESSION['tipo'] == 'laboratorio') {
+                    //APENAS O LABORATORIO ACESSA ESSA PÁGINA
+                    // if ($_SESSION['tipo'] == 'admin') {
+                    //     echo makemenuadmin();
+                    // } else if ($_SESSION['tipo'] == 'paciente') {
+                    //     echo makemenupaciente();
+                    //} else 
+                    if ($_SESSION['tipo'] == 'laboratorio') {
                         echo makemenulaboratorio();
-                    } else if ($_SESSION['tipo'] == 'medico') {
-                        echo makemenumedico();
-                    }
+                    }// else if ($_SESSION['tipo'] == 'medico') {
+                    //    echo makemenumedico();
+                    //}
                     ?>
                     <li class="nav-item">
                         <a class="nav-link" href="_logout.php">Logout</a>

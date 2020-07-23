@@ -10,6 +10,10 @@ if (!isset($_SESSION['user'])) {
     $_SESSION['erro'] = maketoast('Usuário não logado', 'Necessário realizar login para utilizar os recursos!');
     header("Location: index.php");
 }
+if ($_SESSION['tipo'] != 'medico') {
+    $_SESSION['erro'] = maketoast('Usuário não permitido', 'O recurso não está disponível para esse usuário');
+    header("Location: home.php");
+}
 if (isset($_SESSION['registro']))
     $_user = unserialize($_SESSION['registro']);
 ?>
@@ -51,13 +55,15 @@ if (isset($_SESSION['registro']))
                         <a class="nav-link" href="home.php">Home</a>
                     </li>
                     <?php
-                    if ($_SESSION['tipo'] == 'admin') {
-                        echo makemenuadmin();
-                    } else if ($_SESSION['tipo'] == 'paciente') {
-                        echo makemenupaciente();
-                    } else if ($_SESSION['tipo'] == 'laboratorio') {
-                        echo makemenulaboratorio();
-                    } else if ($_SESSION['tipo'] == 'medico') {
+                    //APENAS O MÉDICO ACESSA ESSA PÁGINA
+                    // if ($_SESSION['tipo'] == 'admin') {
+                    //     echo makemenuadmin();
+                    // } else if ($_SESSION['tipo'] == 'paciente') {
+                    //     echo makemenupaciente();
+                    //} else if ($_SESSION['tipo'] == 'laboratorio') {
+                    //    echo makemenulaboratorio();
+                    //} else 
+                    if ($_SESSION['tipo'] == 'medico') {
                         echo makemenumedico();
                     }
                     ?>
