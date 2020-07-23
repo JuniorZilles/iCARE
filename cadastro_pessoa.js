@@ -259,8 +259,13 @@ function esconde_campos() {
 }
 
 function estados_drop(list) {
+    var select = $('#selectedestado').val();
     $.each(list, function (key, item) {
-        $('#estado').append('<option value="' + item.sigla + '">' + item.nome + '</option>');
+        if(item.sigla == select){
+            $('#estado').append('<option value="' + item.sigla + '" selected>' + item.nome + '</option>');    
+        }else{
+            $('#estado').append('<option value="' + item.sigla + '">' + item.nome + '</option>');
+        }
     });
 }
 
@@ -336,7 +341,8 @@ function mostratiposexames() {
     }
     if (tipos.trim() != '') {
         $.each(tipos.split(','), function (key, item) {
-            $('#tipoexamebtns').append("<button type='button' id='" + removeInvalid(selection) + "' class='btn btn-outline-secondary btn-sm' onclick='removetiposexames(this.value)' value='"+selection+"' >" + selection + " &nbsp;<i class='fa fa-trash' aria-hidden='true'></i></button>");
+            if(item != "")
+                $('#tipoexamebtns').append("<button type='button' id='" + removeInvalid(item) + "' class='btn btn-outline-secondary btn-sm' onclick='removetiposexames(this.value)' value='"+item+"' >" + item + " &nbsp;<i class='fa fa-trash' aria-hidden='true'></i></button>");
         });
     }
 }

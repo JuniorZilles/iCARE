@@ -235,7 +235,8 @@ try {
                         $nos = $user->addChild($k);
                         $tipos = explode(",", $v);
                         foreach ($tipos as $tp) {
-                            $nos->addChild('tipo', $tp);
+                            if(!empty($tp))
+                                $nos->addChild('tipo', $tp);
                         }
                     } else
                         $user->addChild($k, $v);
@@ -253,12 +254,6 @@ try {
             if (count($nodo) > 0) {
                 $_objeto = obter_usuario($nodo[0]);
             }
-        // $users = $xml->users->children();
-        // foreach ($users as $child) {
-        //     if ($child['id'] == $_SESSION['user']) {
-        //         $_objeto = obter_usuario($child);
-        //     }
-        // }
         $_SESSION['registro'] = serialize($_objeto);
         header("Location: cadastro_pessoa.php");
     }

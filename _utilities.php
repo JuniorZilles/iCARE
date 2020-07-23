@@ -52,8 +52,8 @@ function obter_usuario($child){
 
 function obter_exames($exames){
     $_tipoexame = '';
-    foreach ($exames as $child) {
-        $_tipoexame += (string)$child;
+    foreach ($exames as $k=>$child) {
+        $_tipoexame .= (string)$child.',';
     }
     return $_tipoexame;
 }
