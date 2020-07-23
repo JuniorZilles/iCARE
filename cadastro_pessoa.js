@@ -163,10 +163,27 @@ function validacampobasico(campo, campovalidacao, mensagem) {
     }
 }
 
-function habilitabtninicial(){
+function habilitabtninicial() {
     var identificador = $("#identificador").val();
     if (identificador != '') {
         $('#btnregister').prop('disabled', false);
+        veremail,
+            verpassword,
+            vernome,
+            vertelefone,
+            verrua,
+            vernumero,
+            verbairro,
+            vercidade,
+            verestado,
+            vercep,
+            vergenero,
+            verdatanascimento,
+            vercpf,
+            vertipoexame,
+            vercnpj,
+            verespecialidade,
+            vercrm = 1;
     }
 }
 
@@ -240,13 +257,13 @@ function processaojson(data) {
 function esconde_campos() {
     var radioValue = $("input[name='tipouser']:checked").val();
     var hiddenValue = $("#tipouser").val();
-    if (radioValue != undefined){
+    if (radioValue != undefined) {
         tipouser = radioValue;
-    }else{
+    } else {
         tipouser = hiddenValue;
         radioValue = hiddenValue;
     }
-    
+
     if (radioValue == 'paciente') {
         $("#medico").hide();
         $("#laboratorio").hide();
@@ -268,9 +285,9 @@ function esconde_campos() {
 function estados_drop(list) {
     var select = $('#selectedestado').val();
     $.each(list, function (key, item) {
-        if(item.sigla == select){
-            $('#estado').append('<option value="' + item.sigla + '" selected>' + item.nome + '</option>');    
-        }else{
+        if (item.sigla == select) {
+            $('#estado').append('<option value="' + item.sigla + '" selected>' + item.nome + '</option>');
+        } else {
             $('#estado').append('<option value="' + item.sigla + '">' + item.nome + '</option>');
         }
     });
@@ -307,14 +324,14 @@ function tipoexames_autocomplete(list) {
         highlight: true,
         minLength: 1,
     },
-    {
+        {
             name: 'tipoexame',
             source: tipoexames,
         }
     ).on('typeahead:selected', function (event, selection) {
         var tipos = $('#tipoexame').val();
-        $('#tipoexame').val(tipos+selection+',');
-        $('#tipoexamebtns').append("<button type='button' id='" + removeInvalid(selection) + "' class='btn btn-outline-secondary btn-sm' onclick='removetiposexames(this.value)' value='"+selection+"' >" + selection + " &nbsp;<i class='fa fa-trash' aria-hidden='true'></i></button>");
+        $('#tipoexame').val(tipos + selection + ',');
+        $('#tipoexamebtns').append("<button type='button' id='" + removeInvalid(selection) + "' class='btn btn-outline-secondary btn-sm' onclick='removetiposexames(this.value)' value='" + selection + "' >" + selection + " &nbsp;<i class='fa fa-trash' aria-hidden='true'></i></button>");
         vertipoexame = 1;
         habilitabtn()
         $('#tipoexameauto').typeahead('val', '');
@@ -325,10 +342,10 @@ function tipoexames_autocomplete(list) {
 function removetiposexames(valor) {
     var tipos = $('#tipoexame').val();
     var tp = tipos.replace(valor + ',', '');
-    if (tp.lenght > 0){
+    if (tp.lenght > 0) {
         vertipoexame = 1;
         habilitabtn()
-    }else{
+    } else {
         vertipoexame = 0;
         habilitabtn()
     }
@@ -339,21 +356,21 @@ function removetiposexames(valor) {
 
 function mostratiposexames() {
     var tipos = $('#tipoexame').val();
-    if (tipos.lenght > 0){
+    if (tipos.lenght > 0) {
         vertipoexame = 1;
         habilitabtn()
-    }else{
+    } else {
         vertipoexame = 0;
         habilitabtn()
     }
     if (tipos.trim() != '') {
         $.each(tipos.split(','), function (key, item) {
-            if(item != "")
-                $('#tipoexamebtns').append("<button type='button' id='" + removeInvalid(item) + "' class='btn btn-outline-secondary btn-sm' onclick='removetiposexames(this.value)' value='"+item+"' >" + item + " &nbsp;<i class='fa fa-trash' aria-hidden='true'></i></button>");
+            if (item != "")
+                $('#tipoexamebtns').append("<button type='button' id='" + removeInvalid(item) + "' class='btn btn-outline-secondary btn-sm' onclick='removetiposexames(this.value)' value='" + item + "' >" + item + " &nbsp;<i class='fa fa-trash' aria-hidden='true'></i></button>");
         });
     }
 }
 
-function removeInvalid(value){
+function removeInvalid(value) {
     return value.replace(/\s/g, '').replace(')', '').replace('(', '')
 }
