@@ -22,7 +22,7 @@ $(document).ready(function () {
     $('#cpf').mask('000.000.000-00');
     $('#cnpj').mask('00.000.000/0000-00');
     $('#cep').mask('00.000-000');
-
+    habilitabtninicial();
     esconde_campos();
     mostratiposexames()
     $("input[type='radio']").click(function () {
@@ -160,6 +160,13 @@ function validacampobasico(campo, campovalidacao, mensagem) {
     } else {
         $(campo).attr('class', 'form-control is-valid');
         return 1;
+    }
+}
+
+function habilitabtninicial(){
+    var identificador = $("#identificador").val();
+    if (identificador != '') {
+        $('#btnregister').prop('disabled', false);
     }
 }
 
