@@ -55,11 +55,7 @@
             <senha>hsgdjhasgd</senha>
         </user>
         <user>
-            <tipoexame>
-                <tipo>TEMPO DE TROMBOPLASTINA ATIVADA (PTTA)</tipo>
-                <tipo>CONTAGEM DE PLAQUETAS</tipo>
-                <tipo>DOSAGEM DE AMILASE</tipo>
-            </tipoexame>
+            <tipoexame><tipo>TEMPO DE TROMBOPLASTINA ATIVADA (PTTA)</tipo><tipo>DOSAGEM DE ACIDO URICO</tipo><tipo>DOSAGEM DE ALFA-1-GLICOPROTEINA ACIDA</tipo><tipo>DOSAGEM DE AMILASE</tipo></tipoexame>
             <cnpj>84.884.884/8171-89</cnpj>
             <id>fbf374902ed7065542fe81a62d7219f4</id>
             <tipo>laboratorio</tipo>
@@ -73,7 +69,7 @@
             <estado>RS</estado>
             <cep>96.202-336</cep>
             <email>junior_zilles@hotmail.com</email>
-            <senha>11515151</senha>
+            <senha>laboratorio</senha>
         </user>
     </users>
 </dados>

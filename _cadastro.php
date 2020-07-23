@@ -214,10 +214,12 @@ try {
 
                 foreach ($user[0] as $k => $v) {
                     if ($k == 'tipoexame') {
-                        $nos = $user[0]->$k;
+                        $user[0]->$k = '';
+                        $nodo = $user[0]->$k;
                         $tipos = explode(",",(string) $array[$k]);
                         foreach ($tipos as $tp) {
-                            $nos->tipo = $tp;
+                            if(!empty($tp))
+                                $nodo->addChild('tipo', $tp);
                         }
                     } else
                         $user[0]->$k = (string) $array[$k];

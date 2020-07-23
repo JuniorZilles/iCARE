@@ -1,19 +1,19 @@
-var veremail,
-    verpassword,
-    vernome,
-    vertelefone,
-    verrua,
-    vernumero,
-    verbairro,
-    vercidade,
-    verestado,
-    vercep,
-    vergenero,
-    verdatanascimento,
-    vercpf,
-    vertipoexame,
-    vercnpj,
-    verespecialidade,
+var veremail =
+    verpassword =
+    vernome =
+    vertelefone =
+    verrua =
+    vernumero =
+    verbairro =
+    vercidade =
+    verestado =
+    vercep =
+    vergenero =
+    verdatanascimento =
+    vercpf =
+    vertipoexame =
+    vercnpj =
+    verespecialidade =
     vercrm = 0;
 var tipouser = '';
 
@@ -167,22 +167,22 @@ function habilitabtninicial() {
     var identificador = $("#identificador").val();
     if (identificador != '') {
         $('#btnregister').prop('disabled', false);
-        veremail,
-            verpassword,
-            vernome,
-            vertelefone,
-            verrua,
-            vernumero,
-            verbairro,
-            vercidade,
-            verestado,
-            vercep,
-            vergenero,
-            verdatanascimento,
-            vercpf,
-            vertipoexame,
-            vercnpj,
-            verespecialidade,
+        veremail =
+            verpassword =
+            vernome =
+            vertelefone =
+            verrua =
+            vernumero =
+            verbairro =
+            vercidade =
+            verestado =
+            vercep =
+            vergenero =
+            verdatanascimento =
+            vercpf =
+            vertipoexame =
+            vercnpj =
+            verespecialidade =
             vercrm = 1;
     }
 }
@@ -238,6 +238,8 @@ function habilitabtn() {
             return true;
         }
     }
+    $('#btnregister').prop('disabled', true);
+    return false;
 }
 
 function processaojson(data) {
@@ -330,8 +332,11 @@ function tipoexames_autocomplete(list) {
         }
     ).on('typeahead:selected', function (event, selection) {
         var tipos = $('#tipoexame').val();
-        $('#tipoexame').val(tipos + selection + ',');
-        $('#tipoexamebtns').append("<button type='button' id='" + removeInvalid(selection) + "' class='btn btn-outline-secondary btn-sm' onclick='removetiposexames(this.value)' value='" + selection + "' >" + selection + " &nbsp;<i class='fa fa-trash' aria-hidden='true'></i></button>");
+        var temp = selection + ',';
+        if (tipos.indexOf(temp) == -1){
+            $('#tipoexame').val(tipos + temp);
+            $('#tipoexamebtns').append("<button type='button' id='" + removeInvalid(selection) + "' class='btn btn-outline-secondary btn-sm' onclick='removetiposexames(this.value)' value='" + selection + "' >" + selection + " &nbsp;<i class='fa fa-trash' aria-hidden='true'></i></button>");
+        }
         vertipoexame = 1;
         habilitabtn()
         $('#tipoexameauto').typeahead('val', '');
@@ -356,18 +361,16 @@ function removetiposexames(valor) {
 
 function mostratiposexames() {
     var tipos = $('#tipoexame').val();
-    if (tipos.lenght > 0) {
+    if (tipos.length > 0) {
         vertipoexame = 1;
         habilitabtn()
-    } else {
-        vertipoexame = 0;
-        habilitabtn()
-    }
-    if (tipos.trim() != '') {
         $.each(tipos.split(','), function (key, item) {
             if (item != "")
                 $('#tipoexamebtns').append("<button type='button' id='" + removeInvalid(item) + "' class='btn btn-outline-secondary btn-sm' onclick='removetiposexames(this.value)' value='" + item + "' >" + item + " &nbsp;<i class='fa fa-trash' aria-hidden='true'></i></button>");
         });
+    } else {
+        vertipoexame = 0;
+        habilitabtn()
     }
 }
 
