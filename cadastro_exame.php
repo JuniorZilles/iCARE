@@ -82,7 +82,7 @@ if (isset($_SESSION['registro']))
                 <form action="_exame.php" id="cadastroform" method="POST">
                     <!-- criar um objeto (usar exemplo do _pessoa_model.php) para permitir a edição -->
                 <input type="hidden" id="identificadorexame" value="<?php if (isset($_SESSION['identificadordoexame']))  echo $_exame->id; ?>">
-                <div class="form-row">
+                    <div class="form-row">
                         <div class="form-group col-md-12">
                             <label for="pacienteauto">Nome do Paciente</label>
                             <input type="text" class="form-control" id="pacienteauto" placeholder="Nome do Paciente" value="">

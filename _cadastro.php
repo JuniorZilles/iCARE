@@ -24,7 +24,6 @@ require_once '_pessoa_model.php';
 //criar e alterar médicos
 //apenas o usuario admin pode cadastrar, mas o médico e o admin pode alterar seus dados
 
-
 try {
 
     $_email = $_senha = $_id = $_tipo =
@@ -226,6 +225,12 @@ try {
                     $_SESSION['erro'] = maketoast('Entrada Inválida', 'Pessoa já existe na base de dados');
                     header("Location: cadastro_pessoa.php");
                 }
+                $nodo1 = $xml->xpath("//user[email = '$_email']");
+                if (count($nodo1) > 0) {
+                    $_SESSION['erro'] = maketoast('Entrada Inválida', 'Email já existe na base de dados');
+                    header("Location: cadastro_pessoa.php");
+                }
+
                 $user = $xml->users->addChild('user');
 
                 foreach ($array as $k => $v) {
