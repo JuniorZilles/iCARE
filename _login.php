@@ -63,6 +63,7 @@ try {
             $_SESSION['tipo'] = $_tipo;
             header("Location: home.php");
         } else {
+            setcookie("user", "", time() - 3600, "/");
             $_SESSION['erro'] = maketoast('Entrada Inválida', 'Os dados de e-mail e senha não existem na base de dados!');
             header("Location: index.php");
         }

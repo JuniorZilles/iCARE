@@ -19,6 +19,7 @@ if (isset($_SESSION['registro']))
 $_check = '';
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $_check = isset($_GET['opcao']) ? remove_inseguro($_GET['opcao']) : '';
+    $_editar = isset($_GET['editar']) ? (bool)remove_inseguro($_GET['editar']) : false;
 } else if (isset($_user->tipo)) {
     $_check = $_user->tipo;
 }
@@ -63,8 +64,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                     <?php
                     if ($_SESSION['tipo'] == 'admin') {
                         echo makemenuadmin();
-                    // } else if ($_SESSION['tipo'] == 'paciente') {
-                    //     echo makemenupaciente();
                     } else if ($_SESSION['tipo'] == 'laboratorio') {
                         echo makemenulaboratorio();
                     } else if ($_SESSION['tipo'] == 'medico') {
@@ -98,11 +97,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                             . makeradioadmin($_check) .
                             '</div>
                                 </div>';
+                    }else if($_SESSION['tipo'] == 'admin' && $_editar){
+                        echo '<div class="form-row">
+                        <div class="form-group col-md-12">
+                            <label for="pacienteauto">Nome do Paciente</label>
+                            <input type="text" class="form-control" id="pacienteauto" placeholder="Nome do Paciente" value="">
+                            <input type="hidden" id="pacienteid" name="pacienteid" value="">
+                            <div class="invalid-feedback" id="invalidpacienteauto"> </div>
+                        </div>
+                    </div>';
                     } else {
                         echo '<input type="hidden" id="identificador" name="identificador" value="' . $_user->id . '">';
                         echo '<input type="hidden" id="tipouser" name="tipouser" value="' . $_user->tipo . '">';
                     }
-
                     ?>
                     <div class="form-row">
                         <div class="form-group col-md-8">
@@ -129,7 +136,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                         </div>
                     </div>
                     <div class="form-row">
-
                         <div class="form-group col-md-6">
                             <label for="bairro">Bairro</label>
                             <input type="text" class="form-control" id="bairro" name="bairro" placeholder="Nome do bairro" value="<?php if (isset($_user->bairro)) echo $_user->bairro; ?>">

@@ -15,7 +15,7 @@ if ($_SESSION['tipo'] != 'medico') {
     header("Location: home.php");
 }
 if (isset($_SESSION['registro']))
-    $_user = unserialize($_SESSION['registro']);
+    $_consulta = unserialize($_SESSION['registro']);
 ?>
 
 <!DOCTYPE html>
@@ -55,14 +55,6 @@ if (isset($_SESSION['registro']))
                         <a class="nav-link" href="home.php">Home</a>
                     </li>
                     <?php
-                    //APENAS O MÉDICO ACESSA ESSA PÁGINA
-                    // if ($_SESSION['tipo'] == 'admin') {
-                    //     echo makemenuadmin();
-                    // } else if ($_SESSION['tipo'] == 'paciente') {
-                    //     echo makemenupaciente();
-                    //} else if ($_SESSION['tipo'] == 'laboratorio') {
-                    //    echo makemenulaboratorio();
-                    //} else 
                     if ($_SESSION['tipo'] == 'medico') {
                         echo makemenumedico();
                     }
@@ -81,96 +73,26 @@ if (isset($_SESSION['registro']))
                 <h5 class="card-title text-center">Cadastro de Consulta</h5>
                 <form action="_consulta.php" id="cadastroform" method="POST">
                     <!-- criar um objeto (usar exemplo do _pessoa_model.php) para permitir a edição -->
-                <input type="hidden" id="identificador" value="<?php if (isset($_SESSION['identificadordaconsulta']))  echo $_user->id; ?>">
+                <input type="hidden" id="identificador" value="<?php if (isset($_consulta->id)) echo $_consulta->id; ?>">
                 <!-- DÁ PRA TIRAR O COMENTADO, POR QUE ESSES DADOS JÁ VÃO ESTAR CONTIDOS NO CADASTRO DO PACIENTE -->
                 <!-- Data, Médico, Paciente, Receita, Observações -->
                     <div class="form-row">
                         <div class="form-group col-md-12">
-                            <label for="nome">Nome do Paciente</label>
-                            <input type="text" class="form-control" id="nomeauto" placeholder="Nome do Paciente" value="">
+                            <label for="pacienteauto">Nome do Paciente</label>
+                            <input type="text" class="form-control" id="pacienteauto" placeholder="Nome do Paciente" value="">
                             <input type="hidden" id="pacienteid" name="pacienteid" value="">
                             <div class="invalid-feedback" id="invalidnome"> </div>
                         </div>
                     </div>
-                        <!--
-                        <div class="form-group col-md-4">
-                            <label for="telefone">Telefone</label>
-                            <input type="text" class="form-control" id="telefone" pattern="\([0-9]{2}\)[\s][0-9]{4,5}-[0-9]{4}" placeholder="Telefone do Paciente" value="<?php if (isset($_user->telefone)) echo $_user->telefone; ?>">
-                            <div class="invalid-feedback" id="invalidtelefone"> </div>
-                        </div>
-                    </div>
                     <div class="form-row">
                         <div class="form-group col-md-8">
-                            <label for="rua">Endereço</label>
-                            <input type="text" class="form-control" id="rua" placeholder="Nome da rua/avenida onde reside o paciente" value="<?php if (isset($_user->rua)) echo $_user->rua; ?>">
-                            <div class="invalid-feedback" id="invalidendereco"> </div>
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label for="numero">Número</label>
-                            <input type="text" class="form-control" id="numero" maxlength="5" placeholder="Número da casa/condomínio onde reside o paciente" value="<?php if (isset($_user->numero)) echo $_user->numero; ?>">
-                            <div class="invalid-feedback" id="invalidnumero"> </div>
-                        </div>
-                    </div>
-                    <div class="form-row">
-
-                        <div class="form-group col-md-6">
-                            <label for="bairro">Bairro</label>
-                            <input type="text" class="form-control" id="bairro" placeholder="Nome do bairro do paciente" value="<?php if (isset($_user->bairro)) echo $_user->bairro; ?>">
-                            <div class="invalid-feedback" id="invalidbairro"> </div>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="complemento">Complemento</label>
-                            <input type="text" class="form-control" id="complemento" placeholder="Complemento bloco/apartamento/fundos do paciente" value="<?php if (isset($_user->complemento)) echo $_user->complemento; ?>">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="cidade">Cidade</label>
-                            <input type="text" class="form-control" id="cidade" placeholder="Nome da cidade onde reside o paciente" value="<?php if (isset($_user->cidade)) echo $_user->cidade; ?>">
-                            <div class="invalid-feedback" id="invalidcidade"> </div>
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label for="estado">Estado</label>
-                            <select id="estado" class="form-control" value="<?php if (isset($_user->estado)) echo $_user->estado; ?>">
-                                <option selected>Escolher...</option>
-                            </select>
-                            <div class="invalid-feedback" id="invalidestado"> </div>
-                        </div>
-                        <div class="form-group col-md-2">
-                            <label for="cep">CEP</label>
-                            <input type="text" class="form-control" pattern="[0-9]{2}.[0-9]{3}-[0-9]{3}" id="cep" value="<?php if (isset($_user->cep)) echo $_user->cep; ?>">
-                            <div class="invalid-feedback" id="invalidcep"> </div>
-                        </div>
-                    </div> -->
-                    <div class="form-row">
-                        <!-- <div class="form-group col-md-4">
-                            <label for="genero">Gênero</label>
-                            <select id="genero" class="form-control" value="<?php if (isset($_user->genero)) echo $_user->genero; ?>">
-                                <option selected>Escolher...</option>
-                                <option value="feminino">Feminino</option>
-                                <option value="masculino">Masculino</option>
-                                <option value="outro">Outro</option>
-                            </select>
-                            <div class="invalid-feedback" id="invalidgenero"> </div>
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label for="datanascimento">Data de Nascimento</label>
-                            <input type="date" class="form-control" maxlength="10" id="datanascimento" placeholder="Data de Nascimento do Paciente" value="<?php if (isset($_user->datanascimento)) echo $_user->datanascimento; ?>">
+                            <label for="dataconsulta">Data da Consulta</label>
+                            <input type="date" class="form-control" maxlength="10" id="dataconsulta" placeholder="Data de realização da consulta" value="<?php if (isset($_consulta->dataconsulta)) echo $_consulta->dataconsulta; ?>">
                             <div class="invalid-feedback" id="invaliddate"> </div>
                         </div>
                         <div class="form-group col-md-4">
-                            <label for="cpf">CPF</label>
-                            <input type="text" class="form-control" maxlength="" pattern="[0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2}" id="cpf" placeholder="CPF do Paciente" value="<?php if (isset($_user->cpf)) echo $_user->cpf; ?>">
-                            <div class="invalid-feedback" id="invalidcpf"> </div>
-                        </div> -->
-                        <div class="form-group col-md-8">
-                            <label for="datanascimento">Data da Consulta</label>
-                            <input type="date" class="form-control" maxlength="10" id="dataconsulta" placeholder="Data de realização da consulta" value="<?php if (isset($_user->dataconsulta)) echo $_user->dataconsulta; ?>">
-                            <div class="invalid-feedback" id="invaliddate"> </div>
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label for="datanascimento">Horário da Consulta</label>
-                            <input type="time" class="form-control" maxlength="10" id="horarioconsulta" placeholder="Horário de realização da consulta" value="<?php if (isset($_user->horarioconsulta)) echo $_user->horarioconsulta; ?>">
+                            <label for="horarioconsulta">Horário da Consulta</label>
+                            <input type="time" class="form-control" maxlength="10" id="horarioconsulta" placeholder="Horário de realização da consulta" value="<?php if (isset($_consulta->horarioconsulta)) echo $_consulta->horarioconsulta; ?>">
                             <div class="invalid-feedback" id="invaliddate"> </div>
                         </div>
                     </div>
@@ -213,7 +135,7 @@ if (isset($_SESSION['registro']))
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" id="outro" name="outro" value="outro"> <label class="form-check-label" for="outro">Outro </label>
                             </div>
-                                <input type="text" class="form-control" id="especifiqueoutro" placeholder="Especifique se for outro" value="<?php if (isset($_user->outro)) echo $_user->outro; ?>">
+                                <input type="text" class="form-control" id="especifiqueoutro" placeholder="Especifique se for outro" value="<?php if (isset($_consulta->outro)) echo $_consulta->outro; ?>">
                         </div>
                     </div>
                     <div class=text-right>

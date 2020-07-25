@@ -25,10 +25,6 @@ require_once '_pessoa_model.php';
 //apenas o usuario admin pode cadastrar, mas o médico e o admin pode alterar seus dados
 
 
-/// FAZER
-// - validar data nascimento
-// - ver se pessoa pode ter mesmo nome 
-
 try {
 
     $_email = $_senha = $_id = $_tipo =
