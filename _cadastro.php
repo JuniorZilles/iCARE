@@ -220,7 +220,7 @@ try {
                         $user[0]->$k = (string) $array[$k];
                 }
             }else{
-                $nodo = $xml->xpath("//user[nome = '$_nome' and tipo = '$_tipo']");
+                $nodo = $xml->xpath("//user[nome = '$_nome']");
                 if (count($nodo) > 0) {
                     $_SESSION['erro'] = maketoast('Entrada Inválida', 'Pessoa já existe na base de dados');
                     header("Location: cadastro_pessoa.php");
@@ -250,10 +250,17 @@ try {
             $_SESSION['erro'] = maketoast('Cadastro realizado com sucesso', 'O usuário foi '.$_termo.' na base de dados');
             header("Location: home.php");
         }
-    } else if ($_SERVER['REQUEST_METHOD'] == 'GET' && $_SESSION['tipo'] != 'admin') {
+    } else if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+
+        if (isset($_GET['id'])) {
+            $_id = remove_inseguro($_GET['id']);
+        }
+        else{
+            $_id = $_SESSION['user'];
+        }
         $xml = simplexml_load_file('dados.xml');
 
-        $nodo = $xml->xpath("//user[id = '".$_SESSION['user']."']");
+        $nodo = $xml->xpath("//user[id = '".$_id."']");
             if (count($nodo) > 0) {
                 $_objeto = obter_usuario($nodo[0]);
             }

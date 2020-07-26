@@ -6,6 +6,7 @@ session_start();
 //Número de Exames Mensais por Paciente (laboratorio e admin)
 //Número de Consultas Mensais por Paciente (admin e medico)
 require_once '_menu.php';
+require_once '_utilities.php';
 
 if (!isset($_SESSION['user'])) {
     $_SESSION['erro'] = maketoast('Usuário não logado', 'Necessário realizar login para utilizar os recursos!');

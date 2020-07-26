@@ -12,6 +12,15 @@ function makemenuadmin()
                 <a class='nav-link' href='cadastro_pessoa.php?opcao=paciente'>Cadastrar Pacientes</a>
             </li>
             <li class='nav-item'>
+                <a class='nav-link' href='historico_consultas.php'>Visualizar Consultas</a>
+            </li>
+            <li class='nav-item'>
+                <a class='nav-link' href='historico_exames.php'>Visualizar Exames</a>
+            </li>
+            <li class='nav-item'>
+                <a class='nav-link' href='registro_pessoas.php'>Alterar Cadastro</a>
+            </li>
+            <li class='nav-item'>
                 <a class='nav-link' href='estatisticas.php'>Estatisticas Gerais</a>
             </li>";
 }

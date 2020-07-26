@@ -15,11 +15,11 @@ if ($_SESSION['tipo'] == 'paciente') {
 }
 if (isset($_SESSION['registro']))
     $_user = unserialize($_SESSION['registro']);
+    unset($_SESSION['registro']);
 
 $_check = '';
-if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+if ($_SERVER['REQUEST_METHOD'] == 'GET' && !isset($_user->tipo)) {
     $_check = isset($_GET['opcao']) ? remove_inseguro($_GET['opcao']) : '';
-    $_editar = isset($_GET['editar']) ? (bool)remove_inseguro($_GET['editar']) : false;
 } else if (isset($_user->tipo)) {
     $_check = $_user->tipo;
 }
@@ -90,22 +90,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                                                     ?></h5>
                 <form action="_cadastro.php" id="cadastroform" method="POST">
                     <?php
-                    if ($_SESSION['tipo'] == 'admin') {
+                    if ($_SESSION['tipo'] == 'admin' &&  !isset($_user->id)) {
                         echo '<div class="form-row">
                         <div class="form-group col-md-8">
                             <label>Tipo de Usuário</label><br>'
                             . makeradioadmin($_check) .
                             '</div>
                                 </div>';
-                    }else if($_SESSION['tipo'] == 'admin' && $_editar){
-                        echo '<div class="form-row">
-                        <div class="form-group col-md-12">
-                            <label for="pacienteauto">Nome do Paciente</label>
-                            <input type="text" class="form-control" id="pacienteauto" placeholder="Nome do Paciente" value="">
-                            <input type="hidden" id="pacienteid" name="pacienteid" value="">
-                            <div class="invalid-feedback" id="invalidpacienteauto"> </div>
-                        </div>
-                    </div>';
                     } else {
                         echo '<input type="hidden" id="identificador" name="identificador" value="' . $_user->id . '">';
                         echo '<input type="hidden" id="tipouser" name="tipouser" value="' . $_user->tipo . '">';
@@ -154,8 +145,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                         </div>
                         <div class="form-group col-md-4">
                             <label for="estado">Estado</label>
-                            <select id="estado" name="estado" class="form-control" value="<?php if (isset($_user->estado)) echo $_user->estado; ?>">
-                                <option selected>Escolher...</option>
+                            <select id="estado" name="estado" class="form-control">
                             </select>
                             <input type="hidden" id="selectedestado" name="selectedestado" value="<?php if (isset($_user->estado)) echo $_user->estado; ?>">
                             <div class="invalid-feedback" id="invalidestado"> </div>

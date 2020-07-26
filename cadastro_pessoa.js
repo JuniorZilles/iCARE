@@ -286,6 +286,12 @@ function esconde_campos() {
 
 function estados_drop(list) {
     var select = $('#selectedestado').val();
+    if (select == ''){
+        $('#estado').append('<option selected>Escolher...</option>');
+    }else{
+        $('#estado').append('<option>Escolher...</option>');
+    }
+
     $.each(list, function (key, item) {
         if (item.sigla == select) {
             $('#estado').append('<option value="' + item.sigla + '" selected>' + item.nome + '</option>');
