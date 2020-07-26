@@ -220,12 +220,12 @@ try {
                         $user[0]->$k = (string) $array[$k];
                 }
             }else{
-                $nodo = $xml->xpath("//user[nome = '$_nome']");
+                $nodo = $xml->xpath("//user[nome = '".$_nome."']");
                 if (count($nodo) > 0) {
                     $_SESSION['erro'] = maketoast('Entrada Inválida', 'Pessoa já existe na base de dados');
                     header("Location: cadastro_pessoa.php");
                 }
-                $nodo1 = $xml->xpath("//user[email = '$_email']");
+                $nodo1 = $xml->xpath("//user[email = '".$_email."']");
                 if (count($nodo1) > 0) {
                     $_SESSION['erro'] = maketoast('Entrada Inválida', 'Email já existe na base de dados');
                     header("Location: cadastro_pessoa.php");
