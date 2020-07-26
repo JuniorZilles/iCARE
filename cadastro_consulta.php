@@ -73,9 +73,9 @@ if (isset($_SESSION['registro']))
                 <h5 class="card-title text-center">Cadastro de Consulta</h5>
                 <form action="_consulta.php" id="cadastroform" method="POST">
                     <!-- criar um objeto (usar exemplo do _pessoa_model.php) para permitir a edição -->
-                <input type="hidden" id="identificador" value="<?php if (isset($_consulta->id)) echo $_consulta->id; ?>">
-                <!-- DÁ PRA TIRAR O COMENTADO, POR QUE ESSES DADOS JÁ VÃO ESTAR CONTIDOS NO CADASTRO DO PACIENTE -->
-                <!-- Data, Médico, Paciente, Receita, Observações -->
+                    <input type="hidden" id="identificador" value="<?php if (isset($_consulta->id)) echo $_consulta->id; ?>">
+                    <!-- DÁ PRA TIRAR O COMENTADO, POR QUE ESSES DADOS JÁ VÃO ESTAR CONTIDOS NO CADASTRO DO PACIENTE -->
+                    <!-- Data, Médico, Paciente, Receita, Observações -->
                     <div class="form-row">
                         <div class="form-group col-md-12">
                             <label for="pacienteauto">Nome do Paciente</label>
@@ -135,7 +135,7 @@ if (isset($_SESSION['registro']))
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" id="outro" name="outro" value="outro"> <label class="form-check-label" for="outro">Outro </label>
                             </div>
-                                <input type="text" class="form-control" id="especifiqueoutro" placeholder="Especifique se for outro" value="<?php if (isset($_consulta->outro)) echo $_consulta->outro; ?>">
+                            <input type="text" class="form-control" id="especifiqueoutro" placeholder="Especifique se for outro" value="<?php if (isset($_consulta->outro)) echo $_consulta->outro; ?>">
                         </div>
                     </div>
                     <div class=text-right>
@@ -146,18 +146,16 @@ if (isset($_SESSION['registro']))
             </div>
         </div>
     </div>
-    <div style="display: none;">
-        <div aria-live="polite" aria-atomic="true" style="position: relative; min-height: 200px;">
-            <div class="toast" data-delay="1500" style="position: absolute; top: 0; right: 0;">
-                <div class="toast-header">
-                    <strong class="mr-auto"><span id='titulo'></span></strong>
-                    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="toast-body">
-                    <span id='conteudo'></span>
-                </div>
+    <div aria-live="polite" aria-atomic="true" style="position: relative; min-height: 200px;">
+        <div class="toast" data-delay="1500" style="position: absolute; top: 0; right: 0;">
+            <div class="toast-header">
+                <strong class="mr-auto"><span id='titulo'></span></strong>
+                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="toast-body">
+                <span id='conteudo'></span>
             </div>
         </div>
     </div>

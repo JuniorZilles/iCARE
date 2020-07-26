@@ -47,7 +47,7 @@ if (isset($_SESSION['registro']))
 </head>
 
 <body>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
     <div class="container">
         <nav class="navbar navbar-dark bg-dark">
             <a class="navbar-brand" href="home.php">iCARE</a>
@@ -81,7 +81,7 @@ if (isset($_SESSION['registro']))
                 <h5 class="card-title text-center">Cadastro de Exame</h5>
                 <form action="_exame.php" id="cadastroform" method="POST">
                     <!-- criar um objeto (usar exemplo do _pessoa_model.php) para permitir a edição -->
-                <input type="hidden" id="identificadorexame" value="<?php if (isset($_SESSION['identificadordoexame']))  echo $_exame->id; ?>">
+                    <input type="hidden" id="identificadorexame" value="<?php if (isset($_SESSION['identificadordoexame']))  echo $_exame->id; ?>">
                     <div class="form-row">
                         <div class="form-group col-md-12">
                             <label for="pacienteauto">Nome do Paciente</label>
@@ -98,8 +98,8 @@ if (isset($_SESSION['registro']))
                             <div class="invalid-feedback" id="invalidmedicoauto"> </div>
                         </div>
                     </div>
-<!-- cnpj do laboratório não precisa isso é repetição de dados, o que não deve ser feito, pois o cnpj já se encontra no xml no perfil do laboratorio -->
-<!-- a identificação do usuario(laboratorio) é pego  usando o session[user] que é o id do usuario-->
+                    <!-- cnpj do laboratório não precisa isso é repetição de dados, o que não deve ser feito, pois o cnpj já se encontra no xml no perfil do laboratorio -->
+                    <!-- a identificação do usuario(laboratorio) é pego  usando o session[user] que é o id do usuario-->
                     <!-- <div class="form-row">
                         <div class="form-group col-md-12">
                             <label for="nome">CNPJ do laboratório</label>
@@ -108,7 +108,7 @@ if (isset($_SESSION['registro']))
                             <div class="invalid-feedback" id="invalidcnpjlab"> </div>
                         </div>
                     </div> -->
-<!-- PEGAR OS TIPOS DE EXAME E MONTAR A PARTIR DOS MARCADOS PERFIL DO LABORATÓRIO NO XML -->
+                    <!-- PEGAR OS TIPOS DE EXAME E MONTAR A PARTIR DOS MARCADOS PERFIL DO LABORATÓRIO NO XML -->
                     <div class="form-group row">
                         <div class="col-sm-10">Qual o tipo de exame?</div>
                         <div class="col-md-12">
@@ -148,11 +148,11 @@ if (isset($_SESSION['registro']))
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" id="outroexame" name="outroexame" value="outroexame"> <label class="form-check-label" for="outro">Outro </label>
                             </div>
-                                <input type="text" class="form-control" id="especifiqueoutro" placeholder="Especifique se for outro exame" value="<?php if (isset($_exame->outroexame)) echo $_exame->outroexame; ?>">
+                            <input type="text" class="form-control" id="especifiqueoutro" placeholder="Especifique se for outro exame" value="<?php if (isset($_exame->outroexame)) echo $_exame->outroexame; ?>">
                         </div>
                     </div>
 
-                   
+
                     <!-- DÁ PRA TIRAR O COMENTADO, POR QUE ESSES DADOS JÁ VÃO ESTAR CONTIDOS NO CADASTRO DO PACIENTE -->
                     <div class="form-row">
                         <div class="form-group col-md-4">
@@ -169,15 +169,15 @@ if (isset($_SESSION['registro']))
                     <div class="form-row">
                         <div class="form-group col-md-12">
                             <label for="resultadoexameapto">Resultado do Exame</label><br>
-                            <input type="radio"  id="resultadoexameapto" name="aptoounao" value="apto">
+                            <input type="radio" id="resultadoexameapto" name="aptoounao" value="apto">
                             <label for="apto">Apto</label><br>
                             <input type="radio" id="resultadoexameinapto" name="aptoounao" value="inapto">
                             <label for="inapto">Inapto</label><br>
                             <div class="invalid-feedback" id="invalidresultado"> </div>
                         </div>
                     </div>
-                    
-                    
+
+
                     <div class=text-right>
                         <button type="reset" class="btn btn-outline-danger">Limpar</button>
                         <button type="button" id="btnregister" class="btn btn-outline-primary" disabled>Salvar</button>
@@ -186,18 +186,16 @@ if (isset($_SESSION['registro']))
             </div>
         </div>
     </div>
-    <div style="display: none;">
-        <div aria-live="polite" aria-atomic="true" style="position: relative; min-height: 200px;">
-            <div class="toast" data-delay="1500" style="position: absolute; top: 0; right: 0;">
-                <div class="toast-header">
-                    <strong class="mr-auto"><span id='titulo'></span></strong>
-                    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="toast-body">
-                    <span id='conteudo'></span>
-                </div>
+    <div aria-live="polite" aria-atomic="true" style="position: relative; min-height: 200px;">
+        <div class="toast" data-delay="1500" style="position: absolute; top: 0; right: 0;">
+            <div class="toast-header">
+                <strong class="mr-auto"><span id='titulo'></span></strong>
+                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="toast-body">
+                <span id='conteudo'></span>
             </div>
         </div>
     </div>

@@ -50,15 +50,13 @@ if (isset($_SESSION['cookieuser'])) {
                         <a class="nav-link" href="<?php echo $_SERVER["PHP_SELF"]; ?>">Home</a>
                     </li>
                     <?php
-                     if ($_SESSION['tipo'] == 'admin') {
+                    if ($_SESSION['tipo'] == 'admin') {
                         echo makemenuadmin();
                     } else if ($_SESSION['tipo'] == 'paciente') {
                         echo makemenupaciente();
-                    }
-                    else if ($_SESSION['tipo'] == 'laboratorio') {
+                    } else if ($_SESSION['tipo'] == 'laboratorio') {
                         echo makemenulaboratorio();
-                    }
-                    else if ($_SESSION['tipo'] == 'medico') {
+                    } else if ($_SESSION['tipo'] == 'medico') {
                         echo makemenumedico();
                     }
                     ?>
@@ -75,26 +73,22 @@ if (isset($_SESSION['cookieuser'])) {
         echo makecardsadmin();
     } else if ($_SESSION['tipo'] == 'paciente') {
         echo makecardspaciente();
-    }
-    else if ($_SESSION['tipo'] == 'laboratorio') {
+    } else if ($_SESSION['tipo'] == 'laboratorio') {
         echo makecardslaboratorio();
-    }
-    else if ($_SESSION['tipo'] == 'medico') {
+    } else if ($_SESSION['tipo'] == 'medico') {
         echo makecardsmedico();
     }
     ?>
-    <div style="display: none;">
-        <div aria-live="polite" aria-atomic="true" style="position: relative; min-height: 200px;">
-            <div class="toast" data-delay="1500" style="position: absolute; top: 0; right: 0;">
-                <div class="toast-header">
-                    <strong class="mr-auto"><span id='titulo'></span></strong>
-                    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="toast-body">
-                    <span id='conteudo'></span>
-                </div>
+    <div aria-live="polite" aria-atomic="true" style="position: relative; min-height: 200px;">
+        <div class="toast" data-delay="1500" style="position: absolute; top: 0; right: 0;">
+            <div class="toast-header">
+                <strong class="mr-auto"><span id='titulo'></span></strong>
+                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="toast-body">
+                <span id='conteudo'></span>
             </div>
         </div>
     </div>

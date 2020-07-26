@@ -15,7 +15,7 @@ if ($_SESSION['tipo'] == 'paciente') {
 }
 if (isset($_SESSION['registro']))
     $_user = unserialize($_SESSION['registro']);
-    unset($_SESSION['registro']);
+unset($_SESSION['registro']);
 
 $_check = '';
 if ($_SERVER['REQUEST_METHOD'] == 'GET' && !isset($_user->tipo)) {
@@ -160,10 +160,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && !isset($_user->tipo)) {
                         <div class="form-group col-md-4">
                             <label for="genero">Gênero</label>
                             <select id="genero" name="genero" class="form-control">
-                                <option <?php if (!isset($_user->genero)) echo 'selected'?>>Escolher...</option>
-                                <option value="feminino" <?php if (isset($_user->genero)) if ($_user->genero == 'feminino') echo 'selected';?>>Feminino</option>
-                                <option value="masculino" <?php if (isset($_user->genero)) if ($_user->genero == 'masculino') echo 'selected';?>>Masculino</option>
-                                <option value="outro" <?php if (isset($_user->genero)) if ($_user->genero == 'outro') echo 'selected';?>>Outro</option>
+                                <option <?php if (!isset($_user->genero)) echo 'selected' ?>>Escolher...</option>
+                                <option value="feminino" <?php if (isset($_user->genero)) if ($_user->genero == 'feminino') echo 'selected'; ?>>Feminino</option>
+                                <option value="masculino" <?php if (isset($_user->genero)) if ($_user->genero == 'masculino') echo 'selected'; ?>>Masculino</option>
+                                <option value="outro" <?php if (isset($_user->genero)) if ($_user->genero == 'outro') echo 'selected'; ?>>Outro</option>
                             </select>
                             <div class="invalid-feedback" id="invalidgenero"> </div>
                         </div>
@@ -228,18 +228,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && !isset($_user->tipo)) {
             </div>
         </div>
     </div>
-    <div style="display: none;">
-        <div aria-live="polite" aria-atomic="true" style="position: relative; min-height: 200px;">
-            <div class="toast" data-delay="1500" style="position: absolute; top: 0; right: 0;">
-                <div class="toast-header">
-                    <strong class="mr-auto"><span id='titulo'></span></strong>
-                    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="toast-body">
-                    <span id='conteudo'></span>
-                </div>
+    <div aria-live="polite" aria-atomic="true" style="position: relative; min-height: 200px;">
+        <div class="toast" data-delay="1500" style="position: absolute; top: 0; right: 0;">
+            <div class="toast-header">
+                <strong class="mr-auto"><span id='titulo'></span></strong>
+                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="toast-body">
+                <span id='conteudo'></span>
             </div>
         </div>
     </div>
