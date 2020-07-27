@@ -93,6 +93,10 @@ if ($_SESSION['tipo'] != 'admin') {
                                     <td><a href="_cadastro.php?id=' . $_users[$i]->id . '" class="btn btn-outline-warning"><i class="fas fa-edit" aria-hidden="true"></i></a></td>
                                 </tr>';
                             }
+                        }else{
+                            echo '<tr colspan="6">
+                                    <td>Não há registros presentes!</td>
+                                </tr>';
                         }
                         ?>
                     </tbody>

@@ -22,7 +22,7 @@
             <estado>PA</estado>
             <cep>96.202-336</cep>
             <email>junior_zilles@hotmail.com</email>
-            <senha>medico</senha>
+            <senha>jsahdkjashdjashkd</senha>
         </user>
         <user>
             <genero>masculino</genero>
@@ -43,7 +43,12 @@
             <senha>hsgdjhasgd</senha>
         </user>
         <user>
-            <tipoexame><tipo>TEMPO DE TROMBOPLASTINA ATIVADA (PTTA)</tipo><tipo>DOSAGEM DE ACIDO URICO</tipo><tipo>DOSAGEM DE ALFA-1-GLICOPROTEINA ACIDA</tipo><tipo>DOSAGEM DE AMILASE</tipo></tipoexame>
+            <tipoexame>
+                <tipo>TEMPO DE TROMBOPLASTINA ATIVADA (PTTA)</tipo>
+                <tipo>DOSAGEM DE ACIDO URICO</tipo>
+                <tipo>DOSAGEM DE ALFA-1-GLICOPROTEINA ACIDA</tipo>
+                <tipo>DOSAGEM DE AMILASE</tipo>
+            </tipoexame>
             <cnpj>84.884.884/8171-89</cnpj>
             <id>fbf374902ed7065542fe81a62d7219f4</id>
             <tipo>laboratorio</tipo>
@@ -59,5 +64,5 @@
             <email>junior_zilles@hotmail.com</email>
             <senha>laboratorio</senha>
         </user>
-    <user><genero>masculino</genero><datanascimento>2011-03-26</datanascimento><cpf>032.343.730-35</cpf><id>163347f5c08029762f602027d77fd2f2</id><tipo>paciente</tipo><nome>Altemir Abraão</nome><telefone>(89) 12891-8187</telefone><rua>Navegantes</rua><numero>897</numero><bairro>São Paulo</bairro><complemento>Fundos</complemento><cidade>Rio Grande</cidade><estado>RS</estado><cep>96.202-336</cep><email>junior_zilles@hotmail.com</email><senha>pacinete</senha></user></users>
+    </users>
 </dados>

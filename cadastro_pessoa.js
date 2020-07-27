@@ -34,41 +34,10 @@ $(document).ready(function () {
     }, "JSON");
 
     $("#email").blur(function () {
-        var email = $("#email").val();
-        var expressao = /^[A-Za-z0-9_\-\.]+@[A-Za-z0-9_\-\.]{2,}\.[A-Za-z0-9]{2,}(\.[A-Za-z0-9])?/;
-        if (email == "") {
-            $('#btnregister').prop('disabled', true);
-            $("#email").attr('class', 'form-control is-invalid')
-            $('#invalidemail').html('E-mail não pode ficar em branco!')
-            veremail = 0;
-        } else if (!expressao.test(email)) {
-            $('#btnregister').prop('disabled', true);
-            $("#email").attr('class', 'form-control is-invalid')
-            $('#invalidemail').html('E-mail contém formato inválido!')
-            veremail = 0;
-        } else {
-            veremail = 1;
-            $("#email").attr('class', 'form-control is-valid')
-            habilitabtn();
-        }
+        validaemail();
     });
     $("#senha").keyup(function () {
-        var password = $("#senha").val();
-        if (password == "") {
-            $('#btnregister').prop('disabled', true);
-            $("#senha").attr('class', 'form-control is-invalid')
-            $('#invalidsenha').html('Senha não pode ficar em branco!')
-            verpassword = 0;
-        } else if (password.length < 6) {
-            $('#btnregister').prop('disabled', true);
-            $("#senha").attr('class', 'form-control is-invalid')
-            $('#invalidsenha').html('Senha deve conter mais de 6 caracteres!')
-            verpassword = 0;
-        } else {
-            $("#senha").attr('class', 'form-control is-valid')
-            verpassword = 1;
-            habilitabtn();
-        }
+        validasenha();
     });
     $("#nome").blur(function () {
         vernome = validacampobasico("#nome", '#invalidnome', 'Nome não pode ficar em branco!');
@@ -101,7 +70,7 @@ $(document).ready(function () {
             habilitabtn()
     });
     $("#estado").blur(function () {
-        verestado = validacampobasico("#estado", '#invalidestado', 'Necessário selecionar o estado!');
+        verestado = validacampodrop("#estado", '#invalidestado', 'Necessário selecionar o estado!');
         if (verestado == 1)
             habilitabtn()
     });
@@ -111,7 +80,7 @@ $(document).ready(function () {
             habilitabtn()
     });
     $("#genero").blur(function () {
-        vergenero = validacampobasico("#genero", '#invalidgenero', 'Necessário selecionar um gênero!');
+        vergenero = validacampodrop("#genero", '#invalidgenero', 'Necessário selecionar um gênero!');
         if (vergenero == 1)
             habilitabtn()
     });
@@ -150,9 +119,48 @@ $(document).on('keypress', function (e) {
     }
 });
 
+function validaemail(){
+    var email = $("#email").val();
+        var expressao = /^[A-Za-z0-9_\-\.]+@[A-Za-z0-9_\-\.]{2,}\.[A-Za-z0-9]{2,}(\.[A-Za-z0-9])?/;
+        if (email == "") {
+            $('#btnregister').prop('disabled', true);
+            $("#email").attr('class', 'form-control is-invalid')
+            $('#invalidemail').html('E-mail não pode ficar em branco!')
+            veremail = 0;
+        } else if (!expressao.test(email)) {
+            $('#btnregister').prop('disabled', true);
+            $("#email").attr('class', 'form-control is-invalid')
+            $('#invalidemail').html('E-mail contém formato inválido!')
+            veremail = 0;
+        } else {
+            veremail = 1;
+            $("#email").attr('class', 'form-control is-valid')
+            habilitabtn();
+        }
+}
+
+function validasenha(){
+    var password = $("#senha").val();
+        if (password == "") {
+            $('#btnregister').prop('disabled', true);
+            $("#senha").attr('class', 'form-control is-invalid')
+            $('#invalidsenha').html('Senha não pode ficar em branco!')
+            verpassword = 0;
+        } else if (password.length < 6) {
+            $('#btnregister').prop('disabled', true);
+            $("#senha").attr('class', 'form-control is-invalid')
+            $('#invalidsenha').html('Senha deve conter mais de 6 caracteres!')
+            verpassword = 0;
+        } else {
+            $("#senha").attr('class', 'form-control is-valid')
+            verpassword = 1;
+            habilitabtn();
+        }
+}
+
 function validacampobasico(campo, campovalidacao, mensagem) {
-    var estado = $(campo).val();
-    if (estado == "") {
+    var valor = $(campo).val();
+    if (valor == "") {
         $('#btnregister').prop('disabled', true);
         $(campo).attr('class', 'form-control is-invalid')
         $(campovalidacao).html(mensagem)
@@ -163,9 +171,25 @@ function validacampobasico(campo, campovalidacao, mensagem) {
     }
 }
 
+function validacampodrop(campo, campovalidacao, mensagem) {
+    var valor = $(campo).val();
+    if (valor == "") {
+        $('#btnregister').prop('disabled', true);
+        $(campo).attr('class', 'form-control is-invalid')
+        $(campovalidacao).html(mensagem)
+        return 0;
+    } else {
+        if(valor != 'Escolher...'){
+            $(campo).attr('class', 'form-control is-valid');
+            return 1;
+        }
+        return 0;
+    }
+}
+
 function habilitabtninicial() {
     var identificador = $("#identificador").val();
-    if (identificador != '') {
+    if (identificador != undefined) {
         $('#btnregister').prop('disabled', false);
         veremail =
             verpassword =

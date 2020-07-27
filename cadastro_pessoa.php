@@ -13,9 +13,11 @@ if ($_SESSION['tipo'] == 'paciente') {
     $_SESSION['erro'] = maketoast('Usuário não permitido', 'O recurso não está disponível para esse usuário');
     header("Location: home.php");
 }
-if (isset($_SESSION['registro']))
+$_user = null;
+if (isset($_SESSION['registro'])){
     $_user = unserialize($_SESSION['registro']);
-unset($_SESSION['registro']);
+    unset($_SESSION['registro']);
+}
 
 $_check = '';
 if ($_SERVER['REQUEST_METHOD'] == 'GET' && !isset($_user->tipo)) {
@@ -41,12 +43,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && !isset($_user->tipo)) {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
     <script src="http://twitter.github.io/typeahead.js/releases/latest/typeahead.bundle.js"></script>
     <script src="cadastro_pessoa.js"></script>
-    <?php
-    if (isset($_SESSION['erro'])) {
-        echo $_SESSION['erro'];
-        unset($_SESSION['erro']);
-    }
-    ?>
 </head>
 
 <body>
@@ -89,6 +85,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && !isset($_user->tipo)) {
                                                     }
                                                     ?></h5>
                 <form action="_cadastro.php" id="cadastroform" method="POST">
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+
+                                <?php
+                                if (isset($_SESSION['erro'])) {
+                                    echo '<div class="invalid-feedback" style="display:block;">'.$_SESSION['erro'].'</div>';
+                                    unset($_SESSION['erro']);
+                                }
+                                ?>
+                        
+                        </div>
+                    </div>
                     <?php
                     if ($_SESSION['tipo'] == 'admin' &&  !isset($_user->id)) {
                         echo '<div class="form-row">
@@ -228,20 +236,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && !isset($_user->tipo)) {
             </div>
         </div>
     </div>
-    <div aria-live="polite" aria-atomic="true" style="position: relative; min-height: 200px;">
-        <div class="toast" data-delay="1500" style="position: absolute; top: 0; right: 0;">
-            <div class="toast-header">
-                <strong class="mr-auto"><span id='titulo'></span></strong>
-                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="toast-body">
-                <span id='conteudo'></span>
-            </div>
-        </div>
-    </div>
-
 </body>
 
 </html>
