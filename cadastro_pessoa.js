@@ -213,50 +213,50 @@ function habilitabtninicial() {
 
 function habilitabtn() {
     if (tipouser == 'paciente') {
-        if (veremail ==
-            verpassword ==
-            vernome ==
-            vertelefone ==
-            verrua ==
-            vernumero ==
-            verbairro ==
-            vercidade ==
-            verestado ==
-            vercep ==
-            vergenero ==
-            verdatanascimento ==
+        if (veremail == 1 &&
+            verpassword == 1 &&
+            vernome == 1 &&
+            vertelefone == 1 &&
+            verrua == 1 &&
+            vernumero == 1 &&
+            verbairro == 1 &&
+            vercidade == 1 &&
+            verestado == 1 &&
+            vercep == 1 &&
+            vergenero == 1 &&
+            verdatanascimento == 1 &&
             vercpf == 1) {
             $('#btnregister').prop('disabled', false);
             return true;
         }
     } else if (tipouser == 'medico') {
-        if (veremail ==
-            verpassword ==
-            vernome ==
-            vertelefone ==
-            verrua ==
-            vernumero ==
-            verbairro ==
-            vercidade ==
-            verestado ==
-            vercep ==
-            verespecialidade ==
+        if (veremail == 1 &&
+            verpassword == 1 &&
+            vernome == 1 &&
+            vertelefone == 1 &&
+            verrua == 1 &&
+            vernumero == 1 &&
+            verbairro == 1 &&
+            vercidade == 1 &&
+            verestado == 1 &&
+            vercep == 1 &&
+            verespecialidade == 1 &&
             vercrm == 1) {
             $('#btnregister').prop('disabled', false);
             return true;
         }
     } else if (tipouser == 'laboratorio') {
-        if (veremail ==
-            verpassword ==
-            vernome ==
-            vertelefone ==
-            verrua ==
-            vernumero ==
-            verbairro ==
-            vercidade ==
-            verestado ==
-            vercep ==
-            vertipoexame ==
+        if (veremail == 1 &&
+            verpassword == 1 &&
+            vernome == 1 &&
+            vertelefone == 1 &&
+            verrua == 1 &&
+            vernumero == 1 &&
+            verbairro == 1 &&
+            vercidade == 1 &&
+            verestado == 1 &&
+            vercep == 1 &&
+            vertipoexame == 1 &&
             vercnpj == 1) {
             $('#btnregister').prop('disabled', false);
             return true;

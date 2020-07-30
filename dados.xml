@@ -22,7 +22,7 @@
             <estado>PA</estado>
             <cep>96.202-336</cep>
             <email>junior_zilles@hotmail.com</email>
-            <senha>jsahdkjashdjashkd</senha>
+            <senha>medico</senha>
         </user>
         <user>
             <genero>masculino</genero>
@@ -65,4 +65,121 @@
             <senha>laboratorio</senha>
         </user>
     </users>
+    <exames>
+        <exame>
+            <tipoexame>
+                <tipo>DOSAGEM DE ACIDO URICO</tipo>
+            </tipoexame>
+            <resultado>apto</resultado>
+            <laboratorioid>fbf374902ed7065542fe81a62d7219f4</laboratorioid>
+            <id>e2d4494f3c3959a0a56d69d79efc4798</id>
+            <hora>16:41</hora>
+            <data>2020-07-17</data>
+            <observacao>sadasdasd</observacao>
+            <pacienteid>ccf988db96cb0004d60b03d259522e4c</pacienteid>
+            <medicoid>01678638c3870972a45cfd72b51837f7</medicoid>
+            <outro/>
+        </exame>
+        <exame>
+            <tipoexame>
+                <tipo>TEMPO DE TROMBOPLASTINA ATIVADA (PTTA)</tipo>
+            </tipoexame>
+            <resultado>inapto</resultado>
+            <laboratorioid>fbf374902ed7065542fe81a62d7219f4</laboratorioid>
+            <id>cf48254591f0c4b02a464f74899c7f92</id>
+            <hora>16:49</hora>
+            <data>2020-07-09</data>
+            <observacao>ouve bug no sistema</observacao>
+            <pacienteid>ccf988db96cb0004d60b03d259522e4c</pacienteid>
+            <medicoid>01678638c3870972a45cfd72b51837f7</medicoid>
+            <outro/>
+        </exame>
+        <exame>
+            <tipoexame>
+                <tipo>TEMPO DE TROMBOPLASTINA ATIVADA (PTTA)</tipo>
+            </tipoexame>
+            <resultado>apto</resultado>
+            <laboratorioid>fbf374902ed7065542fe81a62d7219f4</laboratorioid>
+            <id>d8e27beebf9084051c430b7ca3e1dbf9</id>
+            <hora>17:10</hora>
+            <data>2020-07-02</data>
+            <observacao>asdasdasdasd</observacao>
+            <pacienteid>ccf988db96cb0004d60b03d259522e4c</pacienteid>
+            <medicoid>01678638c3870972a45cfd72b51837f7</medicoid>
+            <outro/>
+        </exame>
+        <exame>
+            <tipoexame>
+                <tipo>DOSAGEM DE ACIDO URICO</tipo>
+                <tipo>DOSAGEM DE ALFA-1-GLICOPROTEINA ACIDA</tipo>
+                <tipo>DOSAGEM DE AMILASE</tipo>
+            </tipoexame>
+            <resultado>apto</resultado>
+            <laboratorioid>fbf374902ed7065542fe81a62d7219f4</laboratorioid>
+            <id>5fee2b1431cca588ca6d0201b460f382</id>
+            <hora>17:16</hora>
+            <data>2020-07-23</data>
+            <observacao>asadfsafasfafs</observacao>
+            <pacienteid>ccf988db96cb0004d60b03d259522e4c</pacienteid>
+            <medicoid>01678638c3870972a45cfd72b51837f7</medicoid>
+            <outro/>
+        </exame>
+        <exame>
+            <tipoexame>
+                <tipo>TEMPO DE TROMBOPLASTINA ATIVADA (PTTA)</tipo>
+            </tipoexame>
+            <resultado>apto</resultado>
+            <laboratorioid>fbf374902ed7065542fe81a62d7219f4</laboratorioid>
+            <id>ac36e1321ddfda798f63d3b562d372a4</id>
+            <hora>17:37</hora>
+            <data>2020-07-13</data>
+            <observacao>adsffsd</observacao>
+            <pacienteid>ccf988db96cb0004d60b03d259522e4c</pacienteid>
+            <medicoid>01678638c3870972a45cfd72b51837f7</medicoid>
+            <outro/>
+        </exame>
+        <exame>
+            <tipoexame>
+                <tipo>TEMPO DE TROMBOPLASTINA ATIVADA (PTTA)</tipo>
+            </tipoexame>
+            <resultado>apto</resultado>
+            <laboratorioid>fbf374902ed7065542fe81a62d7219f4</laboratorioid>
+            <id>3ff3f297b114eb6fb50b674da29b73dd</id>
+            <hora>17:37</hora>
+            <data>2020-07-15</data>
+            <observacao>errgergergergerger</observacao>
+            <pacienteid>ccf988db96cb0004d60b03d259522e4c</pacienteid>
+            <medicoid>01678638c3870972a45cfd72b51837f7</medicoid>
+            <outro/>
+        </exame>
+        <exame>
+            <tipoexame>
+                <tipo>DOSAGEM DE ACIDO URICO</tipo>
+            </tipoexame>
+            <resultado>apto</resultado>
+            <laboratorioid>fbf374902ed7065542fe81a62d7219f4</laboratorioid>
+            <id>0cf67ba036bd2c2af2a9ee27e0d4981c</id>
+            <hora>17:40</hora>
+            <data>2020-07-18</data>
+            <observacao>asdasdasdasd</observacao>
+            <pacienteid>ccf988db96cb0004d60b03d259522e4c</pacienteid>
+            <medicoid>01678638c3870972a45cfd72b51837f7</medicoid>
+            <outro>sada</outro>
+        </exame>
+        <exame>
+            <tipoexame>
+                <tipo>DOSAGEM DE ACIDO URICO</tipo>
+            </tipoexame>
+            <resultado>apto</resultado>
+            <laboratorioid>fbf374902ed7065542fe81a62d7219f4</laboratorioid>
+            <id>48dadcaf37ff85ffb882cf0750063591</id>
+            <hora>17:41</hora>
+            <data>2020-07-17</data>
+            <observacao>sdfsdfgghdfg</observacao>
+            <pacienteid>ccf988db96cb0004d60b03d259522e4c</pacienteid>
+            <medicoid>01678638c3870972a45cfd72b51837f7</medicoid>
+            <outro/>
+        </exame>
+    </exames>
+    <consultas/>
 </dados>

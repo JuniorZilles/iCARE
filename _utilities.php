@@ -1,6 +1,7 @@
 <?php 
 
 require_once '_pessoa_model.php';
+require_once '_cadastro_model.php';
 
 function remove_inseguro($valor)
 {
@@ -15,6 +16,22 @@ function maketoast($title, $message){
         $('#titulo').html('$title');
         $('#conteudo').html('$message');
         $('.toast').toast('show');
+    });  
+</script>";
+}
+
+function makeerrortoast($message){
+    return "<script>
+    $(function(){
+        toastr.error('" . $message . "', 'Algo deu errado');
+    });  
+</script>";
+}
+
+function makesuccesstoast($message){
+    return "<script>
+    $(function(){
+        toastr.success('" . $message . "');
     });  
 </script>";
 }
@@ -46,8 +63,7 @@ function obter_usuario($child){
         $_tipoexame = obter_exames($child->tipoexame->children());
         $_cnpj = (string)$child->cnpj;
         return new Laboratorio($_id, $_tipo, $_nome, $_telefone, $_rua, $_numero, $_bairro, $_complemento, $_cidade, $_estado, $_cep, $_email, $_senha, $_tipoexame, $_cnpj);
-    }
-    
+    }   
 }
 
 function obter_exames($exames){
@@ -56,4 +72,18 @@ function obter_exames($exames){
         $_tipoexame .= (string)$child.',';
     }
     return $_tipoexame;
+}
+
+function obtercadastroexame($child){
+    $_id = (string)$child->id;
+    $_hora = (string)$child->hora;
+    $_data = (string)$child->data;
+    $_pacienteid = (string)$child->pacienteid;
+    $_observacao = (string)$child->observacao;
+    $_medicoid = (string)$child->medicoid;
+    $_outro = (string)$child->outro;
+    $_resultado = (string)$child->resultado;
+    $_laboratorioid = (string)$child->laboratorioid;
+    $_tipoexame = obter_exames($child->tipoexame->children());
+    return new Exame($_id, $_hora, $_data, $_pacienteid, $_observacao, $_outro, $_medicoid, $_tipoexame, $_resultado, $_laboratorioid);
 }

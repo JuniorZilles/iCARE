@@ -29,17 +29,11 @@ if (isset($_SESSION['registro']))
     <link rel="stylesheet" href="cadastro.css">
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script> -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
     <script src="http://twitter.github.io/typeahead.js/releases/latest/typeahead.bundle.js"></script>
     <script src="cadastro_consulta.js"></script>
-    <?php
-    if (isset($_SESSION['erro'])) {
-        echo $_SESSION['erro'];
-        unset($_SESSION['erro']);
-    }
-    ?>
 </head>
 
 <body>
@@ -72,6 +66,16 @@ if (isset($_SESSION['registro']))
             <div class="card-body">
                 <h5 class="card-title text-center">Cadastro de Consulta</h5>
                 <form action="_consulta.php" id="cadastroform" method="POST">
+                <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <?php
+                            if (isset($_SESSION['erro'])) {
+                                echo '<div class="invalid-feedback" style="display:block;">' . $_SESSION['erro'] . '</div>';
+                                unset($_SESSION['erro']);
+                            }
+                            ?>
+                        </div>
+                    </div>
                     <!-- criar um objeto (usar exemplo do _pessoa_model.php) para permitir a edição -->
                     <input type="hidden" id="identificador" value="<?php if (isset($_consulta->id)) echo $_consulta->id; ?>">
                     <!-- DÁ PRA TIRAR O COMENTADO, POR QUE ESSES DADOS JÁ VÃO ESTAR CONTIDOS NO CADASTRO DO PACIENTE -->
@@ -80,8 +84,8 @@ if (isset($_SESSION['registro']))
                         <div class="form-group col-md-12">
                             <label for="pacienteauto">Nome do Paciente</label>
                             <input type="text" class="form-control" id="pacienteauto" placeholder="Nome do Paciente" value="">
-                            <input type="hidden" id="pacienteid" name="pacienteid" value="">
-                            <div class="invalid-feedback" id="invalidnome"> </div>
+                            <input type="hidden" id="pacienteid" name="pacienteid" value="<?php if (isset($_consulta->pacienteid)) echo $_consulta->pacienteid; ?>">
+                            <div class="invalid-feedback" id="invalidpacienteauto"> </div>
                         </div>
                     </div>
                     <div class="form-row">
@@ -146,20 +150,6 @@ if (isset($_SESSION['registro']))
             </div>
         </div>
     </div>
-    <div aria-live="polite" aria-atomic="true" style="position: relative; min-height: 200px;">
-        <div class="toast" data-delay="1500" style="position: absolute; top: 0; right: 0;">
-            <div class="toast-header">
-                <strong class="mr-auto"><span id='titulo'></span></strong>
-                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="toast-body">
-                <span id='conteudo'></span>
-            </div>
-        </div>
-    </div>
-
 </body>
 
 </html>

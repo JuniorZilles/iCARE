@@ -4,26 +4,6 @@ session_start();
 require_once '_utilities.php';
 require_once '_pessoa_model.php';
 
-//lógica do cadastro de médico/paciente/laboratório
-//laboratorio
-//Nome, Endereço, Telefone, E-mail, Tipos de Exame, CNPJ, …
-//validar entradas
-//não pode ter com mesmo nome
-//criar e alterar laboratório
-//apenas o usuario admin pode cadastrar, mas o laboratório e o admin pode alterar seus dados
-//paciente
-//Nome, Endereço, Telefone, E-mail, Gênero, Idade, CPF, ...
-//validar entradas
-//não pode ter com mesmo nome
-//criar e alterar paciente
-//apenas o usuario admin pode cadastrar e alterar
-//medico
-//nome, endereço, telefone, email, especialidade, CRM,...
-//validar entradas
-//não pode ter com mesmo nome
-//criar e alterar médicos
-//apenas o usuario admin pode cadastrar, mas o médico e o admin pode alterar seus dados
-
 try {
 
     $_email = $_senha = $_id = $_tipo =
@@ -246,7 +226,7 @@ try {
             }
             $xml->asXML('dados.xml');
 
-            $_SESSION['erro'] = maketoast('Cadastro realizado com sucesso', 'O usuário foi ' . $_termo . ' na base de dados');
+            $_SESSION['success'] = 'O usuário foi ' . $_termo . ' na base de dados';
             header("Location: home.php");
         }
     } else if ($_SERVER['REQUEST_METHOD'] == 'GET') {
