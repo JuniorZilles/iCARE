@@ -181,5 +181,22 @@
             <outro/>
         </exame>
     </exames>
-    <consultas><consulta><sintomas><sintoma>Febre</sintoma><sintoma>Dor no Corpo</sintoma><sintoma>Dor de Barriga</sintoma><sintoma>Outro</sintoma></sintomas><receita>dsfdsfsfsdfdsf</receita><id>d1dd403bd5d603d7b8b596bd989c23ce</id><hora>18:10</hora><data>2020-07-17</data><observacao>sdfsdfsfdsdf</observacao><pacienteid>ccf988db96cb0004d60b03d259522e4c</pacienteid><medicoid>01678638c3870972a45cfd72b51837f7</medicoid><outro>efgerg</outro></consulta></consultas>
+    <consultas>
+        <consulta>
+            <sintomas>
+                <sintoma>Febre</sintoma>
+                <sintoma>Dor no Corpo</sintoma>
+                <sintoma>Dor de Barriga</sintoma>
+                <sintoma>Outro</sintoma>
+            </sintomas>
+            <receita>dsfdsfsfsdfdsf</receita>
+            <id>d1dd403bd5d603d7b8b596bd989c23ce</id>
+            <hora>18:10</hora>
+            <data>2020-07-17</data>
+            <observacao>sdfsdfsfdsdf</observacao>
+            <pacienteid>ccf988db96cb0004d60b03d259522e4c</pacienteid>
+            <medicoid>01678638c3870972a45cfd72b51837f7</medicoid>
+            <outro>efgerg</outro>
+        </consulta>
+    </consultas>
 </dados>
