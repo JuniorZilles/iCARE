@@ -31,6 +31,8 @@ if (count($nodolab) > 0) {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="sortcut icon" href="favicon.ico" type="image/x-icon" />
+    <title>iCARE - Cadastro de Exame</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="cadastro.css">
@@ -85,11 +87,15 @@ if (count($nodolab) > 0) {
                     </div>
                     <input type="hidden" id="identificadorexame" name="identificadorexame" value="<?php if (isset($_exame->id))  echo $_exame->id; ?>">
                     <div class="form-row">
-                        <div class="form-group col-md-12">
+                        <div class="form-group col-md-8">
                             <label for="pacienteauto">Nome do Paciente</label>
                             <input type="text" class="form-control" id="pacienteauto" name="pacienteauto" placeholder="Nome do Paciente" value="">
                             <input type="hidden" id="pacienteid" name="pacienteid" value="<?php if (isset($_exame->pacienteid)) echo $_exame->pacienteid; ?>">
                             <div class="invalid-feedback" id="invalidpacienteauto"> </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="datanascimento">Data Nascimento Paciente</label>
+                            <input type="date" class="form-control" maxlength="10" id="datanascimento" placeholder="Data de realização da consulta" disabled>
                         </div>
                     </div>
                     <div class="form-row">
@@ -98,6 +104,20 @@ if (count($nodolab) > 0) {
                             <input type="text" class="form-control" id="medicoauto" name="medicoauto" placeholder="Nome do Médico Responsável" value="">
                             <input type="hidden" id="medicoid" name="medicoid" value="<?php if (isset($_exame->medicoid)) echo $_exame->medicoid; ?>">
                             <div class="invalid-feedback" id="invalidmedicoauto"> </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                    <div class="form-group col-md-4">
+                            <label for="especialidade">Especialidade</label>
+                            <input type="text" class="form-control" id="especialidade" placeholder="Especialidade do médico" disabled>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="crm">CRM</label>
+                            <input type="text" class="form-control" id="crm" placeholder="CRM do médico" disabled>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="telefone">Telefone</label>
+                            <input type="text" class="form-control"  id="telefone" placeholder="Telefone do médico" disabled>
                         </div>
                     </div>
                     <div class="form-row">
@@ -146,8 +166,6 @@ if (count($nodolab) > 0) {
                             <div class="invalid-feedback" id="invalidtextresultado"> </div>
                         </div>
                     </div>
-
-
                     <div class=text-right>
                         <button type="reset" class="btn btn-outline-danger">Limpar</button>
                         <button type="submit" id="btnregister" class="btn btn-outline-primary" disabled>Salvar</button>

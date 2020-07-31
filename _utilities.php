@@ -87,3 +87,25 @@ function obtercadastroexame($child){
     $_tipoexame = obter_exames($child->tipoexame->children());
     return new Exame($_id, $_hora, $_data, $_pacienteid, $_observacao, $_outro, $_medicoid, $_tipoexame, $_resultado, $_laboratorioid);
 }
+
+function obtercadastroconsulta($child)
+{
+    $_id = (string)$child->id;
+    $_hora = (string)$child->hora;
+    $_data = (string)$child->data;
+    $_pacienteid = (string)$child->pacienteid;
+    $_observacao = (string)$child->observacao;
+    $_medicoid = (string)$child->medicoid;
+    $_outro = (string)$child->outro;
+    $_sintomas = obter_sintomas($child->sintomas->children());
+    $_receita = (string)$child->laboratorireceitaoid;
+    return new Consulta($_id, $_hora, $_data, $_pacienteid, $_observacao, $_outro, $_medicoid, $_sintomas, $_receita);
+}
+
+function obter_sintomas($sintomas){
+    $_sintoms = Array();
+    foreach ($sintomas as $k=>$child) {
+        array_push($_sintoms,(string)$child);
+    }
+    return $_sintoms;
+}

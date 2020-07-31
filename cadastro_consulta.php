@@ -24,6 +24,8 @@ if (isset($_SESSION['registro']))
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="sortcut icon" href="favicon.ico" type="image/x-icon" />
+    <title>iCARE - Cadastro de Consulta</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="cadastro.css">
@@ -66,7 +68,7 @@ if (isset($_SESSION['registro']))
             <div class="card-body">
                 <h5 class="card-title text-center">Cadastro de Consulta</h5>
                 <form action="_consulta.php" id="cadastroform" method="POST">
-                <div class="form-row">
+                    <div class="form-row">
                         <div class="form-group col-md-12">
                             <?php
                             if (isset($_SESSION['erro'])) {
@@ -76,75 +78,95 @@ if (isset($_SESSION['registro']))
                             ?>
                         </div>
                     </div>
-                    <!-- criar um objeto (usar exemplo do _pessoa_model.php) para permitir a edição -->
                     <input type="hidden" id="identificador" value="<?php if (isset($_consulta->id)) echo $_consulta->id; ?>">
-                    <!-- DÁ PRA TIRAR O COMENTADO, POR QUE ESSES DADOS JÁ VÃO ESTAR CONTIDOS NO CADASTRO DO PACIENTE -->
-                    <!-- Data, Médico, Paciente, Receita, Observações -->
                     <div class="form-row">
-                        <div class="form-group col-md-12">
+                        <div class="form-group col-md-8">
                             <label for="pacienteauto">Nome do Paciente</label>
                             <input type="text" class="form-control" id="pacienteauto" placeholder="Nome do Paciente" value="">
                             <input type="hidden" id="pacienteid" name="pacienteid" value="<?php if (isset($_consulta->pacienteid)) echo $_consulta->pacienteid; ?>">
                             <div class="invalid-feedback" id="invalidpacienteauto"> </div>
                         </div>
+                        <div class="form-group col-md-4">
+                            <label for="datanascimento">Data Nascimento Paciente</label>
+                            <input type="date" class="form-control" maxlength="10" id="datanascimento" placeholder="Data de realização da consulta" disabled>
+                        </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-md-8">
+                        <div class="form-group col-md-4">
+                            <label for="">Sintomas</label><br />
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="febre" name="febre" value="Febre"> <label class="form-check-label" for="febre">Febre </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="dorcabeca" name="dorcabeca" value="Dor de Cabeça"> <label class="form-check-label" for="dorcabeca">Dor Cabeça </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="dorcorpo" name="dorcorpo" value="Dor no Corpo"> <label class="form-check-label" for="dorcorpo">Dor no Corpo </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="dorpeito" name="dorpeito" value="Dor no Peito"> <label class="form-check-label" for="dorpeito"> Dor no Peito </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="formigamento" name="formigamento" value="Formigamento"> <label class="form-check-label" for="formigamento">Formigamento </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="dorbarriga" name="dorbarriga" value="Dor de Barriga"> <label class="form-check-label" for="dorbarriga"> Dor de Barriga</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="vomito" name="vomito" value="Vômito"> <label class="form-check-label" for="vomito">Vômito </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="nausea" name="nausea" value="Náusea"> <label class="form-check-label" for="nausea">Náusea </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="perdapeso" name="perdapeso" value="Perda de Peso"> <label class="form-check-label" for="perdapeso">Perda de Peso </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="ganhopeso" name="ganhopeso" value="Ganho de Peso"> <label class="form-check-label" for="ganhopeso">Ganho de Peso </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="cansaco" name="cansaco" value="Cansaço"> <label class="form-check-label" for="cansaco">Cansaço </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="outro" name="outro" value="Outro"> <label class="form-check-label" for="outro">Outro </label>
+                            </div>
+                            <div class="invalid-feedback" id="invalidcheck"> </div>
+                        </div>
+                        <div class="form-group col-md-4">
                             <label for="dataconsulta">Data da Consulta</label>
-                            <input type="date" class="form-control" maxlength="10" id="dataconsulta" placeholder="Data de realização da consulta" value="<?php if (isset($_consulta->dataconsulta)) echo $_consulta->dataconsulta; ?>">
+                            <input type="date" class="form-control" maxlength="10" name="dataconsulta" id="dataconsulta" placeholder="Data de realização da consulta" value="<?php if (isset($_consulta->dataconsulta)) echo $_consulta->dataconsulta; ?>">
                             <div class="invalid-feedback" id="invaliddate"> </div>
                         </div>
                         <div class="form-group col-md-4">
                             <label for="horarioconsulta">Horário da Consulta</label>
-                            <input type="time" class="form-control" maxlength="10" id="horarioconsulta" placeholder="Horário de realização da consulta" value="<?php if (isset($_consulta->horarioconsulta)) echo $_consulta->horarioconsulta; ?>">
-                            <div class="invalid-feedback" id="invaliddate"> </div>
+                            <input type="time" class="form-control" maxlength="8" name="horarioconsulta" id="horarioconsulta" placeholder="Horário de realização da consulta" value="<?php if (isset($_consulta->horarioconsulta)) echo $_consulta->horarioconsulta; ?>">
+                            <div class="invalid-feedback" id="invalidhour"> </div>
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <div class="col-sm-10">Qual o sintoma do paciente?</div>
-                        <div class="col-md-12">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="febre" name="febre" value="febre"> <label class="form-check-label" for="febre">Febre </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="dorcabeca" name="dorcabeca" value="dorcabeca"> <label class="form-check-label" for="dorcabeca">Dor Cabeça </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="dorcorpo" name="dorcorpo" value="dorcorpo"> <label class="form-check-label" for="dorcorpo">Dor no Corpo </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="dorpeito" name="dorpeito" value="dorpeito"> <label class="form-check-label" for="dorpeito"> Dor no Peito </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="formigamento" name="formigamento" value="formigamento"> <label class="form-check-label" for="formigamento">Formigamento </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="dorbarriga" name="dorbarriga" value="dorbarriga"> <label class="form-check-label" for="dorbarriga"> Dor de Barriga</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="vomito" name="vomito" value="vomito"> <label class="form-check-label" for="vomito">Vômito </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="nausea" name="nausea" value="nausea"> <label class="form-check-label" for="nausea">Náusea </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="perdapeso" name="perdapeso" value="perdapeso"> <label class="form-check-label" for="perdapeso">Perda de Peso </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="ganhopeso" name="ganhopeso" value="ganhopeso"> <label class="form-check-label" for="ganhopeso">Ganho de Peso </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="cansaco" name="cansaco" value="cansaco"> <label class="form-check-label" for="cansaco">Cansaço </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="outro" name="outro" value="outro"> <label class="form-check-label" for="outro">Outro </label>
-                            </div>
-                            <input type="text" class="form-control" id="especifiqueoutro" placeholder="Especifique se for outro" value="<?php if (isset($_consulta->outro)) echo $_consulta->outro; ?>">
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <label for="outro">Sintomas adicionais</label>
+                            <textarea class="form-control" id="outrosintoma" name="outrosintoma" placeholder="Especifique os sintomas adicionais" rows="5" ><?php if (isset($_consulta->outro)) echo $_consulta->outro; ?></textarea>
+                            <div class="invalid-feedback" id="invalidoutro"> </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <label for="receita">Receita</label>
+                            <textarea class="form-control" name="receita" id="receita" placeholder="Receita e recomendações passadas ao paciente" rows="5"><?php if (isset($_consulta->receita)) echo $_consulta->receita; ?></textarea>
+                            <div class="invalid-feedback" id="invalidreceita"> </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <label for="observacoes">Observações</label>
+                            <textarea class="form-control" name="observacoes" id="observacoes" placeholder="Observações adicionais sobre a consulta(essas informações não ficam disponíveis para o paciente)" rows="5"><?php if (isset($_consulta->observacao)) echo $_consulta->observacao; ?></textarea>
+                            <div class="invalid-feedback" id="invalidobservacao"> </div>
                         </div>
                     </div>
                     <div class=text-right>
                         <button type="reset" class="btn btn-outline-danger">Limpar</button>
-                        <button type="button" id="btnregister" class="btn btn-outline-primary" disabled>Salvar</button>
+                        <button type="submit" id="btnregister" class="btn btn-outline-primary" disabled>Salvar</button>
                     </div>
                 </form>
             </div>

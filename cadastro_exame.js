@@ -116,9 +116,9 @@ function pacientes_autocomplete(list) {
         }
     ).on('typeahead:selected', function (event, selection) {
         $('#pacienteid').val(selection.id);
+        $('#datanascimento').val(selection.datanascimento);
         verpaciente = 1;
         habilitabtn()
-        //$('#').val(selection.datanascimento);
         //$('#').val(selection.nome);
     });
     $('.twitter-typeahead').removeAttr('style');
@@ -143,9 +143,12 @@ function medicos_autocomplete(list) {
         }
     ).on('typeahead:selected', function (event, selection) {
         $('#medicoid').val(selection.id);
+        $('#especialidade').val(selection.especialidade);
+        $('#crm').val(selection.crm);
+        $('#telefone').val(selection.telefone);
         vermedico = 1;
         habilitabtn()
-        //$('#').val(selection.nome);
+        
     });
     $('.twitter-typeahead').removeAttr('style');
 }
