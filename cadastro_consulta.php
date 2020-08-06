@@ -66,7 +66,25 @@ if (isset($_SESSION['registro']))
     <div class="container">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title text-center">Cadastro de Consulta</h5>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="home.php">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page"><?php
+                                                                                if (isset($_exame->id)) {
+                                                                                    echo 'Editar Consulta';
+                                                                                } else {
+                                                                                    echo 'Cadastro de Consulta';
+                                                                                }
+                                                                                ?></li>
+                    </ol>
+                </nav>
+                <h5 class="card-title text-center"><?php
+                                                    if (isset($_exame->id)) {
+                                                        echo 'Editar Consulta';
+                                                    } else {
+                                                        echo 'Cadastro de Consulta';
+                                                    }
+                                                    ?></h5>
                 <form action="_consulta.php" id="cadastroform" method="POST">
                     <div class="form-row">
                         <div class="form-group col-md-12">
@@ -146,7 +164,7 @@ if (isset($_SESSION['registro']))
                     <div class="form-row">
                         <div class="form-group col-md-12">
                             <label for="outro">Sintomas adicionais</label>
-                            <textarea class="form-control" id="outrosintoma" name="outrosintoma" placeholder="Especifique os sintomas adicionais" rows="5" ><?php if (isset($_consulta->outro)) echo $_consulta->outro; ?></textarea>
+                            <textarea class="form-control" id="outrosintoma" name="outrosintoma" placeholder="Especifique os sintomas adicionais" rows="5"><?php if (isset($_consulta->outro)) echo $_consulta->outro; ?></textarea>
                             <div class="invalid-feedback" id="invalidoutro"> </div>
                         </div>
                     </div>

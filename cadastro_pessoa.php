@@ -79,6 +79,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && !isset($_user->tipo)) {
     <div class="container">
         <div class="card">
             <div class="card-body">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="home.php">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page"><?php
+                                                                                if ($_SESSION['tipo'] == 'admin') {
+                                                                                    echo 'Cadastro de Usuário';
+                                                                                } else {
+                                                                                    echo 'Editar Perfil';
+                                                                                }
+                                                                                ?></li>
+                    </ol>
+                </nav>
                 <h5 class="card-title text-center"><?php
                                                     if ($_SESSION['tipo'] == 'admin') {
                                                         echo 'Cadastro de Usuário';

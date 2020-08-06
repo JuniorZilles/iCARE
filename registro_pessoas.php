@@ -60,6 +60,12 @@ if ($_SESSION['tipo'] != 'admin') {
     <div class="container">
         <div class="card">
             <div class="card-body">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="home.php">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Usuários Cadastrados</li>
+                    </ol>
+                </nav>
                 <h5 class="card-title text-center">
                     Usuários Cadastrados
                 </h5>
@@ -95,7 +101,7 @@ if ($_SESSION['tipo'] != 'admin') {
                                     <td><a href="_cadastro.php?id=' . $_users[$i]->id . '" class="btn btn-outline-warning"><i class="fas fa-edit" aria-hidden="true"></i></a></td>
                                 </tr>';
                             }
-                        }else{
+                        } else {
                             echo '<tr colspan="6">
                                     <td>Não há registros presentes!</td>
                                 </tr>';

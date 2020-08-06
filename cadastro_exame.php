@@ -13,7 +13,7 @@ if ($_SESSION['tipo'] != 'laboratorio') {
 }
 if (isset($_SESSION['registro']))
     $_exame = unserialize($_SESSION['registro']);
-    unset($_SESSION['registro']);
+unset($_SESSION['registro']);
 
 $xmlString = file_get_contents('dados.xml');
 $xml = new SimpleXMLElement($xmlString);
@@ -73,7 +73,25 @@ if (count($nodolab) > 0) {
     <div class="container">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title text-center">Cadastro de Exame</h5>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="home.php">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page"><?php
+                                                                                if (isset($_exame->id)) {
+                                                                                    echo 'Editar Exame';
+                                                                                } else {
+                                                                                    echo 'Cadastro de Exame';
+                                                                                }
+                                                                                ?></li>
+                    </ol>
+                </nav>
+                <h5 class="card-title text-center"><?php
+                                                    if (isset($_exame->id)) {
+                                                        echo 'Editar Exame';
+                                                    } else {
+                                                        echo 'Cadastro de Exame';
+                                                    }
+                                                    ?></h5>
                 <form action="_exame.php" id="cadastroform" method="POST">
                     <div class="form-row">
                         <div class="form-group col-md-12">
@@ -107,7 +125,7 @@ if (count($nodolab) > 0) {
                         </div>
                     </div>
                     <div class="form-row">
-                    <div class="form-group col-md-4">
+                        <div class="form-group col-md-4">
                             <label for="especialidade">Especialidade</label>
                             <input type="text" class="form-control" id="especialidade" placeholder="Especialidade do médico" disabled>
                         </div>
@@ -117,7 +135,7 @@ if (count($nodolab) > 0) {
                         </div>
                         <div class="form-group col-md-4">
                             <label for="telefone">Telefone</label>
-                            <input type="text" class="form-control"  id="telefone" placeholder="Telefone do médico" disabled>
+                            <input type="text" class="form-control" id="telefone" placeholder="Telefone do médico" disabled>
                         </div>
                     </div>
                     <div class="form-row">

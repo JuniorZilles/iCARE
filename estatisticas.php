@@ -70,6 +70,12 @@ if (!isset($_SESSION['user'])) {
     <div class="container">
         <div class="card">
             <div class="card-body">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="home.php">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Visualização de dados</li>
+                    </ol>
+                </nav>
                 <h5 class="card-title text-center">Visualização de dados</h5>
                 <canvas id="myChart"></canvas>
             </div>
