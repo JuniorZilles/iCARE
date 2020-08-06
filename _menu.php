@@ -12,10 +12,10 @@ function makemenuadmin()
                 <a class='nav-link' href='cadastro_pessoa.php?opcao=paciente'>Cadastrar Pacientes</a>
             </li>
             <li class='nav-item'>
-                <a class='nav-link' href='historico_consultas.php'>Visualizar Consultas</a>
+                <a class='nav-link' href='_visualizacao.php?opcao=consulta'>Visualizar Consultas</a>
             </li>
             <li class='nav-item'>
-                <a class='nav-link' href='historico_exames.php'>Visualizar Exames</a>
+                <a class='nav-link' href='_visualizacao.php?opcao=exame'>Visualizar Exames</a>
             </li>
             <li class='nav-item'>
                 <a class='nav-link' href='registro_pessoas.php'>Alterar Cadastro</a>
@@ -28,10 +28,10 @@ function makemenuadmin()
 function makemenupaciente()
 {
     return "<li class='nav-item'>
-                <a class='nav-link' href='historico_consultas.php'>Visualizar Consultas</a>
+                <a class='nav-link' href='_visualizacao.php?opcao=consulta'>Visualizar Consultas</a>
             </li>
             <li class='nav-item'>
-                <a class='nav-link' href='historico_exames.php'>Visualizar Exames</a>
+                <a class='nav-link' href='_visualizacao.php?opcao=exame'>Visualizar Exames</a>
             </li>
             ";
 }
@@ -39,7 +39,7 @@ function makemenupaciente()
 function makemenumedico()
 {
     return "<li class='nav-item'>
-                <a class='nav-link' href='historico_consultas.php'>Visualizar Consultas</a>
+                <a class='nav-link' href='_visualizacao.php?opcao=consulta'>Visualizar Consultas</a>
             </li>
             <li class='nav-item'>
                 <a class='nav-link' href='cadastro_consulta.php'>Cadastrar Consultas</a>
@@ -55,7 +55,7 @@ function makemenumedico()
 function makemenulaboratorio()
 {
     return "<li class='nav-item'>
-                <a class='nav-link' href='historico_exames.php'>Visualizar Exames</a>
+                <a class='nav-link' href='_visualizacao.php?opcao=exame'>Visualizar Exames</a>
             </li>
             <li class='nav-item'>
                 <a class='nav-link' href='cadastro_exame.php'>Cadastrar Exames</a>

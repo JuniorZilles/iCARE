@@ -14,8 +14,10 @@ if ($_SESSION['tipo'] != 'medico') {
     $_SESSION['erro'] = maketoast('Usuário não permitido', 'O recurso não está disponível para esse usuário');
     header("Location: home.php");
 }
-if (isset($_SESSION['registro']))
+if (isset($_SESSION['registro'])){
     $_consulta = unserialize($_SESSION['registro']);
+    unset($_SESSION['registro']);
+}
 ?>
 
 <!DOCTYPE html>

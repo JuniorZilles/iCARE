@@ -1,4 +1,11 @@
 <?php 
+
+    Class Registro{
+        public $consulta_exame,
+        $medico,
+        $paciente,
+        $laboratorio;
+    }
     class Cadastro{
         public $id,
         $hora,
@@ -41,4 +48,3 @@
             $this->laboratorioid = $l;
         }
     }
-?>

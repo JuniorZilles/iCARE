@@ -4,14 +4,7 @@ session_start();
 require_once '_utilities.php';
 require_once '_cadastro_model.php';
 
-Class Registro{
-    public $consulta_exame,
-    $medico,
-    $paciente,
-    $laboratorio;
-}
-
-$_pacienteid = $_id = $_tipo = "";
+$_pacienteid = $_id = $_tipo = $_opcao = "";
 $_exame_consulta = $_paciente = $_medico = $_laboratorio = $_regitro = null;
 $_objeto = Array();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -27,32 +20,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
     if ($_tipo == 'consulta' && !empty($_pacienteid) && $_SESSION['tipo'] == 'admin')
-        $_exame_consulta = $xml->xpath("//consulta[pacienteid == '$_pacienteid']");
+        $_exame_consulta = $xml->xpath("//consulta[pacienteid = '$_pacienteid']");
     elseif ($_tipo == 'consulta' && $_SESSION['tipo'] == 'admin')
         $_exame_consulta = $xml->xpath("//consulta");
     elseif ($_tipo == 'exame' && !empty($_pacienteid) && $_SESSION['tipo'] == 'admin')
-        $_exame_consulta = $xml->xpath("//exame[pacienteid == '$_pacienteid']");
+        $_exame_consulta = $xml->xpath("//exame[pacienteid = '$_pacienteid']");
     elseif ($_tipo == 'exame' && $_SESSION['tipo'] == 'admin')
         $_exame_consulta = $xml->xpath("//exame");
     for ($i=0; $i < count($_exame_consulta); $i++) {
         $_regitro = new Registro();
         if(isset($_exame_consulta[$i]->laboratorioid)){
-            $_labid = $_exame_consulta[$i]->laboratorioid;
-            $lab = $xml->xpath("//user[id == '$_labid']");
+            $_labid = (string)$_exame_consulta[$i]->laboratorioid;
+            $lab = $xml->xpath("//user[id = '$_labid']");
             $_regitro->laboratorio = obter_usuario_visualizacao($lab[0]);
             $_regitro->consulta_exame = obter_visualizacao_exame($_exame_consulta[$i]);
         }
         else{
             $_regitro->consulta_exame = obter_visualizacao_consulta($_exame_consulta[$i]);
         }
-        $_pacid = $_exame_consulta[$i]->pacienteid;
-        $pac = $xml->xpath("//user[id == '$_pacid']");
+        $_pacid = (string)$_exame_consulta[$i]->pacienteid;
+        $pac = $xml->xpath("//user[id = '$_pacid']");
         $_regitro->paciente = obter_usuario_visualizacao($pac[0]);
-        $_medicid = $_exame_consulta[$i]->medicoid;
-        $medic = $xml->xpath("//user[id == '$_medicid']");
+        $_medicid = (string)$_exame_consulta[$i]->medicoid;
+        $medic = $xml->xpath("//user[id = '$_medicid']");
         $_regitro->medico = obter_usuario_visualizacao($medic[0]);
         if ($_tipo == 'consulta')
-            $_regitro->consulta_exame = obter_visualizacao_exame($_exame_consulta);     
+            $_regitro->consulta_exame = obter_visualizacao_exame($_exame_consulta[$i]);     
         array_push($_objeto, $_regitro);
         $_regitro = null;
     }
@@ -64,45 +57,48 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         header("Location: historico_exame.php");
     }
 }else if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+    $_tipo = $_SESSION['tipo'];
     if (isset($_GET['opcao'])) {
-        $_tipo = remove_inseguro($_GET['opcao']);
-    } else {
-        $_tipo = $_SESSION['tipo'];
+        $_opcao = remove_inseguro($_GET['opcao']);
     }
     $_id = $_SESSION['user'];
     $xml = simplexml_load_file('dados.xml');
-    $_tipo = $_SESSION['tipo'];
-    if ($_tipo == 'medico')
-        $_exame_consulta = $xml->xpath("//consulta[medicoid == '$_id']");
-    elseif ($_tipo == 'laboratorio')
-        $_exame_consulta = $xml->xpath("//exame[laboratorioid == '$_id']");
-    elseif ($_tipo == 'exame')
-        $_exame_consulta = $xml->xpath("//exame[pacienteid == '$_id']");
-    elseif ($_tipo == 'consulta')
-        $_exame_consulta = $xml->xpath("//consulta[pacienteid == '$_id']");
+    
+    if ($_opcao == 'consulta' && $_tipo == 'medico')
+        $_exame_consulta = $xml->xpath("//consulta[medicoid = '$_id']");
+    elseif ($_opcao == 'exame' && $_tipo == 'laboratorio')
+        $_exame_consulta = $xml->xpath("//exame[laboratorioid = '$_id']");
+    elseif ($_opcao == 'exame' && $_tipo == 'paciente')
+        $_exame_consulta = $xml->xpath("//exame[pacienteid = '$_id']");
+    elseif ($_opcao == 'consulta' && $_tipo == 'paciente')
+        $_exame_consulta = $xml->xpath("//consulta[pacienteid = '$_id']");
+    elseif ($_opcao == 'exame' && $_tipo == 'admin')
+        $_exame_consulta = $xml->xpath("//exame");
+    elseif ($_opcao == 'consulta' && $_tipo == 'admin')
+        $_exame_consulta = $xml->xpath("//consulta");
     for ($i=0; $i < count($_exame_consulta); $i++) {
         $_regitro = new Registro();
         if(isset($_exame_consulta[$i]->laboratorioid)){
-            $_labid = $_exame_consulta[$i]->laboratorioid;
-            $lab = $xml->xpath("//user[id == '$_labid']");
+            $_labid = (string)$_exame_consulta[$i]->laboratorioid;
+            $lab = $xml->xpath("//user[id = '$_labid']");
             $_regitro->laboratorio = obter_usuario_visualizacao($lab[0]);
             $_regitro->consulta_exame = obter_visualizacao_exame($_exame_consulta[$i]);
         }
         else{
             $_regitro->consulta_exame = obter_visualizacao_consulta($_exame_consulta[$i]);
         }
-        $_pacid = $_exame_consulta[$i]->pacienteid;
-        $pac = $xml->xpath("//user[id == '$_pacid']");
+        $_pacid = (string)$_exame_consulta[$i]->pacienteid;
+        $pac = $xml->xpath("//user[id = '$_pacid']");
         $_regitro->paciente = obter_usuario_visualizacao($pac[0]);
-        $_medicid = $_exame_consulta[$i]->medicoid;
-        $medic = $xml->xpath("//user[id == '$_medicid']");
+        $_medicid = (string)$_exame_consulta[$i]->medicoid;
+        $medic = $xml->xpath("//user[id = '$_medicid']");
         $_regitro->medico = obter_usuario_visualizacao($medic[0]);
-        if ($_tipo == 'consulta')
-            $_regitro->consulta_exame = obter_visualizacao_exame($_exame_consulta);     
+        if ($_opcao == 'exame')
+            $_regitro->consulta_exame = obter_visualizacao_exame($_exame_consulta[$i]);     
         array_push($_objeto, $_regitro);
         $_regitro = null;
     }
-    if ($_tipo == 'consulta'){
+    if ($_opcao == 'consulta'){
         $_SESSION['registro'] = serialize($_objeto);
         header("Location: historico_consulta.php");
     }else{

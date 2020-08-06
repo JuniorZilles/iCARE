@@ -66,7 +66,7 @@ function makecardsadmin()
                 <div class="card-body">
                     <h5 class="card-title">Visualizar Consultas</h5>
                     <p class="card-text">A visualização das consultas realizadas é feita por aqui!</p>
-                    <a class="stretched-link" href="historico_consultas.php"></a>
+                    <a class="stretched-link" href="_visualizacao.php?opcao=consulta"></a>
                 </div>
             </div>
         </div>
@@ -76,7 +76,7 @@ function makecardsadmin()
                 <div class="card-body">
                     <h5 class="card-title">Visualizar Exames</h5>
                     <p class="card-text">A visualização dos exames realizados é feito por aqui!</p>
-                    <a class="stretched-link" href="historico_exames.php"></a>
+                    <a class="stretched-link" href="_visualizacao.php?opcao=exame"></a>
                 </div>
             </div>
         </div>
@@ -94,7 +94,7 @@ function makecardspaciente()
                 <div class="card-body">
                     <h5 class="card-title">Visualizar Consultas</h5>
                     <p class="card-text">A visualização das consultas realizadas é feita por aqui!</p>
-                    <a class="stretched-link" href="historico_consultas.php"></a>
+                    <a class="stretched-link" href="_visualizacao.php?opcao=consulta"></a>
                 </div>
             </div>
         </div>
@@ -104,7 +104,7 @@ function makecardspaciente()
                 <div class="card-body">
                     <h5 class="card-title">Visualizar Exames</h5>
                     <p class="card-text">A visualização dos exames realizados é feito por aqui!</p>
-                    <a class="stretched-link" href="historico_exames.php"></a>
+                    <a class="stretched-link" href="_visualizacao.php?opcao=exame"></a>
                 </div>
             </div>
         </div>
@@ -122,7 +122,7 @@ function makecardsmedico()
                 <div class="card-body">
                     <h5 class="card-title">Visualizar Consultas</h5>
                     <p class="card-text">A visualização dos consultas cadastrados é feita por aqui!</p>
-                    <a class="stretched-link" href="historico_consultas.php"></a>
+                    <a class="stretched-link" href="_visualizacao.php?opcao=consulta"></a>
                 </div>
             </div>
         </div>
@@ -173,7 +173,7 @@ function makecardslaboratorio()
             <div class="card-body">
                 <h5 class="card-title">Visualizar Exames</h5>
                 <p class="card-text">A visualização dos exames cadastrados é feita por aqui!</p>
-                <a class="stretched-link" href="historico_exames.php"></a>
+                <a class="stretched-link" href="_visualizacao.php?opcao=exame"></a>
             </div>
         </div>
         </div>

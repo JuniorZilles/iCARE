@@ -133,18 +133,17 @@ function obter_usuario_visualizacao($child){
         $_cpf = (string)$child->cpf;
         return new Paciente($_id, $_tipo, $_nome, $_telefone, $_rua, $_numero, $_bairro, $_complemento, $_cidade, $_estado, $_cep, $_email, "", $_genero, $_datanascimento, $_cpf);
     }else if($_tipo == 'laboratorio'){
-        $_tipoexame = obter_exames($child->tipoexame->children());
+        $_tipoexame = obter_child_vislualizacao($child->tipoexame->children());
         $_cnpj = (string)$child->cnpj;
         return new Laboratorio($_id, $_tipo, $_nome, $_telefone, $_rua, $_numero, $_bairro, $_complemento, $_cidade, $_estado, $_cep, $_email, "", $_tipoexame, $_cnpj);
     }   
 }
 
 function obter_child_vislualizacao($children){
-    $_val = '<ul class="list-group">';
+    $_val ='';
     foreach ($children as $k=>$child) {
-        $_val .= '<li class="list-group-item">'.(string)$child.'</li>';
+        $_val .= (string)$child.'<br/>';
     }
-    $_val .='</ul>';
     return $_val;
 }
 
@@ -176,4 +175,17 @@ function obter_visualizacao_consulta($child)
     return new Consulta($_id, $_hora, $_data, $_pacienteid, $_observacao, $_outro, $_medicoid, $_sintomas, $_receita);
 }
 
+function obter_edit_button($tipo, $id){
+    if($tipo == 'medico')
+        return '<a href="_consulta.php?id=' . $id . '" class="btn btn-outline-warning"><i class="fas fa-edit" aria-hidden="true"></i></a>';
+    return '';
+}   
 
+function obter_observacao($tipo, $observacao){
+    if($tipo == 'medico' || $tipo == 'laboratorio')
+        return '<div class="row">
+                    <div class="col-2">Observação:</div>
+                    <div class="col-10">'.$observacao.'</div>
+                </div>';
+    return '';
+}
