@@ -3,7 +3,6 @@ session_start();
 
 require_once '_utilities.php';
 require_once '_menu.php';
-require_once '_radio.php';
 
 if (!isset($_SESSION['user'])) {
     $_SESSION['erro'] = maketoast('Usuário não logado', 'Necessário realizar login para utilizar os recursos!');

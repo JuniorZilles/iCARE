@@ -8,7 +8,7 @@ require_once '_cadastro_model.php';
 try {
 
     $_id = $_idpaciente =
-    $_idmedico = $_exames = $_tipoexame =
+        $_idmedico = $_exames = $_tipoexame =
         $_outroexame =
         $_dataexame =
         $_horarioexame =
@@ -128,24 +128,25 @@ try {
 
         if (isset($_GET['id'])) {
             $_id = remove_inseguro($_GET['id']);
-        } else {
-            
-        }
-        $xml = simplexml_load_file('dados.xml');
+            $xml = simplexml_load_file('dados.xml');
 
-        $nodoexame = $xml->xpath("//exame[id = '" . $_id . "']");
-        
-        if (count($nodoexame) > 0) {
-            $_objeto = obtercadastroexame($nodoexame[0]);
+            $nodoexame = $xml->xpath("//exame[id = '" . $_id . "']");
+
+            if (count($nodoexame) > 0) {
+                $_objeto = obtercadastroexame($nodoexame[0]);
+            }
+
+            $_SESSION['registro'] = serialize($_objeto);
+            header("Location: cadastro_exame.php");
+        } else {
+            $_SESSION['erro'] = makeerrortoast("Identificador não informado" );
+            header("Location: home.php");
         }
-        
-        $_SESSION['registro'] = serialize($_objeto);
-        header("Location: cadastro_exame.php");
     }
 } catch (Throwable $e) {
-    $_SESSION['erro'] = maketoast('Erro de execução', $e->getMessage() . PHP_EOL);
+    $_SESSION['erro'] = makeerrortoast($e->getMessage() . PHP_EOL);
     header("Location: home.php");
 } catch (Exception $e) {
-    $_SESSION['erro'] = maketoast('Erro de execução', $e->getMessage() . PHP_EOL);
+    $_SESSION['erro'] = makeerrortoast($e->getMessage() . PHP_EOL);
     header("Location: home.php");
 }

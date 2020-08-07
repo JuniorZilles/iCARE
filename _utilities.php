@@ -28,6 +28,31 @@ function makeerrortoast($message){
 </script>";
 }
 
+function makeradioadmin($_opcao)
+{
+    $_pcheck = $_mcheck = $_lcheck = '';
+    if($_opcao == 'paciente')
+        $_pcheck = 'checked';
+    else if($_opcao == 'medico')
+        $_mcheck = 'checked';
+    else if($_opcao == 'laboratorio')
+        $_lcheck = 'checked';
+    else
+        $_pcheck = 'checked';
+    return "<div class='form-check form-check-inline'>
+        <input class='form-check-input' type='radio' name='tipouser' id='tipouser1' value='paciente' ".$_pcheck.">
+        <label class='form-check-label' for='tipouser1'>Paciente</label>
+    </div>
+    <div class='form-check form-check-inline'>
+        <input class='form-check-input' type='radio' name='tipouser' id='tipouser2' value='medico' ".$_mcheck.">
+        <label class='form-check-label' for='tipouser2'>Médico</label>
+    </div>
+    <div class='form-check form-check-inline'>
+        <input class='form-check-input' type='radio' name='tipouser' id='tipouser3' value='laboratorio' ".$_lcheck.">
+        <label class='form-check-label' for='tipouser3'>Laboratório</label>
+    </div>";
+}
+
 function makesuccesstoast($message){
     return "<script>
     $(function(){
@@ -178,6 +203,8 @@ function obter_visualizacao_consulta($child)
 function obter_edit_button($tipo, $id){
     if($tipo == 'medico')
         return '<a href="_consulta.php?id=' . $id . '" class="btn btn-outline-warning"><i class="fas fa-edit" aria-hidden="true"></i></a>';
+    elseif($tipo == 'laboratorio')
+        return '<a href="_exame.php?id=' . $id . '" class="btn btn-outline-warning"><i class="fas fa-edit" aria-hidden="true"></i></a>';
     return '';
 }   
 

@@ -13,7 +13,7 @@ try {
         $_horario =
         $_receita =
         $_erro = '';
-    $_sintomas = Array();
+    $_sintomas = array();
     $_objeto = null;
     $_edicao = false;
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -149,24 +149,25 @@ try {
 
         if (isset($_GET['id'])) {
             $_id = remove_inseguro($_GET['id']);
-        } else {
-            
-        }
-        $xml = simplexml_load_file('dados.xml');
+            $xml = simplexml_load_file('dados.xml');
 
-        $nodoconsulta = $xml->xpath("//consulta[id = '" . $_id . "']");
-        
-        if (count($nodoconsulta) > 0) {
-            $_objeto = obtercadastroconsulta($nodoconsulta[0]);
+            $nodoconsulta = $xml->xpath("//consulta[id = '" . $_id . "']");
+
+            if (count($nodoconsulta) > 0) {
+                $_objeto = obtercadastroconsulta($nodoconsulta[0]);
+            }
+
+            $_SESSION['registro'] = serialize($_objeto);
+            header("Location: cadastro_consulta.php");
+        }else{
+            $_SESSION['erro'] = makeerrortoast("Identificador não informado" );
+            header("Location: home.php");
         }
-        
-        $_SESSION['registro'] = serialize($_objeto);
-        header("Location: cadastro_consulta.php");
     }
 } catch (Throwable $e) {
-    $_SESSION['erro'] = maketoast('Erro de execução', $e->getMessage() . PHP_EOL);
+    $_SESSION['erro'] = makeerrortoast($e->getMessage() . PHP_EOL);
     header("Location: home.php");
 } catch (Exception $e) {
-    $_SESSION['erro'] = maketoast('Erro de execução', $e->getMessage() . PHP_EOL);
+    $_SESSION['erro'] = makeerrortoast($e->getMessage() . PHP_EOL);
     header("Location: home.php");
 }

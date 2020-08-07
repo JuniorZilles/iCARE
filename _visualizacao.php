@@ -3,7 +3,7 @@ session_start();
 
 require_once '_utilities.php';
 require_once '_cadastro_model.php';
-
+try {
 $_pacienteid = $_id = $_tipo = $_opcao = "";
 $_exame_consulta = $_paciente = $_medico = $_laboratorio = $_regitro = null;
 $_objeto = Array();
@@ -106,5 +106,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         header("Location: historico_exame.php");
     }
 }
-
-?>
+} catch (Throwable $e) {
+    $_SESSION['erro'] = makeerrortoast($e->getMessage() . PHP_EOL);
+    header("Location: home.php");
+} catch (Exception $e) {
+    $_SESSION['erro'] = makeerrortoast($e->getMessage() . PHP_EOL);
+    header("Location: home.php");
+}

@@ -246,9 +246,9 @@ try {
         header("Location: cadastro_pessoa.php");
     }
 } catch (Throwable $e) {
-    $_SESSION['erro'] = maketoast('Erro de execução', $e->getMessage() . PHP_EOL);
+    $_SESSION['erro'] = makeerrortoast($e->getMessage() . PHP_EOL);
     header("Location: home.php");
 } catch (Exception $e) {
-    $_SESSION['erro'] = maketoast('Erro de execução', $e->getMessage() . PHP_EOL);
+    $_SESSION['erro'] = makeerrortoast($e->getMessage() . PHP_EOL);
     header("Location: home.php");
 }
