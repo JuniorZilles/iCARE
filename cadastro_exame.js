@@ -14,7 +14,7 @@ $(document).ready(function () {
     }, "JSON");
     $.get("_medicos.php", function (data) {
         medicos_autocomplete(data);
-        obternomemedico(data, "#medicoid", "#medicoauto", '#crm', '#telefone')
+        obternomemedico(data, "#medicoid", "#medicoauto", '#crm', '#telefone', '#especialidade')
     }, "JSON");
     $("#dataexame").blur(function () {
         verdata = validacampobasico("#dataexame", '#invaliddate', 'Necessário informar a data do exame!');
@@ -229,14 +229,14 @@ function removeInvalid(value) {
     return value.replace(/\s/g, '').replace(')', '').replace('(', '')
 }
 
-function obternomemedico(data, idcampo, nomecampo, crmcampo, telefonecampo) {
+function obternomemedico(data, idcampo, nomecampo, crmcampo, telefonecampo, especialidadecampo) {
     var id = $(idcampo).val();
     $.each( data, function( i, item ) {
         if (item.id == id)
             $(nomecampo).val(item.nome);
             $(crmcampo).val(item.crm);
             $(telefonecampo).val(item.telefone);
-
+            $(especialidadecampo).val(item.especialidade);
       });
 }
 

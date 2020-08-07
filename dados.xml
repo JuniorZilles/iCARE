@@ -67,9 +67,7 @@
     </users>
     <exames>
         <exame>
-            <tipoexame>
-                <tipo>DOSAGEM DE ACIDO URICO</tipo>
-            </tipoexame>
+            <tipoexame><tipo>DOSAGEM DE ACIDO URICO</tipo></tipoexame>
             <resultado>apto</resultado>
             <laboratorioid>fbf374902ed7065542fe81a62d7219f4</laboratorioid>
             <id>e2d4494f3c3959a0a56d69d79efc4798</id>
@@ -78,7 +76,7 @@
             <observacao>sadasdasd</observacao>
             <pacienteid>ccf988db96cb0004d60b03d259522e4c</pacienteid>
             <medicoid>01678638c3870972a45cfd72b51837f7</medicoid>
-            <outro/>
+            <outro>ewfrw</outro>
         </exame>
         <exame>
             <tipoexame>
