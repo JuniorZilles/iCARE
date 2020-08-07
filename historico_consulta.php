@@ -107,7 +107,7 @@ if (isset($_SESSION['registro'])) {
                         <div class="card-header" id="heading' . $i . '">
                             <div class="form-row">
                                 <div class="form-group col-md-8">
-                                    <h5>' . $_registro[$i]->consulta_exame->data . ' - ' . $_registro[$i]->medico->nome . '</h5>
+                                    <h5>' . date("d/m/Y", strtotime($_registro[$i]->consulta_exame->data)) . ' - '.$_registro[$i]->paciente->nome.' - ' . $_registro[$i]->medico->nome . '</h5>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <div class="text-right">

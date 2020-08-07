@@ -10,11 +10,11 @@ $(document).ready(function () {
 
     $.get("_pacientes.php", function (data) {
         pacientes_autocomplete(data);
-        obternome(data, "#pacienteid", "#pacienteauto")
+        obternomepaciente(data, "#pacienteid", "#pacienteauto", "#datanascimento")
     }, "JSON");
     $.get("_medicos.php", function (data) {
         medicos_autocomplete(data);
-        obternome(data, "#medicoid", "#medicoauto")
+        obternomemedico(data, "#medicoid", "#medicoauto", '#crm', '#telefone')
     }, "JSON");
     $("#dataexame").blur(function () {
         verdata = validacampobasico("#dataexame", '#invaliddate', 'Necessário informar a data do exame!');
@@ -229,10 +229,22 @@ function removeInvalid(value) {
     return value.replace(/\s/g, '').replace(')', '').replace('(', '')
 }
 
-function obternome(data, idcampo, nomecampo) {
+function obternomemedico(data, idcampo, nomecampo, crmcampo, telefonecampo) {
     var id = $(idcampo).val();
     $.each( data, function( i, item ) {
         if (item.id == id)
             $(nomecampo).val(item.nome);
+            $(crmcampo).val(item.crm);
+            $(telefonecampo).val(item.telefone);
+
+      });
+}
+
+function obternomepaciente(data, idcampo, nomecampo, datacampo) {
+    var id = $(idcampo).val();
+    $.each( data, function( i, item ) {
+        if (item.id == id)
+            $(nomecampo).val(item.nome);
+            $(datacampo).val(item.datanascimento);
       });
 }

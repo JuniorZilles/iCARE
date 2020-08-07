@@ -98,7 +98,7 @@ function obtercadastroconsulta($child)
     $_medicoid = (string)$child->medicoid;
     $_outro = (string)$child->outro;
     $_sintomas = obter_sintomas($child->sintomas->children());
-    $_receita = (string)$child->laboratorireceitaoid;
+    $_receita = (string)$child->receita;
     return new Consulta($_id, $_hora, $_data, $_pacienteid, $_observacao, $_outro, $_medicoid, $_sintomas, $_receita);
 }
 

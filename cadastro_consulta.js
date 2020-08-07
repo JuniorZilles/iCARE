@@ -7,7 +7,7 @@ var verhora =
 $(document).ready(function () {
     $.get("_pacientes.php", function (data) {
         pacientes_autocomplete(data);
-        obternome(data, "#pacienteid", "#pacienteauto");
+        obternomepaciente(data, "#pacienteid", "#pacienteauto", "#datanascimento");
     }, "JSON");
     $("#dataconsulta").blur(function () {
         verdata = validacampobasico("#dataconsulta", '#invaliddate', 'Necessário informar a data da consulta!');
@@ -126,10 +126,19 @@ function pacientes_autocomplete(list) {
     $('.twitter-typeahead').removeAttr('style');
 }
 
-function obternome(data, idcampo, nomecampo) {
+function obternomemedico(data, idcampo, nomecampo) {
     var id = $(idcampo).val();
     $.each( data, function( i, item ) {
         if (item.id == id)
             $(nomecampo).val(item.nome);
+
+      });
+}
+function obternomepaciente(data, idcampo, nomecampo, datacampo) {
+    var id = $(idcampo).val();
+    $.each( data, function( i, item ) {
+        if (item.id == id)
+            $(nomecampo).val(item.nome);
+            $(datacampo).val(item.datanascimento);
       });
 }
