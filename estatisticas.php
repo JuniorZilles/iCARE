@@ -7,6 +7,20 @@ session_start();
 //Número de Consultas Mensais por Paciente (admin e medico)
 require_once '_menu.php';
 require_once '_utilities.php';
+require_once '_consulta.php';
+
+
+if (!isset($_COOKIE['consultasCounter'])){
+    $_COOKIE = 1;
+    setcookie('consultasCounter',$_objeto );
+}else{
+    $_objeto  = ++$_COOKIE['consultasCounter'];
+    setcookie('consultasCounter',$_objeto);
+}
+$_SESSION['registro'] = serialize($_objeto);
+header("Location: cadastro_consulta.php");
+
+
 
 if (!isset($_SESSION['user'])) {
     $_SESSION['erro'] = maketoast('Usuário não logado', 'Necessário realizar login para utilizar os recursos!');
