@@ -1,12 +1,8 @@
 <?php
 session_start();
-//mostrar por usuario os gráficos e a quantidade de consultas
-//Número de Consultas Mensais por Médico (admin e medico)
-//Número de Exames Mensais por Laboratório (laboratorio e admin)
-//Número de Exames Mensais por Paciente (laboratorio e admin)
-//Número de Consultas Mensais por Paciente (admin e medico)
+
 require_once '_menu.php';
-require_once '_utilities.php';
+require_once '_cards.php';
 
 if (!isset($_SESSION['user'])) {
     $_SESSION['erro'] = maketoast('Usuário não logado', 'Necessário realizar login para utilizar os recursos!');
@@ -21,20 +17,16 @@ if (!isset($_SESSION['user'])) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="sortcut icon" href="favicon.ico" type="image/x-icon" />
-    <title>iCARE - Estatísticas de Uso</title>
+    <title>iCARE - Cadastro de Consulta</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="cadastro.css">
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-    <script src="estatisticas.js"></script>
-    <?php
-    if (isset($_SESSION['erro'])) {
-        echo $_SESSION['erro'];
-        unset($_SESSION['erro']);
-    }
-    ?>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+    <script src="http://twitter.github.io/typeahead.js/releases/latest/typeahead.bundle.js"></script>
+    <script src="cadastro_consulta.js"></script>
 </head>
 
 <body>
@@ -50,12 +42,8 @@ if (!isset($_SESSION['user'])) {
                         <a class="nav-link" href="home.php">Home</a>
                     </li>
                     <?php
-                    if ($_SESSION['tipo'] == 'admin') {
-                        echo makemenuadmin();
-                    } else if ($_SESSION['tipo'] == 'laboratorio') {
-                        echo makemenulaboratorio();
-                    } else if ($_SESSION['tipo'] == 'medico') {
-                        echo makemenumedico();
+                    if ($_SESSION['tipo'] == 'paciente') {
+                        echo makemenupaciente();
                     }
                     ?>
                     <li class="nav-item">
@@ -66,18 +54,36 @@ if (!isset($_SESSION['user'])) {
         </nav>
     </div>
     <br>
-    <!-- https://www.chartjs.org/samples/latest/ -->
     <div class="container">
         <div class="card">
             <div class="card-body">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="home.php">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Visualização de dados</li>
-                    </ol>
-                </nav>
-                <h5 class="card-title text-center">Visualização de dados</h5>
-                <canvas id="myChart"></canvas>
+                <h5>Quantidade de Consultas Realizadas</h5>
+                <br>
+                <p>
+
+                <?php
+                $xml=simplexml_load_file("dados.xml") or die("Error: Cannot create object");
+
+                $result = $xml->xpath(sprintf('/dados/consultas/consulta/id'));
+                $counter = 0;
+
+                foreach ($result as $entry) {
+                    printf(
+                        '<a href="%s"></a><br>Identificação da Consulta: ',
+                        urlencode($entry->url),
+                        PHP_EOL
+                    );
+                    echo $entry;
+                    echo '<br>';
+                    $counter++; 
+                }
+                $total_count=$counter;
+                $say = sprintf("<br><br><b>O histórico registrou %s consultas.</b>",
+                $total_count);
+                echo $say;
+                ?>
+                
+                </p>
             </div>
         </div>
     </div>
