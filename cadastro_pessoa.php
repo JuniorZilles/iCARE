@@ -9,7 +9,7 @@ if (!isset($_SESSION['user'])) {
     header("Location: index.php");
 }
 if ($_SESSION['tipo'] == 'paciente') {
-    $_SESSION['erro'] = maketoast('Usuário não permitido', 'O recurso não está disponível para esse usuário');
+    $_SESSION['erro'] = makeerrortoast('Usuário não permitido', 'O recurso não está disponível para esse usuário');
     header("Location: home.php");
 }
 $_user = null;

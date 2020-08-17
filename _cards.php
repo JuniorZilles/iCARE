@@ -89,7 +89,7 @@ function makecardspaciente()
     return '
     <div class="container">
     <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-4">
             <div class="card">
                 <img class="card-img-top" src="images/consulta.png" alt="Visualizar minhas consultas">
                 <div class="card-body">
@@ -99,7 +99,7 @@ function makecardspaciente()
                 </div>
             </div>
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-4">
             <div class="card">
                 <img class="card-img-top" src="images/exame.jpg" alt="Visualizar meus exames">
                 <div class="card-body">
@@ -109,18 +109,13 @@ function makecardspaciente()
                 </div>
             </div>
         </div>
-    </div>
-</div>
-<br>
-<div class="container">
-    <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-4">
             <div class="card">
                 <img class="card-img-top" src="images/informacoes.jpg" alt="Visualizar minhas consultas">
                 <div class="card-body">
                     <h5 class="card-title">Visualizar a Quantidade de Consultas</h5>
                     <p class="card-text">A visualização da quantidade das consultas realizadas é feita por aqui!</p>
-                    <a class="stretched-link" href="_consultausercount.php"></a>
+                    <a class="stretched-link" href="estatisticas.php"></a>
                 </div>
             </div>
     </div>

@@ -34,7 +34,7 @@ function makemenupaciente()
                 <a class='nav-link' href='_visualizacao.php?opcao=exame'>Visualizar Exames</a>
             </li>
             <li class='nav-item'>
-                <a class='nav-link' href='_consultausercount.php'>Visualizar Quantidade de Consultas</a>
+                <a class='nav-link' href='estatisticas.php'>Visualizar Quantidade de Consultas e Exames</a>
             </li>
             ";
 }

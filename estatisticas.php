@@ -1,12 +1,13 @@
 <?php
 session_start();
-//mostrar por usuario os gráficos e a quantidade de consultas
+//mostrar por usuario a quantidade de consultas e exames
 //Número de Consultas Mensais por Médico (admin e medico)
 //Número de Exames Mensais por Laboratório (laboratorio e admin)
 //Número de Exames Mensais por Paciente (laboratorio e admin)
 //Número de Consultas Mensais por Paciente (admin e medico)
 require_once '_menu.php';
 require_once '_utilities.php';
+require_once '_estatisticas.php';
 
 if (!isset($_SESSION['user'])) {
     $_SESSION['erro'] = maketoast('Usuário não logado', 'Necessário realizar login para utilizar os recursos!');
@@ -27,7 +28,7 @@ if (!isset($_SESSION['user'])) {
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script> -->
     <script src="estatisticas.js"></script>
     <?php
     if (isset($_SESSION['erro'])) {
@@ -56,6 +57,8 @@ if (!isset($_SESSION['user'])) {
                         echo makemenulaboratorio();
                     } else if ($_SESSION['tipo'] == 'medico') {
                         echo makemenumedico();
+                    } else if ($_SESSION['tipo'] == 'paciente') {
+                        echo makemenupaciente();
                     }
                     ?>
                     <li class="nav-item">
@@ -77,7 +80,44 @@ if (!isset($_SESSION['user'])) {
                     </ol>
                 </nav>
                 <h5 class="card-title text-center">Visualização de dados</h5>
-                <canvas id="myChart"></canvas>
+                <br>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Tipo Usuário</th>
+                            <th scope="col">Tipo</th>
+                            <th scope="col">Telefone</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Editar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $object = get_data($_SESSION['user'], $_SESSION['tipo']);
+
+                        //     for ($i = 0; $i < count($_users); $i++) {
+                        //         $tipo = '';
+                        //         if ($_users[$i]->tipo == 'paciente')  $tipo = 'Paciente';
+                        //         else if ($_users[$i]->tipo == 'medico')  $tipo = 'Médico';
+                        //         else $tipo = 'Laboratório';
+                        //         echo '<tr>
+                        //         <th scope="row">' . $i . '</th>
+                        //             <td>' . $_users[$i]->nome . '</td>
+                        //             <td>' . $tipo . '</td>
+                        //             <td>' . $_users[$i]->telefone . '</td>
+                        //             <td>' . $_users[$i]->email . '</td>
+                        //             <td><a href="_cadastro.php?id=' . $_users[$i]->id . '" class="btn btn-outline-warning"><i class="fas fa-edit" aria-hidden="true"></i></a></td>
+                        //         </tr>';
+                        //     }
+                        // } else {
+                            echo '<tr colspan="6">
+                                    <td>'. json_encode($object).'</td>
+                                </tr>';
+                        //}
+                        ?>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
