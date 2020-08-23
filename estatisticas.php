@@ -20,148 +20,130 @@ if (!isset($_SESSION['user'])) {
 <!DOCTYPE html>
 <html lang="pt-br">
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="sortcut icon" href="favicon.ico" type="image/x-icon" />
-    <title>iCARE - Estatísticas de Uso</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <link rel="stylesheet" href="index.css">
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-    <script src="estatisticas.js"></script>
-    <?php
-    if (isset($_SESSION['erro'])) {
-        echo $_SESSION['erro'];
-        unset($_SESSION['erro']);
-    }
-    ?>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="sortcut icon" href="favicon.ico" type="image/x-icon" />
+        <title>iCARE - Estatísticas de Uso</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <link rel="stylesheet" href="index.css">
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+        <script src="estatisticas.js"></script>
+        <?php
+        if (isset($_SESSION['erro'])) {
+            echo $_SESSION['erro'];
+            unset($_SESSION['erro']);
+        }
+        ?>
 
-<style>
-table {    
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-}
-
-td, th {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
-    text-align: center;
-}
-
-tr:nth-child(even) {
-    background-color: #dddddd;
-}
-</style>
-
-</head>
-<body>
-    <div class="container">
-        <nav class="navbar navbar-dark bg-dark">
-            <a class="navbar-brand" href="home.php">iCARE</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="home.php">Home</a>
-                    </li>
-                    <?php
-                    if ($_SESSION['tipo'] == 'admin') {
-                        echo makemenuadmin();
-                    } else if ($_SESSION['tipo'] == 'laboratorio') {
-                        echo makemenulaboratorio();
-                    } else if ($_SESSION['tipo'] == 'medico') {
-                        echo makemenumedico();
-                    } else if ($_SESSION['tipo'] == 'paciente') {
-                        echo makemenupaciente();
-                    }
-                    ?>
-                    <li class="nav-item">
-                        <a class="nav-link" href="_logout.php">Logout</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-    </div>
-    <br>
-    <div class="container">
-        <div class="card">
-            <div class="card-body">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="home.php">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Visualização de dados</li>
-                    </ol>
-                </nav>
-                <h5 class="card-title text-center">Visualização de dados</h5>
-                <br>
-                <table class="table table-hover">
-                    <thead>
-                     
-                    </thead>
-                    <tbody>
-                        
-                    <?php
-                    
-                        
-
-                        //     for ($i = 0; $i < count($_users); $i++) {
-                        //         $tipo = '';
-                        //         if ($_users[$i]->tipo == 'paciente')  $tipo = 'Paciente';
-                        //         else if ($_users[$i]->tipo == 'medico')  $tipo = 'Médico';
-                        //         else $tipo = 'Laboratório';
-                        //         echo '<tr>
-                        //         <th scope="row">' . $i . '</th>
-                        //             <td>' . $_users[$i]->nome . '</td>
-                        //             <td>' . $tipo . '</td>
-                        //             <td>' . $_users[$i]->telefone . '</td>
-                        //             <td>' . $_users[$i]->email . '</td>
-                        //             <td><a href="_cadastro.php?id=' . $_users[$i]->id . '" class="btn btn-outline-warning"><i class="fas fa-edit" aria-hidden="true"></i></a></td>
-                        //         </tr>';
-                        //     }
-                        // } else {
-                            /*echo '<tr colspan="6">
-                                    <td>'. json_encode($object).'</td>
-                                </tr>';*/
-                        //}
-                        ?>
-                       
-                       
+    </head>
+    <body>
+        <div class="container">
+            <nav class="navbar navbar-dark bg-dark">
+                <a class="navbar-brand" href="home.php">iCARE</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="home.php">Home</a>
+                        </li>
                         <?php
-
-                        echo "<table>";
-                        $object = get_data($_SESSION['user'], $_SESSION['tipo']);
-                        echo "<pre>";
-
-                        print_r(
-                            "<tr>
-                            <th>Nome</th>
-                            </tr>"
-                        );
-                        foreach ($object['users'] as $itera) {
-                            foreach ($itera as $nome) {
-                                print_r("
-                                <tr>
-                                <td>".$nome['nome']."</td>
-                                </tr>");
-                            }
-
-                            
-                            echo "</pre>";
+                        if ($_SESSION['tipo'] == 'admin') {
+                            echo makemenuadmin();
+                        } else if ($_SESSION['tipo'] == 'laboratorio') {
+                            echo makemenulaboratorio();
+                        } else if ($_SESSION['tipo'] == 'medico') {
+                            echo makemenumedico();
+                        } else if ($_SESSION['tipo'] == 'paciente') {
+                            echo makemenupaciente();
                         }
-                        echo "</table>";
                         ?>
-
-                    </tbody>
-                </table>
+                        <li class="nav-item">
+                            <a class="nav-link" href="_logout.php">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <br>
+        <div class="container">
+            <div class="card">
+                <div class="card-body">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="home.php">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Visualização de dados</li>
+                        </ol>
+                    </nav>
+                    <h5 class="card-title text-center">Visualização de dados</h5>
+                    <br>
+                    <table class="table table-hover">
+                        <tbody>
+                            <?php
+                            error_reporting(0);
+                            ini_set('display_errors', 0);
+                            $object = get_data($_SESSION['user'], $_SESSION['tipo']);
+                            if ($_SESSION['tipo'!='admin']){
+                                
+                                print_r(
+                                    "<tr>
+                                    <th scope='col'>Nome</th>
+                                    <th scope='col'>Tipo</th>
+                                    <th scope='col'>Quantidade</th>
+                                    <th scope='col'>Mês</th>
+                                    </tr>"
+                                );
+                                foreach ($object['users'] as $itera) {
+                                    print_r("
+                                    <tr>
+                                    <td scope='row'>".$itera['tipo']."</td>
+                                    <td scope='row'>".$itera['qtd']."</td>
+                                    </tr>");
+                                }
+                            }
+                             
+                            print_r(
+                                "<tr>
+                                <th scope='col'>Nome</th>
+                                <th scope='col'>Tipo</th>
+                                <th scope='col'>Quantidade</th>
+                                <th scope='col'>Mês</th>
+                                </tr>"
+                            );             
+                            foreach ($object['consultas'] as $itera) {
+                                $nome = $itera['nome'];
+                                foreach ($itera['reg'] as $nome) {
+                                    print_r("
+                                    <tr>
+                                    <td scope='row'>".$nome."</td>
+                                    <td scope='row'>Consultas</td>
+                                    <td scope='row'>".$nome['qtd']."</td>
+                                    <td scope='row'>".$nome['mes']."</td>
+                                    </tr>");
+                                }
+                            }
+                            foreach ($object['exames'] as $itera) {
+                                $nome = $itera['nome'];
+                                foreach ($itera['reg'] as $nome) {
+                                    print_r("
+                                    <tr>
+                                    <td scope='row'>".$nome."</td>
+                                    <td scope='row'>Exames</td>
+                                    <td scope='row'>".$nome['qtd']."</td>
+                                    <td scope='row'>".$nome['mes']."</td>
+                                    </tr>");
+                                }
+                            }
+                            echo "</table>";
+                            ?>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-    </div>
-</body>
-
+    </body>
 </html>
