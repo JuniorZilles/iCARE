@@ -76,25 +76,23 @@ if (!isset($_SESSION['user'])) {
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="home.php">Home</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Visualização de dados</li>
+                            <li class="breadcrumb-item active" aria-current="page">Visualização dos Contadores</li>
                         </ol>
                     </nav>
-                    <h5 class="card-title text-center">Visualização de dados</h5>
+                    <h5 class="card-title text-center">Visualização dos Contadores</h5>
                     <br>
-                    <table class="table table-hover">
-                        <tbody>
                             <?php
                             error_reporting(0);
                             ini_set('display_errors', 0);
                             $object = get_data($_SESSION['user'], $_SESSION['tipo']);
-                            if ($_SESSION['tipo'=='admin']){
+                            if ($_SESSION['tipo']=='admin'){
                                 
                                 print_r(
-                                    "<tr>
-                                    <th scope='col'>Nome</th>
-                                    <th scope='col'>Tipo</th>
+                                    "<h6>Contador de Usuários</h6>
+                                    <table class='table table-hover'>
+                                    <tbody><tr>
+                                    <th scope='col'>Tipo Usuário</th>
                                     <th scope='col'>Quantidade</th>
-                                    <th scope='col'>Mês</th>
                                     </tr>"
                                 );
                                 foreach ($object['users'] as $itera) {
@@ -104,10 +102,16 @@ if (!isset($_SESSION['user'])) {
                                     <td scope='row'>".$itera['qtd']."</td>
                                     </tr>");
                                 }
+                                print_r(
+                                    "</tbody>
+                                    </table>"
+                                );
                             }
                              
                             print_r(
-                                "<tr>
+                                "<h6>Contador de Exames e Consultas</h6>
+                                <table class='table table-hover'>
+                                <tbody><tr>
                                 <th scope='col'>Nome</th>
                                 <th scope='col'>Tipo</th>
                                 <th scope='col'>Quantidade</th>
@@ -116,32 +120,31 @@ if (!isset($_SESSION['user'])) {
                             );             
                             foreach ($object['consultas'] as $itera) {
                                 $nome = $itera['nome'];
-                                foreach ($itera['reg'] as $nome) {
+                                foreach ($itera['reg'] as $item) {
                                     print_r("
                                     <tr>
                                     <td scope='row'>".$nome."</td>
                                     <td scope='row'>Consultas</td>
-                                    <td scope='row'>".$nome['qtd']."</td>
-                                    <td scope='row'>".$nome['mes']."</td>
+                                    <td scope='row'>".$item['qtd']."</td>
+                                    <td scope='row'>".$item['mes']."</td>
                                     </tr>");
                                 }
                             }
                             foreach ($object['exames'] as $itera) {
                                 $nome = $itera['nome'];
-                                foreach ($itera['reg'] as $nome) {
+                                foreach ($itera['reg'] as $item) {
                                     print_r("
                                     <tr>
                                     <td scope='row'>".$nome."</td>
                                     <td scope='row'>Exames</td>
-                                    <td scope='row'>".$nome['qtd']."</td>
-                                    <td scope='row'>".$nome['mes']."</td>
+                                    <td scope='row'>".$item['qtd']."</td>
+                                    <td scope='row'>".$item['mes']."</td>
                                     </tr>");
                                 }
                             }
-                            echo "</table>";
+                            echo "</tbody>
+                            </table>";
                             ?>
-                        </tbody>
-                    </table>
                 </div>
             </div>
         </div>
