@@ -87,7 +87,7 @@ if (!isset($_SESSION['user'])) {
                             error_reporting(0);
                             ini_set('display_errors', 0);
                             $object = get_data($_SESSION['user'], $_SESSION['tipo']);
-                            if ($_SESSION['tipo'!='admin']){
+                            if ($_SESSION['tipo'=='admin']){
                                 
                                 print_r(
                                     "<tr>
