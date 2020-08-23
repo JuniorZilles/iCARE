@@ -14,7 +14,7 @@ if (!isset($_SESSION['user'])) {
     header("Location: index.php");
 }
 
-$object = get_data($_SESSION['user'], $_SESSION['tipo']);
+
 ?>
 
 <!DOCTYPE html>
@@ -37,8 +37,27 @@ $object = get_data($_SESSION['user'], $_SESSION['tipo']);
         unset($_SESSION['erro']);
     }
     ?>
-</head>
 
+<style>
+table {    
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+    text-align: center;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+</style>
+
+</head>
 <body>
     <div class="container">
         <nav class="navbar navbar-dark bg-dark">
@@ -83,17 +102,12 @@ $object = get_data($_SESSION['user'], $_SESSION['tipo']);
                 <br>
                 <table class="table table-hover">
                     <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Tipo Usuário</th>
-                            <th scope="col">Tipo</th>
-                            <th scope="col">Telefone</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Editar</th>
-                        </tr>
+                     
                     </thead>
                     <tbody>
-                        <?php
+                        
+                    <?php
+                    
                         
 
                         //     for ($i = 0; $i < count($_users); $i++) {
@@ -111,11 +125,38 @@ $object = get_data($_SESSION['user'], $_SESSION['tipo']);
                         //         </tr>';
                         //     }
                         // } else {
-                            echo '<tr colspan="6">
+                            /*echo '<tr colspan="6">
                                     <td>'. json_encode($object).'</td>
-                                </tr>';
+                                </tr>';*/
                         //}
                         ?>
+                       
+                       
+                        <?php
+
+                        echo "<table>";
+                        $object = get_data($_SESSION['user'], $_SESSION['tipo']);
+                        echo "<pre>";
+
+                        print_r(
+                            "<tr>
+                            <th>Nome</th>
+                            </tr>"
+                        );
+                        foreach ($object['users'] as $itera) {
+                            foreach ($itera as $nome) {
+                                print_r("
+                                <tr>
+                                <td>".$nome['nome']."</td>
+                                </tr>");
+                            }
+
+                            
+                            echo "</pre>";
+                        }
+                        echo "</table>";
+                        ?>
+
                     </tbody>
                 </table>
             </div>
