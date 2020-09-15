@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-require_once '_utilities.php';
-require_once '_cadastro_model.php';
+require_once '../tools/utilities.php';
+require_once '../models/cadastro_model.php';
 
 
 try {
@@ -122,7 +122,7 @@ try {
             $xml->asXML('dados.xml');
 
             $_SESSION['erro'] = makesuccesstoast('O exame foi ' . $_termo . ' na base de dados');
-            header("Location: home.php");
+            header("Location: ../home/index.php");
         }
     } else if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
@@ -139,14 +139,14 @@ try {
             $_SESSION['registro'] = serialize($_objeto);
             header("Location: cadastro_exame.php");
         } else {
-            $_SESSION['erro'] = makeerrortoast("Identificador não informado" );
-            header("Location: home.php");
+            $_SESSION['erro'] = makeerrortoast("Identificador não informado");
+            header("Location: ../home/index.php");
         }
     }
 } catch (Throwable $e) {
     $_SESSION['erro'] = makeerrortoast($e->getMessage() . PHP_EOL);
-    header("Location: home.php");
+    header("Location: ../home/index.php");
 } catch (Exception $e) {
     $_SESSION['erro'] = makeerrortoast($e->getMessage() . PHP_EOL);
-    header("Location: home.php");
+    header("Location: ../home/index.php");
 }

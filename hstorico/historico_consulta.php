@@ -1,46 +1,42 @@
 <?php
 session_start();
-//Data, Médico, Paciente, Receita, Observações, ...
-//é visto apenas pelo medico e o paciente
-//o médico só enxerga as consultas realizadas por ele
-//o paciente não pode ver informações como observação(apenas o seus dados) 
 
-require_once '_utilities.php';
-require_once '_menu.php';
-require_once '_cadastro_model.php';
+require_once '../tools/menu.php';
+require_once '../tools/utilities.php';
 
 if (!isset($_SESSION['user'])) {
     $_SESSION['erro'] = maketoast('Usuário não logado', 'Necessário realizar login para utilizar os recursos!');
-    header("Location: index.php");
+    header("Location: ../index.php");
 }
 if ($_SESSION['tipo'] == 'laboratorio') {
     $_SESSION['erro'] = makeerrortoast('Usuário não permitido', 'O recurso não está disponível para esse usuário');
-    header("Location: home.php");
+    header("Location: ../home/index.php");
 }
 if (isset($_SESSION['registro'])) {
     $_registro = unserialize($_SESSION['registro']);
     unset($_SESSION['registro']);
-}else
+} else
     header("Location: _visualizacao.php?opcao=consulta");
 
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="sortcut icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="sortcut icon" href="../favicon.ico" type="image/x-icon" />
     <title>iCARE - Visualização de Consultas</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <link rel="stylesheet" href="cadastro.css">
+    <link rel="stylesheet" href="../css/cadastro.css">
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
     <script src="http://twitter.github.io/typeahead.js/releases/latest/typeahead.bundle.js"></script>
-    <script src="historico.js"></script>
+    <script src="../js/historico.js"></script>
     <?php
     if (isset($_SESSION['erro'])) {
         echo $_SESSION['erro'];
@@ -52,14 +48,14 @@ if (isset($_SESSION['registro'])) {
 <body>
     <div class="container">
         <nav class="navbar navbar-dark bg-dark">
-            <a class="navbar-brand" href="home.php">iCARE</a>
+            <a class="navbar-brand" href="../home/index.php">iCARE</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="home.php">Home</a>
+                        <a class="nav-link" href="../home/index.php">Home</a>
                     </li>
                     <?php
                     if ($_SESSION['tipo'] == 'admin') {
@@ -83,7 +79,7 @@ if (isset($_SESSION['registro'])) {
             <div class="card-body">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="home.php">Home</a></li>
+                        <li class="breadcrumb-item"><a href="../home/index.php">Home</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Visualizar Consultas</li>
                     </ol>
                 </nav>
@@ -107,7 +103,7 @@ if (isset($_SESSION['registro'])) {
                         <div class="card-header" id="heading' . $i . '">
                             <div class="form-row">
                                 <div class="form-group col-md-8">
-                                    <h5>' . date("d/m/Y", strtotime($_registro[$i]->consulta_exame->data)) . ' - '.$_registro[$i]->paciente->nome.' - ' . $_registro[$i]->medico->nome . '</h5>
+                                    <h5>' . date("d/m/Y", strtotime($_registro[$i]->consulta_exame->data)) . ' - ' . $_registro[$i]->paciente->nome . ' - ' . $_registro[$i]->medico->nome . '</h5>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <div class="text-right">

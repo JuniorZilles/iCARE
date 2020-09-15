@@ -1,13 +1,13 @@
 <?php
 session_start();
 
-require_once '_utilities.php';
-require_once '_menu.php';
-require_once '_cards.php';
+require_once '../tools/utilities.php';
+require_once '../tools/menu.php';
+require_once '../tools/cards.php';
 
 if (!isset($_SESSION['user'])) {
     $_SESSION['erro'] = maketoast('Usuário não logado', 'Necessário realizar login para utilizar os recursos!');
-    header("Location: index.php");
+    header("Location: ../index.php");
 }
 
 if (isset($_SESSION['cookieuser'])) {
@@ -23,11 +23,11 @@ if (isset($_SESSION['cookieuser'])) {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="sortcut icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="sortcut icon" href="../favicon.ico" type="image/x-icon" />
     <title>iCARE - Home</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="../css/index.css">
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
@@ -64,7 +64,7 @@ if (isset($_SESSION['cookieuser'])) {
                     }
                     ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="_logout.php">Logout</a>
+                        <a class="nav-link" href="../access/_logout.php">Logout</a>
                     </li>
                 </ul>
             </div>

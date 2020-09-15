@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-require_once '_utilities.php';
-require_once '_pessoa_model.php';
+require_once '../tools/utilities.php';
+require_once '../models/pessoa_model.php';
 
 try {
 
@@ -227,7 +227,7 @@ try {
             $xml->asXML('dados.xml');
 
             $_SESSION['success'] = 'O usuário foi ' . $_termo . ' na base de dados';
-            header("Location: home.php");
+            header("Location: ../home/index.php");
         }
     } else if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
@@ -247,8 +247,8 @@ try {
     }
 } catch (Throwable $e) {
     $_SESSION['erro'] = makeerrortoast($e->getMessage() . PHP_EOL);
-    header("Location: home.php");
+    header("Location: ../home/index.php");
 } catch (Exception $e) {
     $_SESSION['erro'] = makeerrortoast($e->getMessage() . PHP_EOL);
-    header("Location: home.php");
+    header("Location: ../home/index.php");
 }

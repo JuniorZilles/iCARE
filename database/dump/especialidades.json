@@ -1,0 +1,163 @@
+{
+    "especialidades": [
+        {
+            "nome": "Acupuntura"
+        },
+        {
+            "nome": "Alergia e Imunologia"
+        },
+        {
+            "nome": "Anestesiologia"
+        },
+        {
+            "nome": "Angiologia"
+        },
+        {
+            "nome": "Cancerologia"
+        },
+        {
+            "nome": "Cardiologia"
+        },
+        {
+            "nome": "Cirurgia Cardiovascular"
+        },
+        {
+            "nome": "Cirurgia da Mão"
+        },
+        {
+            "nome": "Cirurgia de Cabeça e Pescoço"
+        },
+        {
+            "nome": "Cirurgia do Aparelho Digestivo"
+        },
+        {
+            "nome": "Cirurgia Geral"
+        },
+        {
+            "nome": "Cirurgia Pediátrica"
+        },
+        {
+            "nome": "Cirurgia Plástica"
+        },
+        {
+            "nome": "Cirurgia Torácica"
+        },
+        {
+            "nome": "Cirurgia Vascular"
+        },
+        {
+            "nome": "Clínica Médica"
+        },
+        {
+            "nome": "Coloproctologia"
+        },
+        {
+            "nome": "Dermatologia"
+        },
+        {
+            "nome": "Endocrinologia e Metabologia"
+        },
+        {
+            "nome": "Endoscopia"
+        },
+        {
+            "nome": "Gastroenterologia"
+        },
+        {
+            "nome": "Genética Médica"
+        },
+        {
+            "nome": "Geriatria"
+        },
+        {
+            "nome": "Ginecologia e Obstetrícia"
+        },
+        {
+            "nome": "Hematologia e Hemoterapia"
+        },
+        {
+            "nome": "Homeopatia"
+        },
+        {
+            "nome": "Infectologia"
+        },
+        {
+            "nome": "Mastologia"
+        },
+        {
+            "nome": "Medicina de Família e Comunidade"
+        },
+        {
+            "nome": "Medicina do Trabalho"
+        },
+        {
+            "nome": "Medicina de Tráfego"
+        },
+        {
+            "nome": "Medicina Esportiva"
+        },
+        {
+            "nome": "Medicina Física e Reabilitação"
+        },
+        {
+            "nome": "Medicina Intensiva"
+        },
+        {
+            "nome": "Medicina Legal e Perícia Médica"
+        },
+        {
+            "nome": "Medicina Nuclear"
+        },
+        {
+            "nome": "Medicina Preventiva e Social"
+        },
+        {
+            "nome": "Nefrologia"
+        },
+        {
+            "nome": "Neurocirurgia"
+        },
+        {
+            "nome": "Neurologia"
+        },
+        {
+            "nome": "Nutrologia"
+        },
+        {
+            "nome": "Oftalmologia"
+        },
+        {
+            "nome": "Ortopedia e Traumatologia"
+        },
+        {
+            "nome": "Otorrinolaringologia"
+        },
+        {
+            "nome": "Patologia"
+        },
+        {
+            "nome": "Patologia Clínica/Medicina Laboratorial"
+        },
+        {
+            "nome": "Pediatria"
+        },
+        {
+            "nome": "Pneumologia"
+        },
+        {
+            "nome": "Psiquiatria"
+        },
+        {
+            "nome": "Radiologia e Diagnóstico por Imagem"
+        },
+        {
+            "nome": "Radioterapia"
+        },
+        {
+            "nome": "Reumatologia"
+        },
+        {
+            "nome": "Urologia"
+        }
+    ]
+}

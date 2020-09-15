@@ -1,0 +1,280 @@
+{
+    "tipoexames": [
+        {
+            "nome": "TEMPO DE TROMBOPLASTINA ATIVADA (PTTA)"
+        },
+        {
+            "nome": "DOSAGEM DE ACIDO URICO"
+        },
+        {
+            "nome": "DOSAGEM DE ALFA-1-GLICOPROTEINA ACIDA"
+        },
+        {
+            "nome": "DOSAGEM DE AMILASE"
+        },
+        {
+            "nome": "DOSAGEM DE BILIRRUBINA TOTAL E FRACOES"
+        },
+        {
+            "nome": "DOSAGEM DE CALCIO"
+        },
+        {
+            "nome": "DOSAGEM DE CALCIO IONIZAVEL"
+        },
+        {
+            "nome": "DOSAGEM DE COLESTEROL HDL"
+        },
+        {
+            "nome": "DOSAGEM DE COLESTEROL LDL"
+        },
+        {
+            "nome": "DOSAGEM DE COLESTEROL TOTAL"
+        },
+        {
+            "nome": "DOSAGEM DE CREATININA"
+        },
+        {
+            "nome": "DOSAGEM DE CREATINOFOSFOQUINASE (CPK)"
+        },
+        {
+            "nome": "DOSAGEM DE DESIDROGENASE LATICA (DHL)"
+        },
+        {
+            "nome": "DOSAGEM DE FERRITINA"
+        },
+        {
+            "nome": "DOSAGEM DE FERRO SERICO"
+        },
+        {
+            "nome": "DOSAGEM DE FOSFATASE ALCALINA"
+        },
+        {
+            "nome": "DOSAGEM DE FOSFORO"
+        },
+        {
+            "nome": "DOSAGEM DE GAMA-GLUTAMIL-TRANSFERASE(GAMA GT)"
+        },
+        {
+            "nome": "DOSAGEM DE GLICOSE"
+        },
+        {
+            "nome": "DOSAGEM DE HEMOGLOBINA GLICOSILADA"
+        },
+        {
+            "nome": "DOSAGEM DE MAGNESIO"
+        },
+        {
+            "nome": "DOSAGEM DE POTASSIO"
+        },
+        {
+            "nome": "DOSAGEM DE PROTEINAS TOTAIS E FRACOES"
+        },
+        {
+            "nome": "DOSAGEM DE SODIO"
+        },
+        {
+            "nome": "DOSAGEM DE TRANSAMINASE GLUTAMICOOXALACETICA (TGO)"
+        },
+        {
+            "nome": "DOSAGEM DE TRANSAMINASE GLUTÂMICO PIRÚVICA (TGP)"
+        },
+        {
+            "nome": "DOSAGEM DE TRIGLICERIDEOS"
+        },
+        {
+            "nome": "DOSAGEM DE UREIA"
+        },
+        {
+            "nome": "DOSAGEM DE VITAMINA B12"
+        },
+        {
+            "nome": "DOSAGEM DE 25 HIDROXIVITAMINA D"
+        },
+        {
+            "nome": "CONTAGEM DE PLAQUETAS"
+        },
+        {
+            "nome": "CONTAGEM DE RETICULOCITOS"
+        },
+        {
+            "nome": "DETERMINACAO DE TEMPO DE COAGULACAO"
+        },
+        {
+            "nome": "DETERMINACAO DE TEMPO DE SANGRAMENTO DE IVY"
+        },
+        {
+            "nome": "DETERMINACAO DE TEMPO DE TROMBOPLASTINA PARCIAL ATIVADA (TTP ATIVADA)"
+        },
+        {
+            "nome": "DETERMINACAO DE TEMPO E ATIVIDADE DA PROTROMBINA (TAP)"
+        },
+        {
+            "nome": "DETERMINACAO DE VELOCIDADE DE HEMOSSEDIMENTACAO (VHS)"
+        },
+        {
+            "nome": "DOSAGEM DE HEMOGLOBINA"
+        },
+        {
+            "nome": "HEMOGRAMA COMPLETO"
+        },
+        {
+            "nome": "PESQUISA DE CELULAS LE"
+        },
+        {
+            "nome": "PROVA DO LACO"
+        },
+        {
+            "nome": "DETECCAO DE RNA DO HIV-1 (QUALITATIVO)"
+        },
+        {
+            "nome": "DETECCAO DE RNA DO VIRUS DA HEPATITE C(QUALITATIVO)"
+        },
+        {
+            "nome": "DETERMINACAO DE FATOR REUMATOIDE"
+        },
+        {
+            "nome": "DETERMINACAO QUANTITATIVA DE PROTEINA C REATIVA"
+        },
+        {
+            "nome": "DOSAGEM DE ANTIGENO PROSTATICO ESPECIFICO (PSA)"
+        },
+        {
+            "nome": "DOSAGEM DE PROTEINA C REATIVA"
+        },
+        {
+            "nome": "PESQUISA DE ANTICORPOS ANTIESTREPTOLISINA O (ASLO)"
+        },
+        {
+            "nome": "PESQUISA DE ANTICORPOS ANTINUCLEO (FAN)"
+        },
+        {
+            "nome": "PESQUISA DE ANTICORPOS CONTRA ANTIGENO DE SUPERFICIE DO VIRUS DA HEPATITE B (ANTI-HBS)"
+        },
+        {
+            "nome": "PESQUISA DE ANTICORPOS CONTRA ANTIGENO E DO VIRUS DA HEPATITE B (ANTI-HBE)"
+        },
+        {
+            "nome": "PESQUISA DE ANTICORPOS CONTRA O VIRUS DA HEPATITE C (ANTI-HCV)"
+        },
+        {
+            "nome": "PESQUISA DE ANTICORPOS IGG ANTITOXOPLASMA"
+        },
+        {
+            "nome": "PESQUISA DE ANTICORPOS IGG ANTITRYPANOSOMA CRUZI (CHAGAS HÁ)"
+        },
+        {
+            "nome": "PESQUISA DE ANTICORPOS IGG CONTRA ANTIGENO CENTRAL DO VIRUS DA HEPATITE B (ANTI-HBC-IGG)"
+        },
+        {
+            "nome": "PESQUISA DE ANTICORPOS IGG CONTRA ARBOVIRUS (DENGUE E FEBRE AMARELA)"
+        },
+        {
+            "nome": "PESQUISA DE ANTICORPOS IGG CONTRA O VIRUS DA HEPATITE A (HAV-IGG)"
+        },
+        {
+            "nome": "PESQUISA DE ANTICORPOS IGM ANTITOXOPLASMA"
+        },
+        {
+            "nome": "PESQUISA DE ANTICORPOS IGM ANTITRYPANOSOMA CRUZI (CHAGAS IGM)"
+        },
+        {
+            "nome": "PESQUISA DE ANTICORPOS IGM CONTRA ANTIGENO CENTRAL DO VIRUS DA HEPATITE B (ANTI-HBC-IGM)"
+        },
+        {
+            "nome": "PESQUISA DE ANTICORPOS IGM CONTRA ARBOVIRUS (DENGUE E FEBRE AMARELA)"
+        },
+        {
+            "nome": "PESQUISA DE ANTICORPOS IGM CONTRA O VIRUS DA HEPATITE A (HAV-IGG)"
+        },
+        {
+            "nome": "PESQUISA DE ANTIGENO DE SUPERFICIE DO VIRUS DA HEPATITE B (HBSAG)"
+        },
+        {
+            "nome": "PESQUISA DE FATOR REUMATOIDE (WAALERROSE)"
+        },
+        {
+            "nome": "TESTE FTA-ABS IGG P/ DIAGNOSTICO DA SIFILIS"
+        },
+        {
+            "nome": "TESTE FTA-ABS IGM P/ DIAGNOSTICO DA SIFILIS"
+        },
+        {
+            "nome": "VDRL P/ DETECCAO DE SIFILIS EM GESTANTE"
+        },
+        {
+            "nome": "PESQUISA DE ENTEROBIUS VERMICULARES (OXIURUS OXIURA)"
+        },
+        {
+            "nome": "PESQUISA DE OVOS E CISTOS DE PARASITAS"
+        },
+        {
+            "nome": "PESQUISA DE ROTAVIRUS NAS FEZES"
+        },
+        {
+            "nome": "PESQUISA DE SANGUE OCULTO NAS FEZES"
+        },
+        {
+            "nome": "ANALISE DE CARACTERES FISICOS, ELEMENTOS E SEDIMENTO DA URINA"
+        },
+        {
+            "nome": "DOSAGEM DE PROTEINAS (URINA DE 24 HORAS)"
+        },
+        {
+            "nome": "EXAME QUALITATIVO DE CALCULOS URINARIOS"
+        },
+        {
+            "nome": "DETERMINACAO DE INDICE DE TIROXINA LIVRE"
+        },
+        {
+            "nome": "DOSAGEM DE ESTRADIOL"
+        },
+        {
+            "nome": "DOSAGEM DE GONADOTROFINA CORIÔNICA HUMANA (HCG, BETA HCG)"
+        },
+        {
+            "nome": "DOSAGEM DE HORMONIO LUTEINIZANTE (LH)"
+        },
+        {
+            "nome": "DOSAGEM DE HORMONIO TIREOESTIMULANTE (TSH)"
+        },
+        {
+            "nome": "DOSAGEM DE PROGESTERONA"
+        },
+        {
+            "nome": "DOSAGEM DE PROLACTINA"
+        },
+        {
+            "nome": "DOSAGEM DE TESTOSTERONA"
+        },
+        {
+            "nome": "DOSAGEM DE TIROXINA (T4)"
+        },
+        {
+            "nome": "DOSAGEM DE TIROXINA LIVRE (T4 LIVRE)"
+        },
+        {
+            "nome": "DOSAGEM DE TRIIODOTIRONINA (T3)"
+        },
+        {
+            "nome": "ANTIBIOGRAMA"
+        },
+        {
+            "nome": "CULTURA DE BACTERIAS P/ IDENTIFICACAO"
+        },
+        {
+            "nome": "PESQUISA DE ANTICORPOS ANTIESPERMATOZOIDES ( ELISA )"
+        },
+        {
+            "nome": "DETERMINACAO DIRETA E REVERSA DE GRUPO ABO"
+        },
+        {
+            "nome": "PESQUISA DE FATOR RH (INCLUI D FRACO)"
+        },
+        {
+            "nome": "TESTE INDIRETO DE ANTIGLOBULINA HUMANA (TIA)(COOMBS INDIRETO)"
+        },
+        {
+            "nome": "SECRECAO VAGINAL (EXAME A FRESCO)"
+        }
+    ]
+}
