@@ -26,7 +26,7 @@
             "observacao": "ouve bug no sistema",
             "pacienteid": "ccf988db96cb0004d60b03d259522e4c",
             "medicoid": "01678638c3870972a45cfd72b51837f7",
-            "outro": []
+            "outro": ""
         },
         {
             "_id": "d8e27beebf9084051c430b7ca3e1dbf9",
@@ -40,7 +40,7 @@
             "observacao": "asdasdasdasd",
             "pacienteid": "ccf988db96cb0004d60b03d259522e4c",
             "medicoid": "01678638c3870972a45cfd72b51837f7",
-            "outro": []
+            "outro": ""
         },
         {
             "_id": "5fee2b1431cca588ca6d0201b460f382",
@@ -56,7 +56,7 @@
             "observacao": "asadfsafasfafs",
             "pacienteid": "ccf988db96cb0004d60b03d259522e4c",
             "medicoid": "01678638c3870972a45cfd72b51837f7",
-            "outro": []
+            "outro": ""
         },
         {
             "_id": "ac36e1321ddfda798f63d3b562d372a4",
@@ -70,7 +70,7 @@
             "observacao": "adsffsd",
             "pacienteid": "ccf988db96cb0004d60b03d259522e4c",
             "medicoid": "01678638c3870972a45cfd72b51837f7",
-            "outro": []
+            "outro": ""
         },
         {
             "_id": "3ff3f297b114eb6fb50b674da29b73dd",
@@ -84,7 +84,7 @@
             "observacao": "errgergergergerger",
             "pacienteid": "ccf988db96cb0004d60b03d259522e4c",
             "medicoid": "01678638c3870972a45cfd72b51837f7",
-            "outro": []
+            "outro": ""
         },
         {
             "_id": "0cf67ba036bd2c2af2a9ee27e0d4981c",
@@ -112,7 +112,7 @@
             "observacao": "sdfsdfgghdfg",
             "pacienteid": "ccf988db96cb0004d60b03d259522e4c",
             "medicoid": "01678638c3870972a45cfd72b51837f7",
-            "outro": []
+            "outro": ""
         }
     ]
 }

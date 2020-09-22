@@ -144,30 +144,30 @@ function obter_sintomas($sintomas)
 
 function obter_usuario_visualizacao($child)
 {
-    $_tipo = (string)$child->tipo;
-    $_id = (string)$child->id;
-    $_email = (string)$child->email;
-    $_nome = (string)$child->nome;
-    $_telefone = (string)$child->telefone;
-    $_rua = (string)$child->rua;
-    $_numero = (string)$child->numero;
-    $_bairro = (string)$child->bairro;
-    $_complemento = (string)$child->complemento;
-    $_cidade = (string)$child->cidade;
-    $_estado = (string)$child->estado;
-    $_cep = (string)$child->cep;
+    $_tipo = (string)$child['tipo'];
+    $_id = (string)$child['_id'];
+    $_email = (string)$child['email'];
+    $_nome = (string)$child['nome'];
+    $_telefone = (string)$child['telefone'];
+    $_rua = (string)$child['rua'];
+    $_numero = (string)$child['numero'];
+    $_bairro = (string)$child['bairro'];
+    $_complemento = (string)$child['complemento'];
+    $_cidade = (string)$child['cidade'];
+    $_estado = (string)$child['estado'];
+    $_cep = (string)$child['cep'];
     if ($_tipo == 'medico') {
-        $_especialidade = (string)$child->especialidade;
-        $_crm = (string)$child->crm;
+        $_especialidade = (string)$child['especialidade'];
+        $_crm = (string)$child['crm'];
         return new Medico($_id, $_tipo, $_nome, $_telefone, $_rua, $_numero, $_bairro, $_complemento, $_cidade, $_estado, $_cep, $_email, "", $_especialidade, $_crm);
     } else if ($_tipo == 'paciente') {
-        $_genero = (string)$child->genero;
-        $_datanascimento = (string)$child->datanascimento;
-        $_cpf = (string)$child->cpf;
+        $_genero = (string)$child['genero'];
+        $_datanascimento = (string)$child['datanascimento'];
+        $_cpf = (string)$child['cpf'];
         return new Paciente($_id, $_tipo, $_nome, $_telefone, $_rua, $_numero, $_bairro, $_complemento, $_cidade, $_estado, $_cep, $_email, "", $_genero, $_datanascimento, $_cpf);
     } else if ($_tipo == 'laboratorio') {
-        $_tipoexame = obter_child_vislualizacao($child->tipoexame->children());
-        $_cnpj = (string)$child->cnpj;
+        $_tipoexame = obter_child_vislualizacao($child['tipoexame']);
+        $_cnpj = (string)$child['cnpj'];
         return new Laboratorio($_id, $_tipo, $_nome, $_telefone, $_rua, $_numero, $_bairro, $_complemento, $_cidade, $_estado, $_cep, $_email, "", $_tipoexame, $_cnpj);
     }
 }
@@ -183,30 +183,30 @@ function obter_child_vislualizacao($children)
 
 function obter_visualizacao_exame($child)
 {
-    $_id = (string)$child->id;
-    $_hora = (string)$child->hora;
-    $_data = (string)$child->data;
-    $_pacienteid = (string)$child->pacienteid;
-    $_observacao = (string)$child->observacao;
-    $_medicoid = (string)$child->medicoid;
-    $_outro = (string)$child->outro;
-    $_resultado = (string)$child->resultado;
-    $_laboratorioid = (string)$child->laboratorioid;
-    $_tipoexame = obter_child_vislualizacao($child->tipoexame->children());
+    $_id = (string)$child['_id'];
+    $_hora = (string)$child['hora'];
+    $_data = (string)$child['data'];
+    $_pacienteid = (string)$child['pacienteid'];
+    $_observacao = (string)$child['observacao'];
+    $_medicoid = (string)$child['medicoid'];
+    $_outro = (string)$child['outro'];
+    $_resultado = (string)$child['resultado'];
+    $_laboratorioid = (string)$child['laboratorioid'];
+    $_tipoexame = obter_child_vislualizacao($child['tipoexame']);
     return new Exame($_id, $_hora, $_data, $_pacienteid, $_observacao, $_outro, $_medicoid, $_tipoexame, $_resultado, $_laboratorioid);
 }
 
 function obter_visualizacao_consulta($child)
 {
-    $_id = (string)$child->id;
-    $_hora = (string)$child->hora;
-    $_data = (string)$child->data;
-    $_pacienteid = (string)$child->pacienteid;
-    $_observacao = (string)$child->observacao;
-    $_medicoid = (string)$child->medicoid;
-    $_outro = (string)$child->outro;
-    $_sintomas = obter_child_vislualizacao($child->sintomas->children());
-    $_receita = (string)$child->receita;
+    $_id = (string)$child['_id'];
+    $_hora = (string)$child['hora'];
+    $_data = (string)$child['data'];
+    $_pacienteid = (string)$child['pacienteid'];
+    $_observacao = (string)$child['observacao'];
+    $_medicoid = (string)$child['medicoid'];
+    $_outro = (string)$child['outro'];
+    $_sintomas = obter_child_vislualizacao($child['sintomas']);
+    $_receita = (string)$child['receita'];
     return new Consulta($_id, $_hora, $_data, $_pacienteid, $_observacao, $_outro, $_medicoid, $_sintomas, $_receita);
 }
 

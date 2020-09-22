@@ -12,7 +12,7 @@ function makemenuadmin()
                 <a class='nav-link' href='../cadastro_pessoa/index.php?opcao=paciente'>Cadastrar Pacientes</a>
             </li>
             <li class='nav-item'>
-                <a class='nav-link' href=''../historico/_visualizacao.php?opcao=consulta'>Visualizar Consultas</a>
+                <a class='nav-link' href='../historico/_visualizacao.php?opcao=consulta'>Visualizar Consultas</a>
             </li>
             <li class='nav-item'>
                 <a class='nav-link' href='../historico/_visualizacao.php?opcao=exame'>Visualizar Exames</a>

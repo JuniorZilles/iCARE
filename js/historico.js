@@ -1,8 +1,10 @@
 $(document).ready(function () {
-    $.get("_pacientes.php", function (data) {
+    $.get("../tools/_pacientes.php", function (data) {
         pacientes_autocomplete(data);
     }, "JSON");
-
+    $("#search").on('click', function (e) {
+        $('#cadastroform').submit();
+    });
 })
 
 $(document).on('keypress', function (e) {

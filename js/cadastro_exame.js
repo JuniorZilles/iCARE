@@ -8,11 +8,11 @@ var verhora =
 $(document).ready(function () {
     obtertipoexame();
 
-    $.get("_pacientes.php", function (data) {
+    $.get("../tools/_pacientes.php", function (data) {
         pacientes_autocomplete(data);
         obternomepaciente(data, "#pacienteid", "#pacienteauto", "#datanascimento")
     }, "JSON");
-    $.get("_medicos.php", function (data) {
+    $.get("../tools/_medicos.php", function (data) {
         medicos_autocomplete(data);
         obternomemedico(data, "#medicoid", "#medicoauto", '#crm', '#telefone', '#especialidade')
     }, "JSON");
@@ -89,7 +89,7 @@ function validacampodrop(campo, campovalidacao, mensagem) {
         $(campovalidacao).html(mensagem)
         return 0;
     } else {
-        if(valor != 'Escolher...'){
+        if (valor != 'Escolher...') {
             $(campo).attr('class', 'form-control is-valid');
             return 1;
         }
@@ -148,7 +148,7 @@ function medicos_autocomplete(list) {
         $('#telefone').val(selection.telefone);
         vermedico = 1;
         habilitabtn()
-        
+
     });
     $('.twitter-typeahead').removeAttr('style');
 }
@@ -231,20 +231,20 @@ function removeInvalid(value) {
 
 function obternomemedico(data, idcampo, nomecampo, crmcampo, telefonecampo, especialidadecampo) {
     var id = $(idcampo).val();
-    $.each( data, function( i, item ) {
+    $.each(data, function (i, item) {
         if (item.id == id)
             $(nomecampo).val(item.nome);
-            $(crmcampo).val(item.crm);
-            $(telefonecampo).val(item.telefone);
-            $(especialidadecampo).val(item.especialidade);
-      });
+        $(crmcampo).val(item.crm);
+        $(telefonecampo).val(item.telefone);
+        $(especialidadecampo).val(item.especialidade);
+    });
 }
 
 function obternomepaciente(data, idcampo, nomecampo, datacampo) {
     var id = $(idcampo).val();
-    $.each( data, function( i, item ) {
+    $.each(data, function (i, item) {
         if (item.id == id)
             $(nomecampo).val(item.nome);
-            $(datacampo).val(item.datanascimento);
-      });
+        $(datacampo).val(item.datanascimento);
+    });
 }

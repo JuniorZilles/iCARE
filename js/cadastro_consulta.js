@@ -5,7 +5,7 @@ var verhora =
     verreceita =
     verobservacao = 0;
 $(document).ready(function () {
-    $.get("_pacientes.php", function (data) {
+    $.get("../tools/_pacientes.php", function (data) {
         pacientes_autocomplete(data);
         obternomepaciente(data, "#pacienteid", "#pacienteauto", "#datanascimento");
     }, "JSON");
@@ -26,24 +26,24 @@ $(document).ready(function () {
     });
     $("#outrosintoma").blur(function () {
         var outro = $("#outrosintoma").val();
-        if (outro != ''){
+        if (outro != '') {
             $("#outro").prop('checked', true)
             versintoma = 1
             habilitabtn();
-        }else 
+        } else
             $("#outro").prop('checked', false)
-        
+
     });
     $("#observacoes").on('keypress', function () {
         verobservacao = validacampobasico("#observacoes", '#invalidobservacao', 'Necessário informar uma descrição sobre o exame!');
         if (verobservacao == 1)
             habilitabtn();
     });
-    $(document).on("click","input[type='checkbox']", function(){             
+    $(document).on("click", "input[type='checkbox']", function () {
         versintoma = validadcheck();
         if (versintoma == 1)
             habilitabtn();
-    
+
     });
     habilitabtninicial();
 });
@@ -52,11 +52,11 @@ function validadcheck() {
     var res = $(document).find("input[type='checkbox']:checked").length > 0;
     if (res)
         return 1;
-    else{
+    else {
         $("#invalidcheck").html('Necessário informar ao menos um sintoma');
         return 0;
     }
-    
+
 }
 
 function habilitabtninicial() {
@@ -64,11 +64,11 @@ function habilitabtninicial() {
     if (identificador != '') {
         $('#btnregister').prop('disabled', false);
         verhora =
-        verdata =
-        verpaciente =
-        versintoma =
-        verreceita =
-        verobservacao = 1;
+            verdata =
+            verpaciente =
+            versintoma =
+            verreceita =
+            verobservacao = 1;
     }
 }
 
@@ -113,7 +113,7 @@ function pacientes_autocomplete(list) {
     },
         {
             name: 'nomepaciente',
-            displayKey:'nome',
+            displayKey: 'nome',
             source: pacientes.ttAdapter(),
         }
     ).on('typeahead:selected', function (event, selection) {
@@ -128,17 +128,17 @@ function pacientes_autocomplete(list) {
 
 function obternomemedico(data, idcampo, nomecampo) {
     var id = $(idcampo).val();
-    $.each( data, function( i, item ) {
+    $.each(data, function (i, item) {
         if (item.id == id)
             $(nomecampo).val(item.nome);
 
-      });
+    });
 }
 function obternomepaciente(data, idcampo, nomecampo, datacampo) {
     var id = $(idcampo).val();
-    $.each( data, function( i, item ) {
+    $.each(data, function (i, item) {
         if (item.id == id)
             $(nomecampo).val(item.nome);
-            $(datacampo).val(item.datanascimento);
-      });
+        $(datacampo).val(item.datanascimento);
+    });
 }
