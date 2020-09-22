@@ -29,7 +29,7 @@ $(document).ready(function () {
         esconde_campos();
     });
 
-    $.get("cadastro.json", function (data) {
+    $.get("../tools/_cadastro_auto.php", function (data) {
         processaojson(data);
     }, "JSON");
 
@@ -119,43 +119,43 @@ $(document).on('keypress', function (e) {
     }
 });
 
-function validaemail(){
+function validaemail() {
     var email = $("#email").val();
-        var expressao = /^[A-Za-z0-9_\-\.]+@[A-Za-z0-9_\-\.]{2,}\.[A-Za-z0-9]{2,}(\.[A-Za-z0-9])?/;
-        if (email == "") {
-            $('#btnregister').prop('disabled', true);
-            $("#email").attr('class', 'form-control is-invalid')
-            $('#invalidemail').html('E-mail não pode ficar em branco!')
-            veremail = 0;
-        } else if (!expressao.test(email)) {
-            $('#btnregister').prop('disabled', true);
-            $("#email").attr('class', 'form-control is-invalid')
-            $('#invalidemail').html('E-mail contém formato inválido!')
-            veremail = 0;
-        } else {
-            veremail = 1;
-            $("#email").attr('class', 'form-control is-valid')
-            habilitabtn();
-        }
+    var expressao = /^[A-Za-z0-9_\-\.]+@[A-Za-z0-9_\-\.]{2,}\.[A-Za-z0-9]{2,}(\.[A-Za-z0-9])?/;
+    if (email == "") {
+        $('#btnregister').prop('disabled', true);
+        $("#email").attr('class', 'form-control is-invalid')
+        $('#invalidemail').html('E-mail não pode ficar em branco!')
+        veremail = 0;
+    } else if (!expressao.test(email)) {
+        $('#btnregister').prop('disabled', true);
+        $("#email").attr('class', 'form-control is-invalid')
+        $('#invalidemail').html('E-mail contém formato inválido!')
+        veremail = 0;
+    } else {
+        veremail = 1;
+        $("#email").attr('class', 'form-control is-valid')
+        habilitabtn();
+    }
 }
 
-function validasenha(){
+function validasenha() {
     var password = $("#senha").val();
-        if (password == "") {
-            $('#btnregister').prop('disabled', true);
-            $("#senha").attr('class', 'form-control is-invalid')
-            $('#invalidsenha').html('Senha não pode ficar em branco!')
-            verpassword = 0;
-        } else if (password.length < 6) {
-            $('#btnregister').prop('disabled', true);
-            $("#senha").attr('class', 'form-control is-invalid')
-            $('#invalidsenha').html('Senha deve conter mais de 6 caracteres!')
-            verpassword = 0;
-        } else {
-            $("#senha").attr('class', 'form-control is-valid')
-            verpassword = 1;
-            habilitabtn();
-        }
+    if (password == "") {
+        $('#btnregister').prop('disabled', true);
+        $("#senha").attr('class', 'form-control is-invalid')
+        $('#invalidsenha').html('Senha não pode ficar em branco!')
+        verpassword = 0;
+    } else if (password.length < 6) {
+        $('#btnregister').prop('disabled', true);
+        $("#senha").attr('class', 'form-control is-invalid')
+        $('#invalidsenha').html('Senha deve conter mais de 6 caracteres!')
+        verpassword = 0;
+    } else {
+        $("#senha").attr('class', 'form-control is-valid')
+        verpassword = 1;
+        habilitabtn();
+    }
 }
 
 function validacampobasico(campo, campovalidacao, mensagem) {
@@ -179,7 +179,7 @@ function validacampodrop(campo, campovalidacao, mensagem) {
         $(campovalidacao).html(mensagem)
         return 0;
     } else {
-        if(valor != 'Escolher...'){
+        if (valor != 'Escolher...') {
             $(campo).attr('class', 'form-control is-valid');
             return 1;
         }
@@ -310,9 +310,9 @@ function esconde_campos() {
 
 function estados_drop(list) {
     var select = $('#selectedestado').val();
-    if (select == ''){
+    if (select == '') {
         $('#estado').append('<option selected>Escolher...</option>');
-    }else{
+    } else {
         $('#estado').append('<option>Escolher...</option>');
     }
 
@@ -363,7 +363,7 @@ function tipoexames_autocomplete(list) {
     ).on('typeahead:selected', function (event, selection) {
         var tipos = $('#tipoexame').val();
         var temp = selection + ',';
-        if (tipos.indexOf(temp) == -1){
+        if (tipos.indexOf(temp) == -1) {
             $('#tipoexame').val(tipos + temp);
             $('#tipoexamebtns').append("<button type='button' id='" + removeInvalid(selection) + "' class='btn btn-outline-secondary btn-sm' onclick='removetiposexames(this.value)' value='" + selection + "' >" + selection + " &nbsp;<i class='fa fa-trash' aria-hidden='true'></i></button>");
         }

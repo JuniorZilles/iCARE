@@ -1,29 +1,18 @@
 <?php
-Class Medico{
-    public $id,
-    $nome,
-    $telefone,
-    $especialidade,
-    $crm;
-
-    public function __construct($i, $n, $e, $c, $t)
-        {
-            $this->id = $i;
-            $this->nome = $n;
-            $this->telefone = $t;
-            $this->especialidade = $e;
-            $this->crm = $c;
-        }
-}
+require_once '../database/db_instance.php';
+require_once '../models/tools_model.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-    $xmlString = file_get_contents('dados.xml');
-    $xml = new SimpleXMLElement($xmlString);
-    $user = $xml->xpath("//user[tipo = 'medico']");
+    $db = connectDB();
     $array = array();
-    foreach ($user as $item) {
-        array_push($array, new Medico((string)$item->id,(string)$item->nome, (string)$item->especialidade, (string)$item->crm, (string)$item->telefone));
+
+    $query = array("tipo" => "medico");
+    $selec = array("_id", "nome", "especialidade", "crm", "telefone");
+    $coll = $db->users;
+
+    $r = $coll->find($query, $selec);
+    foreach ($r as $item) {
+        array_push($array, new Medico((string)$item['_id'], (string)$item['nome'], (string)$item['especialidade'], (string)$item['crm'], (string)$item['telefone']));
     }
     echo json_encode($array);
 }
-?>

@@ -3,6 +3,7 @@ session_start();
 
 require_once '../tools/utilities.php';
 require_once '../models/pessoa_model.php';
+require_once '../database/db_instance.php';
 
 try {
 
@@ -26,8 +27,9 @@ try {
     $_objeto = null;
     $_edicao = false;
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $xmlString = file_get_contents('dados.xml');
-        $xml = new SimpleXMLElement($xmlString);
+        $db = connectDB();
+        $coll = $db->users;
+
         $_id = md5(uniqid(""));
         if (isset($_POST['identificador'])) {
             if (!empty($_POST["identificador"])) {
@@ -47,8 +49,9 @@ try {
                 $_erro .= 'Nome não informado!<br>';
             } else {
                 $_nome = remove_inseguro($_POST["nome"]);
-                $nodo = $xml->xpath("//user[nome = '" . $_nome . "']");
-                if (count($nodo) > 0 && !$_edicao) {
+                $query = array("nome" => new MongoRegex('/' . $_nome . '/i'));
+                $r = $coll->findOne($query);
+                if (count($r) > 0 && !$_edicao) {
                     $_erro .= 'Pessoa já existe na base de dados!<br>';
                 }
             }
@@ -110,8 +113,9 @@ try {
                 if (!filter_var($_email, FILTER_VALIDATE_EMAIL)) {
                     $_erro .= 'O e-mail de entrada não é um e-mail válido!<br>';
                 }
-                $nodo1 = $xml->xpath("//user[email = '" . $_email . "']");
-                if (count($nodo1) > 0  && !$_edicao) {
+                $query = array("email" => new MongoRegex('/' . $_email . '/i'));
+                $r = $coll->findOne($query);
+                if (count($r) > 0  && !$_edicao) {
                     $_erro .= 'Email já existe na base de dados!<br>';
                 }
             }
@@ -173,7 +177,8 @@ try {
                 if (empty($_POST["tipoexame"])) {
                     $_erro .= 'Necessário informar ao menos um tipo de exame!<br>';
                 } else {
-                    $_tipoexame = remove_inseguro($_POST["tipoexame"]);
+                    $secured = remove_inseguro($_POST["tipoexame"]);
+                    $_tipoexame = explode(",", $secured);
                 }
             }
             if (isset($_POST['cnpj'])) {
@@ -189,66 +194,48 @@ try {
             $_SESSION['erro'] =  $_erro;
             $_objeto->id = '';
             $_SESSION['registro'] = serialize($_objeto);
-            header("Location: cadastro_pessoa.php");
+            header("Location: index.php");
         } else {
             $array = (array) $_objeto;
             $_termo = 'incluido';
             if ($_edicao) {
                 $_termo = 'alterado';
-                $user = $xml->xpath("//user[id = '$_id']");
 
-                foreach ($user[0] as $k => $v) {
-                    if ($k == 'tipoexame') {
-                        $user[0]->$k = '';
-                        $nodo = $user[0]->$k;
-                        $tipos = explode(",", (string) $array[$k]);
-                        foreach ($tipos as $tp) {
-                            if (!empty($tp))
-                                $nodo->addChild('tipo', $tp);
-                        }
-                    } else
-                        $user[0]->$k = (string) $array[$k];
-                }
+                $query = array("_id" => $_id);
+                $coll->update($query, $array);
             } else {
-                $user = $xml->users->addChild('user');
-
-                foreach ($array as $k => $v) {
-                    if ($k == 'tipoexame') {
-                        $nos = $user->addChild($k);
-                        $tipos = explode(",", $v);
-                        foreach ($tipos as $tp) {
-                            if (!empty($tp))
-                                $nos->addChild('tipo', $tp);
-                        }
-                    } else
-                        $user->addChild($k, $v);
-                }
+                $coll->insert($array);
             }
-            $xml->asXML('dados.xml');
 
             $_SESSION['success'] = 'O usuário foi ' . $_termo . ' na base de dados';
             header("Location: ../home/index.php");
         }
     } else if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-
+        $db = connectDB();
+        $coll = $db->users;
         if (isset($_GET['id'])) {
             $_id = remove_inseguro($_GET['id']);
         } else {
             $_id = $_SESSION['user'];
         }
-        $xml = simplexml_load_file('dados.xml');
+        $query = array("_id" => $_id);
+        $coll = $db->users;
 
-        $nodo = $xml->xpath("//user[id = '" . $_id . "']");
-        if (count($nodo) > 0) {
-            $_objeto = obter_usuario($nodo[0]);
+        $r = $coll->findOne($query);
+
+        if (count($r) > 0) {
+            $_objeto = obter_usuario($r);
         }
         $_SESSION['registro'] = serialize($_objeto);
-        header("Location: cadastro_pessoa.php");
+        header("Location: index.php");
     }
 } catch (Throwable $e) {
     $_SESSION['erro'] = makeerrortoast($e->getMessage() . PHP_EOL);
     header("Location: ../home/index.php");
 } catch (Exception $e) {
+    $_SESSION['erro'] = makeerrortoast($e->getMessage() . PHP_EOL);
+    header("Location: ../home/index.php");
+} catch (MongoConnectionException $e) {
     $_SESSION['erro'] = makeerrortoast($e->getMessage() . PHP_EOL);
     header("Location: ../home/index.php");
 }

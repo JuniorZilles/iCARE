@@ -56,7 +56,7 @@ if (isset($_SESSION['registro'])) {
                     }
                     ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="_logout.php">Logout</a>
+                        <a class="nav-link" href="../access/_logout.php">Logout</a>
                     </li>
                 </ul>
             </div>

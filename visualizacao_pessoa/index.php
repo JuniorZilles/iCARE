@@ -3,6 +3,7 @@ session_start();
 
 require_once '../tools/menu.php';
 require_once '../tools/utilities.php';
+require_once '../database/db_instance.php';
 
 if (!isset($_SESSION['user'])) {
     $_SESSION['erro'] = maketoast('Usuário não logado', 'Necessário realizar login para utilizar os recursos!');
@@ -24,7 +25,7 @@ if ($_SESSION['tipo'] != 'admin') {
     <title>iCARE - Visualização de Usuário</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="../css/index.css">
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
@@ -49,7 +50,7 @@ if ($_SESSION['tipo'] != 'admin') {
                     }
                     ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="_logout.php">Logout</a>
+                        <a class="nav-link" href="../access/_logout.php">Logout</a>
                     </li>
                 </ul>
             </div>
@@ -82,23 +83,30 @@ if ($_SESSION['tipo'] != 'admin') {
                     </thead>
                     <tbody>
                         <?php
-                        $xml = simplexml_load_file('dados.xml');
 
-                        $_users = $xml->xpath("//user[tipo != 'admin']");
-                        if (count($_users) > 0) {
-                            for ($i = 0; $i < count($_users); $i++) {
+                        $db = connectDB();
+                        $array = array();
+
+                        $selec = array("_id", "nome", "email", "tipo", "telefone");
+                        $coll = $db->users;
+                        $query = array('tipo' => array('$not' =>  new MongoRegex("/admin/i")));
+                        $r = $coll->find($query, $selec);
+                        if (count($r) > 0) {
+                            $count = 1;
+                            foreach ($r as $item) {
                                 $tipo = '';
-                                if ($_users[$i]->tipo == 'paciente')  $tipo = 'Paciente';
-                                else if ($_users[$i]->tipo == 'medico')  $tipo = 'Médico';
+                                if ($item['tipo'] == 'paciente')  $tipo = 'Paciente';
+                                else if ($item['tipo'] == 'medico')  $tipo = 'Médico';
                                 else $tipo = 'Laboratório';
                                 echo '<tr>
-                                <th scope="row">' . $i . '</th>
-                                    <td>' . $_users[$i]->nome . '</td>
+                                <th scope="row">' . $count . '</th>
+                                    <td>' . $item['nome'] . '</td>
                                     <td>' . $tipo . '</td>
-                                    <td>' . $_users[$i]->telefone . '</td>
-                                    <td>' . $_users[$i]->email . '</td>
-                                    <td><a href="../cadastro_pessoa/_cadastro.php?id=' . $_users[$i]->id . '" class="btn btn-outline-warning"><i class="fas fa-edit" aria-hidden="true"></i></a></td>
+                                    <td>' . $item['telefone'] . '</td>
+                                    <td>' . $item['email'] . '</td>
+                                    <td><a href="../cadastro_pessoa/_cadastro.php?id=' . $item['_id'] . '" class="btn btn-outline-warning"><i class="fas fa-edit" aria-hidden="true"></i></a></td>
                                 </tr>';
+                                $count++;
                             }
                         } else {
                             echo '<tr colspan="6">

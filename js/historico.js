@@ -5,7 +5,6 @@ $(document).ready(function () {
 
 })
 
-
 $(document).on('keypress', function (e) {
     if (e.which == 13) {
         $('#cadastroform').submit();
@@ -26,7 +25,7 @@ function pacientes_autocomplete(list) {
     },
         {
             name: 'nomepaciente',
-            displayKey:'nome',
+            displayKey: 'nome',
             source: pacientes.ttAdapter(),
         }
     ).on('typeahead:selected', function (event, selection) {

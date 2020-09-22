@@ -1,25 +1,18 @@
 <?php
-Class Paciente{
-    public $id,
-    $datanascimento,
-    $nome;
-
-    public function __construct($i, $n, $d)
-        {
-            $this->id = $i;
-            $this->datanascimento = $d;
-            $this->nome = $n;
-        }
-}
+require_once '../database/db_instance.php';
+require_once '../models/tools_model.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-    $xmlString = file_get_contents('dados.xml');
-    $xml = new SimpleXMLElement($xmlString);
-    $user = $xml->xpath("//user[tipo = 'paciente']");
+    $db = connectDB();
     $array = array();
-    foreach ($user as $item) {
-        array_push($array, new Paciente((string)$item->id,(string)$item->nome, (string)$item->datanascimento));
+
+    $query = array("tipo" => "paciente");
+    $selec = array("_id", "nome", "datanascimento");
+    $coll = $db->users;
+
+    $r = $coll->find($query, $selec);
+    foreach ($r as $item) {
+        array_push($array, new Paciente((string)$item['_id'], (string)$item['nome'], (string)$item['datanascimento']));
     }
     echo json_encode($array);
 }
-?>
