@@ -1,10 +1,5 @@
 <?php
 session_start();
-//mostrar por usuario a quantidade de consultas e exames
-//Número de Consultas Mensais por Médico (admin e medico)
-//Número de Exames Mensais por Laboratório (laboratorio e admin)
-//Número de Exames Mensais por Paciente (laboratorio e admin)
-//Número de Consultas Mensais por Paciente (admin e medico)
 require_once '../tools/menu.php';
 require_once '../tools/utilities.php';
 require_once '_estatisticas.php';
@@ -82,8 +77,8 @@ if (!isset($_SESSION['user'])) {
                 <h5 class="card-title text-center">Visualização dos Contadores</h5>
                 <br>
                 <?php
-                error_reporting(0);
-                ini_set('display_errors', 0);
+                //error_reporting(0);
+                //ini_set('display_errors', 0);
                 $object = get_data($_SESSION['user'], $_SESSION['tipo']);
                 if ($_SESSION['tipo'] == 'admin') {
 
@@ -118,25 +113,14 @@ if (!isset($_SESSION['user'])) {
                                 <th scope='col'>Mês</th>
                                 </tr>"
                 );
-                foreach ($object['consultas'] as $itera) {
+                foreach ($object['consultas_exames'] as $itera) {
                     $nome = $itera['nome'];
+                    $tipo = $itera['tipo'];
                     foreach ($itera['reg'] as $item) {
                         print_r("
                                     <tr>
                                     <td scope='row'>" . $nome . "</td>
-                                    <td scope='row'>Consultas</td>
-                                    <td scope='row'>" . $item['qtd'] . "</td>
-                                    <td scope='row'>" . $item['mes'] . "</td>
-                                    </tr>");
-                    }
-                }
-                foreach ($object['exames'] as $itera) {
-                    $nome = $itera['nome'];
-                    foreach ($itera['reg'] as $item) {
-                        print_r("
-                                    <tr>
-                                    <td scope='row'>" . $nome . "</td>
-                                    <td scope='row'>Exames</td>
+                                    <td scope='row'>" . $tipo . "</td>
                                     <td scope='row'>" . $item['qtd'] . "</td>
                                     <td scope='row'>" . $item['mes'] . "</td>
                                     </tr>");
