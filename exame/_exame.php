@@ -3,7 +3,7 @@ session_start();
 
 require_once '../tools/utilities.php';
 require_once '../models/cadastro_model.php';
-
+require_once '../database/db_instance.php';
 
 try {
 
@@ -18,8 +18,6 @@ try {
     $_objeto = null;
     $_edicao = false;
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $xmlString = file_get_contents('dados.xml');
-        $xml = new SimpleXMLElement($xmlString);
         $_id = md5(uniqid(""));
         if (isset($_POST['identificadorexame'])) {
             if (!empty($_POST["identificadorexame"])) {
@@ -36,7 +34,7 @@ try {
         }
         if (isset($_POST['medicoid'])) {
             if (empty($_POST["medicoid"])) {
-                $_erro .= 'Nome não informado!<br>';
+                $_erro .= 'Médico não informado!<br>';
             } else {
                 $_idmedico = remove_inseguro($_POST["medicoid"]);
             }
@@ -45,7 +43,8 @@ try {
             if (empty($_POST["exame"])) {
                 $_erro .= 'Nenhum exame foi selecionado!<br>';
             } else {
-                $_exames = remove_inseguro($_POST["exame"]);
+                $secured = remove_inseguro($_POST["exame"]);
+                $_exames = explode(",", $secured);
             }
         }
         if (isset($_POST['dataexame'])) {
@@ -84,62 +83,43 @@ try {
             $_SESSION['erro'] =  $_erro;
             $_objeto->id = '';
             $_SESSION['registro'] = serialize($_objeto);
-            header("Location: cadastro_exame.php");
+            header("Location: index.php?id=" . $_id);
         } else {
+            $db = connectDB();
+            $coll = $db->exames;
             $array = (array) $_objeto;
             $_termo = 'incluido';
             if ($_edicao) {
                 $_termo = 'alterado';
-                $exame = $xml->xpath("//exame[id = '$_id']");
 
-                foreach ($exame[0] as $k => $v) {
-                    if ($k == 'tipoexame') {
-                        $exame[0]->$k = '';
-                        $nodo = $exame[0]->$k;
-                        $tipos = explode(",", (string) $array[$k]);
-                        foreach ($tipos as $tp) {
-                            if (!empty($tp))
-                                $nodo->addChild('tipo', $tp);
-                        }
-                    } else
-                        $exame[0]->$k = (string) $array[$k];
-                }
+                $query = array("_id" => $_id);
+                $coll->update($query, $array);
             } else {
-                $exame = $xml->exames->addChild('exame');
-
-                foreach ($array as $k => $v) {
-                    if ($k == 'tipoexame') {
-                        $nos = $exame->addChild($k);
-                        $tipos = explode(",", $v);
-                        foreach ($tipos as $tp) {
-                            if (!empty($tp))
-                                $nos->addChild('tipo', $tp);
-                        }
-                    } else
-                        $exame->addChild($k, $v);
-                }
+                $coll->insert($array);
             }
-            $xml->asXML('dados.xml');
 
             $_SESSION['erro'] = makesuccesstoast('O exame foi ' . $_termo . ' na base de dados');
             header("Location: ../home/index.php");
         }
     } else if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-
         if (isset($_GET['id'])) {
             $_id = remove_inseguro($_GET['id']);
-            $xml = simplexml_load_file('dados.xml');
+            $db = connectDB();
+            $coll = $db->exames;
+            $query = array("_id" => $_id);
 
-            $nodoexame = $xml->xpath("//exame[id = '" . $_id . "']");
+            $r = $coll->findOne($query);
 
-            if (count($nodoexame) > 0) {
-                $_objeto = obtercadastroexame($nodoexame[0]);
+            if (count($r) > 0) {
+                $_objeto = obtercadastroexame($r);
+                $_SESSION['registro'] = serialize($_objeto);
+                header("Location: index.php?id=" . $_id);
+            } else {
+                $_SESSION['erro'] = makeerrortoast("Exame não encontrado!");
+                header("Location: ../home/index.php");
             }
-
-            $_SESSION['registro'] = serialize($_objeto);
-            header("Location: cadastro_exame.php");
         } else {
-            $_SESSION['erro'] = makeerrortoast("Identificador não informado");
+            $_SESSION['erro'] = makeerrortoast("Identificador não informado!");
             header("Location: ../home/index.php");
         }
     }

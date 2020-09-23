@@ -194,7 +194,7 @@ try {
             $_SESSION['erro'] =  $_erro;
             $_objeto->id = '';
             $_SESSION['registro'] = serialize($_objeto);
-            header("Location: index.php");
+            header("Location: index.php?id=" . $_id);
         } else {
             $array = (array) $_objeto;
             $_termo = 'incluido';
@@ -207,7 +207,7 @@ try {
                 $coll->insert($array);
             }
 
-            $_SESSION['success'] = 'O usuário foi ' . $_termo . ' na base de dados';
+            $_SESSION['erro'] = makesuccesstoast('O usuário foi ' . $_termo . ' na base de dados');
             header("Location: ../home/index.php");
         }
     } else if ($_SERVER['REQUEST_METHOD'] == 'GET') {
@@ -225,9 +225,12 @@ try {
 
         if (count($r) > 0) {
             $_objeto = obter_usuario($r);
+            $_SESSION['registro'] = serialize($_objeto);
+            header("Location: index.php?id=" . $_id);
+        } else {
+            $_SESSION['erro'] = makeerrortoast("Exame não encontrado!");
+            header("Location: ../home/index.php");
         }
-        $_SESSION['registro'] = serialize($_objeto);
-        header("Location: index.php");
     }
 } catch (Throwable $e) {
     $_SESSION['erro'] = makeerrortoast($e->getMessage() . PHP_EOL);

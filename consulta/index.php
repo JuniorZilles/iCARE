@@ -16,7 +16,13 @@ if ($_SESSION['tipo'] != 'medico') {
 if (isset($_SESSION['registro'])) {
     $_consulta = unserialize($_SESSION['registro']);
     unset($_SESSION['registro']);
-}
+} elseif ($_SERVER['REQUEST_METHOD'] == 'GET') {
+    if (isset($_GET['id'])) {
+        $_id = remove_inseguro($_GET['id']);
+        header("Location: _consulta.php?id=" . $_id);
+    }
+} else
+    header("Location: ../home/index.php");
 ?>
 
 <!DOCTYPE html>
@@ -97,7 +103,7 @@ if (isset($_SESSION['registro'])) {
                             ?>
                         </div>
                     </div>
-                    <input type="hidden" id="identificador" name="identificador" value="<?php if (isset($_consulta->id)) echo $_consulta->id; ?>">
+                    <input type="hidden" id="identificador" name="identificador" value="<?php if (isset($_consulta->_id)) echo $_consulta->_id; ?>">
                     <div class="form-row">
                         <div class="form-group col-md-8">
                             <label for="pacienteauto">Nome do Paciente</label>

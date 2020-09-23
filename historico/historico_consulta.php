@@ -85,19 +85,8 @@ if (isset($_SESSION['registro'])) {
                     </ol>
                 </nav>
                 <h5 class="card-title text-center">Visualizar Consultas</h5>
-                <form action="_visualizacao.php" id="cadastroform" method="POST">
-                    <div class="form-row">
-                        <div class="form-group col-md-11">
-                            <input type="text" class="form-control" id="pacienteauto" placeholder="Nome do Paciente" aria-label="Nome do Paciente" aria-describedby="basic-addon2">
-                            <input type="hidden" id="pacienteid" name="pacienteid" value="">
-                            <input type="hidden" id="tipo" name="tipo" value="consulta">
-                        </div>
-                        <div class="form-group col-md-1">
-                            <button id="search" class="btn btn-outline-primary" type="button">Buscar</button>
-                        </div>
-                    </div>
-                </form>
                 <?php
+                if ($_SESSION['tipo'] != 'paciente') echo pacientform();
                 if (count($_registro) > 0) {
                     for ($i = 0; $i < count($_registro); $i++) {
                         echo '<div id="accordion' . $i . '">

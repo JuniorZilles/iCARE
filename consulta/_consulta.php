@@ -3,7 +3,7 @@ session_start();
 
 require_once '../tools/utilities.php';
 require_once '../models/cadastro_model.php';
-
+require_once '../database/db_instance.php';
 
 try {
 
@@ -17,8 +17,7 @@ try {
     $_objeto = null;
     $_edicao = false;
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $xmlString = file_get_contents('dados.xml');
-        $xml = new SimpleXMLElement($xmlString);
+
         $_id = md5(uniqid(""));
         if (isset($_POST['identificador'])) {
             if (!empty($_POST["identificador"])) {
@@ -105,42 +104,19 @@ try {
             $_SESSION['erro'] =  $_erro;
             $_objeto->id = '';
             $_SESSION['registro'] = serialize($_objeto);
-            header("Location: cadastro_consulta.php");
+            header("Location: index.php?id=" . $_id);
         } else {
+            $db = connectDB();
+            $coll = $db->consultas;
             $array = (array) $_objeto;
             $_termo = 'incluida';
             if ($_edicao) {
                 $_termo = 'alterada';
-                $consulta = $xml->xpath("//consulta[id = '$_id']");
-
-                foreach ($consulta[0] as $k => $v) {
-                    if ($k == 'sintomas') {
-                        $consulta[0]->$k = '';
-                        $nodo = $consulta[0]->$k;
-                        $sintomas = array_slice($array[$k], 0);
-                        foreach ($sintomas as $tp) {
-                            if (!empty($tp))
-                                $nodo->addChild('sintoma', $tp);
-                        }
-                    } else
-                        $consulta[0]->$k = (string) $array[$k];
-                }
+                $query = array("_id" => $_id);
+                $coll->update($query, $array);
             } else {
-                $consulta = $xml->consultas->addChild('consulta');
-
-                foreach ($array as $k => $v) {
-                    if ($k == 'sintomas') {
-                        $nos = $consulta->addChild($k);
-                        $sintomas = array_slice($v, 0);
-                        foreach ($sintomas as $tp) {
-                            if (!empty($tp))
-                                $nos->addChild('sintoma', $tp);
-                        }
-                    } else
-                        $consulta->addChild($k, $v);
-                }
+                $coll->insert($array);
             }
-            $xml->asXML('dados.xml');
 
             $_SESSION['erro'] = makesuccesstoast('A consulta foi ' . $_termo . ' na base de dados');
             header("Location: ../home/index.php");
@@ -149,16 +125,20 @@ try {
 
         if (isset($_GET['id'])) {
             $_id = remove_inseguro($_GET['id']);
-            $xml = simplexml_load_file('dados.xml');
+            $db = connectDB();
+            $coll = $db->consultas;
+            $query = array("_id" => $_id);
 
-            $nodoconsulta = $xml->xpath("//consulta[id = '" . $_id . "']");
+            $r = $coll->findOne($query);
 
-            if (count($nodoconsulta) > 0) {
-                $_objeto = obtercadastroconsulta($nodoconsulta[0]);
+            if (count($r) > 0) {
+                $_objeto = obtercadastroconsulta($r);
+                $_SESSION['registro'] = serialize($_objeto);
+                header("Location: index.php?id=" . $_id);
+            } else {
+                $_SESSION['erro'] = makeerrortoast("Consulta não encontrada!");
+                header("Location: ../home/index.php");
             }
-
-            $_SESSION['registro'] = serialize($_objeto);
-            header("Location: cadastro_consulta.php");
         } else {
             $_SESSION['erro'] = makeerrortoast("Identificador não informado");
             header("Location: ../home/index.php");

@@ -16,6 +16,11 @@ $_user = null;
 if (isset($_SESSION['registro'])) {
     $_user = unserialize($_SESSION['registro']);
     unset($_SESSION['registro']);
+} elseif ($_SERVER['REQUEST_METHOD'] == 'GET') {
+    if (isset($_GET['id'])) {
+        $_id = remove_inseguro($_GET['id']);
+        header("Location: _cadastro.php?id=" . $_id);
+    }
 }
 
 $_check = '';

@@ -49,33 +49,35 @@ function get_data($_id, $_tipo)
 function getArrayReg($list, $db, $tipo)
 {
     $_array = array();
-    foreach ($list as $item) {
-        $_userid = '';
-        $_tipo = '';
-        if ($tipo == 1) {
-            $_userid = (string)$item['laboratorioid'];
-            $_tipo = 'Exame';
-        }
-        if ($tipo == 0) {
-            $_userid = (string)$item['medicoid'];
-            $_tipo = 'Consulta';
-        }
-        $_mes = substr((string)$item['data'], 0, 7);
-        $coll = $db->users;
-        $selec = array("nome");
-        $query = array("_id" => $_userid);
-        $r = $coll->findOne($query, $selec);
-        $_nome = $r['nome'];
+    if (count($list) > 0) {
+        foreach ($list as $item) {
+            $_userid = '';
+            $_tipo = '';
+            if ($tipo == 1) {
+                $_userid = (string)$item['laboratorioid'];
+                $_tipo = 'Exame';
+            }
+            if ($tipo == 0) {
+                $_userid = (string)$item['medicoid'];
+                $_tipo = 'Consulta';
+            }
+            $_mes = substr((string)$item['data'], 0, 7);
+            $coll = $db->users;
+            $selec = array("nome");
+            $query = array("_id" => $_userid);
+            $r = $coll->findOne($query, $selec);
+            $_nome = $r['nome'];
 
-        $key1 = array_search($_nome, array_column($_array, 'nome'));
-        if ($key1 !== false) {
-            $key2 = array_search($_mes, array_column($_array[$key1]['reg'], 'mes'));
-            if ($key2 !== false)
-                $_array[$key1]['reg'][$key2]['qtd'] += 1;
-            else
-                array_push($_array[$key1]['reg'], array('mes' => $_mes, 'qtd' => 1));
-        } else
-            array_push($_array, array('nome' => $_nome, 'tipo' => $_tipo, 'reg' => [array('mes' => $_mes, 'qtd' => 1)]));
+            $key1 = array_search($_nome, array_column($_array, 'nome'));
+            if ($key1 !== false) {
+                $key2 = array_search($_mes, array_column($_array[$key1]['reg'], 'mes'));
+                if ($key2 !== false)
+                    $_array[$key1]['reg'][$key2]['qtd'] += 1;
+                else
+                    array_push($_array[$key1]['reg'], array('mes' => $_mes, 'qtd' => 1));
+            } else
+                array_push($_array, array('nome' => $_nome, 'tipo' => $_tipo, 'reg' => [array('mes' => $_mes, 'qtd' => 1)]));
+        }
     }
     return $_array;
 }

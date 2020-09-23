@@ -20,7 +20,7 @@ try {
                 $_opcao = remove_inseguro($_POST["tipo"]);
             }
         }
-        $_objeto = getData($_opcao, $_id, $_SESSION['tipo']);
+        $_objeto = getData($_opcao, $_SESSION['user'], $_id, $_SESSION['tipo']);
         if ($_opcao == 'consulta') {
             $_SESSION['registro'] = serialize($_objeto);
             header("Location: historico_consulta.php");
@@ -36,7 +36,7 @@ try {
 
         if ($_tipo != 'admin') $_id = $_SESSION['user'];
 
-        $_objeto = getData($_opcao, $_id, $_tipo);
+        $_objeto = getData($_opcao, $_id, '', $_tipo);
         if ($_opcao == 'consulta') {
             $_SESSION['registro'] = serialize($_objeto);
             header("Location: historico_consulta.php");
@@ -54,25 +54,33 @@ try {
 }
 
 
-function getData($_opcao, $_id, $_tipo)
+function getData($_opcao, $_id, $_pacienteid,  $_tipo)
 {
     $_objeto = array();
     $db = connectDB();
 
-    if ($_opcao == 'consulta' && !empty($_id) && ($_tipo == 'medico' || $_tipo == 'admin')) {
+    if ($_opcao == 'consulta' && !empty($_id) && !empty($_pacienteid) && $_tipo == 'medico') {
         $coll = $db->consultas;
-        $query = array("medicoid" => $_id);
+        $query = array('$and' => array(array('medicoid' => $_id), array('pacienteid' => $_pacienteid)));
         $_exame_consulta = $coll->find($query);
-    } elseif ($_opcao == 'consulta' && !empty($_id) && ($_tipo == 'paciente' || $_tipo == 'admin')) {
-        $coll = $db->consultas;
-        $query = array("pacienteid" => $_id);
+    } elseif ($_opcao == 'exame' && !empty($_id) && !empty($_pacienteid) && $_tipo == 'laboratorio') {
+        $coll = $db->exames;
+        $query = array('$and' => array(array('laboratorioid' => $_id), array('pacienteid' => $_pacienteid)));
         $_exame_consulta = $coll->find($query);
     } elseif ($_opcao == 'exame' && !empty($_id) && ($_tipo == 'laboratorio' || $_tipo == 'admin')) {
         $coll = $db->exames;
         $query = array("laboratorioid" => $_id);
         $_exame_consulta = $coll->find($query);
+    } elseif ($_opcao == 'consulta' && !empty($_id) && ($_tipo == 'medico' || $_tipo == 'admin')) {
+        $coll = $db->consultas;
+        $query = array("medicoid" => $_id);
+        $_exame_consulta = $coll->find($query);
     } elseif ($_opcao == 'exame' && !empty($_id) && ($_tipo == 'paciente' || $_tipo == 'admin')) {
         $coll = $db->exames;
+        $query = array("pacienteid" => $_id);
+        $_exame_consulta = $coll->find($query);
+    } elseif ($_opcao == 'consulta' && !empty($_id) && ($_tipo == 'paciente' || $_tipo == 'admin')) {
+        $coll = $db->consultas;
         $query = array("pacienteid" => $_id);
         $_exame_consulta = $coll->find($query);
     } elseif ($_opcao == 'consulta' && $_tipo == 'admin') {

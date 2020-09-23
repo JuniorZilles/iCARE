@@ -5,6 +5,7 @@ var verhora =
     verresultado =
     verexame =
     verobservacao = 0;
+var info = '';
 $(document).ready(function () {
     obtertipoexame();
 
@@ -15,6 +16,10 @@ $(document).ready(function () {
     $.get("../tools/_medicos.php", function (data) {
         medicos_autocomplete(data);
         obternomemedico(data, "#medicoid", "#medicoauto", '#crm', '#telefone', '#especialidade')
+    }, "JSON");
+    info = $("#labinfo").val();
+    $.get("../tools/_exams_lab.php?id=" + info, function (data) {
+        obtertipoexameauto(data)
     }, "JSON");
     $("#dataexame").blur(function () {
         verdata = validacampobasico("#dataexame", '#invaliddate', 'Necessário informar a data do exame!');
@@ -199,7 +204,6 @@ function removetiposexames(valor) {
 }
 
 function obtertipoexame() {
-    var tipos = $('#tipoexame').val();
     var exame = $('#exame').val();
     var list = []
     if (exame.length > 0) {
@@ -215,14 +219,6 @@ function obtertipoexame() {
         verexame = 0;
         habilitabtn()
     }
-    if (tipos.length > 0) {
-        $.each(tipos.split(','), function (key, item) {
-            if (item != "") {
-                list.push(item);
-            }
-        });
-        obtertipoexameauto(list)
-    }
 }
 
 function removeInvalid(value) {
@@ -232,19 +228,21 @@ function removeInvalid(value) {
 function obternomemedico(data, idcampo, nomecampo, crmcampo, telefonecampo, especialidadecampo) {
     var id = $(idcampo).val();
     $.each(data, function (i, item) {
-        if (item.id == id)
+        if (item.id == id) {
             $(nomecampo).val(item.nome);
-        $(crmcampo).val(item.crm);
-        $(telefonecampo).val(item.telefone);
-        $(especialidadecampo).val(item.especialidade);
+            $(crmcampo).val(item.crm);
+            $(telefonecampo).val(item.telefone);
+            $(especialidadecampo).val(item.especialidade);
+        }
     });
 }
 
 function obternomepaciente(data, idcampo, nomecampo, datacampo) {
     var id = $(idcampo).val();
     $.each(data, function (i, item) {
-        if (item.id == id)
+        if (item.id == id) {
             $(nomecampo).val(item.nome);
-        $(datacampo).val(item.datanascimento);
+            $(datacampo).val(item.datanascimento);
+        }
     });
 }

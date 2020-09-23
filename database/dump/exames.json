@@ -2,9 +2,9 @@
     "exames": [
         {
             "_id": "e2d4494f3c3959a0a56d69d79efc4798",
-            "tipoexame": {
-                "tipo": "DOSAGEM DE ACIDO URICO"
-            },
+            "tipoexame": [
+                "DOSAGEM DE ACIDO URICO"
+            ],
             "resultado": "apto",
             "laboratorioid": "fbf374902ed7065542fe81a62d7219f4",
             "hora": "16:41",
@@ -16,9 +16,9 @@
         },
         {
             "_id": "cf48254591f0c4b02a464f74899c7f92",
-            "tipoexame": {
-                "tipo": "TEMPO DE TROMBOPLASTINA ATIVADA (PTTA)"
-            },
+            "tipoexame": [
+                "TEMPO DE TROMBOPLASTINA ATIVADA (PTTA)"
+            ],
             "resultado": "inapto",
             "laboratorioid": "fbf374902ed7065542fe81a62d7219f4",
             "hora": "16:49",
@@ -30,9 +30,9 @@
         },
         {
             "_id": "d8e27beebf9084051c430b7ca3e1dbf9",
-            "tipoexame": {
-                "tipo": "TEMPO DE TROMBOPLASTINA ATIVADA (PTTA)"
-            },
+            "tipoexame": [
+                "TEMPO DE TROMBOPLASTINA ATIVADA (PTTA)"
+            ],
             "resultado": "apto",
             "laboratorioid": "fbf374902ed7065542fe81a62d7219f4",
             "hora": "17:10",
@@ -60,9 +60,9 @@
         },
         {
             "_id": "ac36e1321ddfda798f63d3b562d372a4",
-            "tipoexame": {
-                "tipo": "TEMPO DE TROMBOPLASTINA ATIVADA (PTTA)"
-            },
+            "tipoexame": [
+                "TEMPO DE TROMBOPLASTINA ATIVADA (PTTA)"
+            ],
             "resultado": "apto",
             "laboratorioid": "fbf374902ed7065542fe81a62d7219f4",
             "hora": "17:37",
@@ -74,9 +74,9 @@
         },
         {
             "_id": "3ff3f297b114eb6fb50b674da29b73dd",
-            "tipoexame": {
-                "tipo": "TEMPO DE TROMBOPLASTINA ATIVADA (PTTA)"
-            },
+            "tipoexame": [
+                "TEMPO DE TROMBOPLASTINA ATIVADA (PTTA)"
+            ],
             "resultado": "apto",
             "laboratorioid": "fbf374902ed7065542fe81a62d7219f4",
             "hora": "17:37",
@@ -88,9 +88,9 @@
         },
         {
             "_id": "0cf67ba036bd2c2af2a9ee27e0d4981c",
-            "tipoexame": {
-                "tipo": "DOSAGEM DE ACIDO URICO"
-            },
+            "tipoexame": [
+                "DOSAGEM DE ACIDO URICO"
+            ],
             "resultado": "apto",
             "laboratorioid": "fbf374902ed7065542fe81a62d7219f4",
             "hora": "17:40",
@@ -102,9 +102,9 @@
         },
         {
             "_id": "48dadcaf37ff85ffb882cf0750063591",
-            "tipoexame": {
-                "tipo": "DOSAGEM DE ACIDO URICO"
-            },
+            "tipoexame": [
+                "DOSAGEM DE ACIDO URICO"
+            ],
             "resultado": "apto",
             "laboratorioid": "fbf374902ed7065542fe81a62d7219f4",
             "hora": "17:41",

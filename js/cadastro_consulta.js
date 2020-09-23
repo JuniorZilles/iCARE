@@ -137,8 +137,9 @@ function obternomemedico(data, idcampo, nomecampo) {
 function obternomepaciente(data, idcampo, nomecampo, datacampo) {
     var id = $(idcampo).val();
     $.each(data, function (i, item) {
-        if (item.id == id)
+        if (item.id == id) {
             $(nomecampo).val(item.nome);
-        $(datacampo).val(item.datanascimento);
+            $(datacampo).val(item.datanascimento);
+        }
     });
 }

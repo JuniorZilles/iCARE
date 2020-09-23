@@ -14,14 +14,13 @@ if ($_SESSION['tipo'] != 'laboratorio') {
 if (isset($_SESSION['registro'])) {
     $_exame = unserialize($_SESSION['registro']);
     unset($_SESSION['registro']);
-}
-
-$xmlString = file_get_contents('dados.xml');
-$xml = new SimpleXMLElement($xmlString);
-$nodolab = $xml->xpath("//user[id = '" . $_SESSION['user'] . "']/tipoexame");
-if (count($nodolab) > 0) {
-    $_tipoexame = obter_exames($nodolab[0]);
-}
+} elseif ($_SERVER['REQUEST_METHOD'] == 'GET') {
+    if (isset($_GET['id'])) {
+        $_id = remove_inseguro($_GET['id']);
+        header("Location: _exame.php?id=" . $_id);
+    }
+} else
+    header("Location: ../home/index.php");
 ?>
 
 
@@ -104,7 +103,8 @@ if (count($nodolab) > 0) {
                             ?>
                         </div>
                     </div>
-                    <input type="hidden" id="identificadorexame" name="identificadorexame" value="<?php if (isset($_exame->id))  echo $_exame->id; ?>">
+                    <input type="hidden" id="labinfo" name="labinfo" value="<?php if (isset($_SESSION['user']))  echo $_SESSION['user']; ?>">
+                    <input type="hidden" id="identificadorexame" name="identificadorexame" value="<?php if (isset($_exame->_id))  echo $_exame->_id; ?>">
                     <div class="form-row">
                         <div class="form-group col-md-8">
                             <label for="pacienteauto">Nome do Paciente</label>

@@ -64,6 +64,22 @@ function makesuccesstoast($message)
 </script>";
 }
 
+function pacientform()
+{
+    return '<form action="_visualizacao.php" id="cadastroform" method="POST">
+    <div class="form-row">
+        <div class="form-group col-md-11">
+            <input type="text" class="form-control" id="pacienteauto" placeholder="Nome do Paciente" aria-label="Nome do Paciente" aria-describedby="basic-addon2">
+            <input type="hidden" id="pacienteid" name="pacienteid" value="">
+            <input type="hidden" id="tipo" name="tipo" value="exame">
+        </div>
+        <div class="form-group col-md-1">
+            <button id="search" class="btn btn-outline-primary" type="button">Buscar</button>
+        </div>
+    </div>
+</form>';
+}
+
 function obter_usuario($child)
 {
     $_tipo = (string)$child['tipo'];
@@ -106,30 +122,30 @@ function obter_exames($exames)
 
 function obtercadastroexame($child)
 {
-    $_id = (string)$child->id;
-    $_hora = (string)$child->hora;
-    $_data = (string)$child->data;
-    $_pacienteid = (string)$child->pacienteid;
-    $_observacao = (string)$child->observacao;
-    $_medicoid = (string)$child->medicoid;
-    $_outro = (string)$child->outro;
-    $_resultado = (string)$child->resultado;
-    $_laboratorioid = (string)$child->laboratorioid;
-    $_tipoexame = obter_exames($child->tipoexame->children());
+    $_id = (string)$child['_id'];
+    $_hora = (string)$child['hora'];
+    $_data = (string)$child['data'];
+    $_pacienteid = (string)$child['pacienteid'];
+    $_observacao = (string)$child['observacao'];
+    $_medicoid = (string)$child['medicoid'];
+    $_outro = (string)$child['outro'];
+    $_resultado = (string)$child['resultado'];
+    $_laboratorioid = (string)$child['laboratorioid'];
+    $_tipoexame = obter_exames($child['tipoexame']);
     return new Exame($_id, $_hora, $_data, $_pacienteid, $_observacao, $_outro, $_medicoid, $_tipoexame, $_resultado, $_laboratorioid);
 }
 
 function obtercadastroconsulta($child)
 {
-    $_id = (string)$child->id;
-    $_hora = (string)$child->hora;
-    $_data = (string)$child->data;
-    $_pacienteid = (string)$child->pacienteid;
-    $_observacao = (string)$child->observacao;
-    $_medicoid = (string)$child->medicoid;
-    $_outro = (string)$child->outro;
-    $_sintomas = obter_sintomas($child->sintomas->children());
-    $_receita = (string)$child->receita;
+    $_id = (string)$child['_id'];
+    $_hora = (string)$child['hora'];
+    $_data = (string)$child['data'];
+    $_pacienteid = (string)$child['pacienteid'];
+    $_observacao = (string)$child['observacao'];
+    $_medicoid = (string)$child['medicoid'];
+    $_outro = (string)$child['outro'];
+    $_sintomas = obter_sintomas($child['sintomas']);
+    $_receita = (string)$child['receita'];
     return new Consulta($_id, $_hora, $_data, $_pacienteid, $_observacao, $_outro, $_medicoid, $_sintomas, $_receita);
 }
 
@@ -213,9 +229,9 @@ function obter_visualizacao_consulta($child)
 function obter_edit_button($tipo, $id)
 {
     if ($tipo == 'medico')
-        return '<a href="../consulta/_consulta.php?id=' . $id . '" class="btn btn-outline-warning"><i class="fas fa-edit" aria-hidden="true"></i></a>';
+        return '<a href="../consulta/index.php?id=' . $id . '" class="btn btn-outline-warning"><i class="fas fa-edit" aria-hidden="true"></i></a>';
     elseif ($tipo == 'laboratorio')
-        return '<a href="../exame/_exame.php?id=' . $id . '" class="btn btn-outline-warning"><i class="fas fa-edit" aria-hidden="true"></i></a>';
+        return '<a href="../exame/index.php?id=' . $id . '" class="btn btn-outline-warning"><i class="fas fa-edit" aria-hidden="true"></i></a>';
     return '';
 }
 
