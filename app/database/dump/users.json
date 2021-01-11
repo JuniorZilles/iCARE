@@ -1,0 +1,10 @@
+{
+    "users": [
+        {
+            "tipo": "admin",
+            "email": "admin@admin.com",
+            "senha": "admin",
+            "_id": "A7CBCF56CD2840709A10A34ACD7E4DB9"
+        }
+    ]
+}
