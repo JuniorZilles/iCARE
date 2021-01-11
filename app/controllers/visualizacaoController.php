@@ -5,11 +5,6 @@ class VisualizacaoController extends Controller
 {
     public function index()
     {
-        $this->carregarTemplate('visualizacao');
-    }
-
-    public function pessoa()
-    {
         if (!isset($_SESSION['user'])) {
             $_SESSION['erro'] = makeerrortoast('Usuário não logado');
             header('Location: ../index.php?pag=Login');

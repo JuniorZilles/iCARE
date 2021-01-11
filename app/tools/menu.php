@@ -19,7 +19,7 @@ function makemenuadmin($path)
                 <div class='dropdown-menu' aria-labelledby='visualizar'>
                     <a class='dropdown-item' href='".$path."historico/consulta'>Consultas</a>
                     <a class='dropdown-item' href='".$path."historico/exame'>Exames</a>
-                    <a class='dropdown-item' href='".$path."visualizacao/pessoa'>Cadastros</a>
+                    <a class='dropdown-item' href='".$path."visualizacao'>Cadastros</a>
                 </div>
             </li>
             <li class='nav-item'>
