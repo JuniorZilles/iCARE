@@ -43,7 +43,7 @@ function makecardsadmin($path)
                 <div class="card-body">
                     <h5 class="card-title">Alterar Cadastro</h5>
                     <p class="card-text">Alterar senha e outros dados de perfil pode ser feito por aqui</p>
-                    <a class="stretched-link" href="'.$path.'visualizacao/pessoa"></a>
+                    <a class="stretched-link" href="'.$path.'visualizacao"></a>
                 </div>
             </div>
         </div>
