@@ -8,17 +8,18 @@ var verhora =
 var info = '';
 $(document).ready(function () {
     obtertipoexame();
-
-    $.get("../tools/pacientes", function (data) {
+    var getUrl = window.location;
+    var baseUrl = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
+    $.get(baseUrl+"/tools/pacientes", function (data) {
         pacientes_autocomplete(data);
         obternomepaciente(data, "#pacienteid", "#pacienteauto", "#datanascimento")
     }, "JSON");
-    $.get("../tools/medicos", function (data) {
+    $.get(baseUrl+"/tools/medicos", function (data) {
         medicos_autocomplete(data);
         obternomemedico(data, "#medicoid", "#medicoauto", '#crm', '#telefone', '#especialidade')
     }, "JSON");
     info = $("#labinfo").val();
-    $.get("../tools/laboratorioTipoExame/" + info, function (data) {
+    $.get(baseUrl+"/tools/laboratorioTipoExame/" + info, function (data) {
         obtertipoexameauto(data)
     }, "JSON");
     $("#dataexame").blur(function () {

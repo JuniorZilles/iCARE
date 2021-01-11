@@ -5,63 +5,6 @@
             "email": "admin@admin.com",
             "senha": "admin",
             "_id": "A7CBCF56CD2840709A10A34ACD7E4DB9"
-        },
-        {
-            "_id": "01678638c3870972a45cfd72b51837f7",
-            "especialidade": "Alergia e Imunologia",
-            "crm": "5165165156151",
-            "tipo": "medico",
-            "nome": "Andre Zilles",
-            "telefone": "(55) 51991-9528",
-            "rua": "Av. Presidente Vargas, 285",
-            "numero": "5",
-            "bairro": "sasdas",
-            "complemento": "ap 101",
-            "cidade": "Rio Grande",
-            "estado": "PA",
-            "cep": "96.202-336",
-            "email": "junior_zilles@hotmail.com",
-            "senha": "medico"
-        },
-        {
-            "_id": "ccf988db96cb0004d60b03d259522e4c",
-            "genero": "masculino",
-            "datanascimento": "2020-07-07",
-            "cpf": "032.343.730-35",
-            "tipo": "paciente",
-            "nome": "Junior Zilles",
-            "telefone": "(55) 51991-9528",
-            "rua": "Av. Presidente Vargas, 285",
-            "numero": "5",
-            "bairro": "asdasd",
-            "complemento": "ap 101",
-            "cidade": "Rio Grande",
-            "estado": "RS",
-            "cep": "96.202-336",
-            "email": "junior_zilles@hotmail.com",
-            "senha": "hsgdjhasgd"
-        },
-        {
-            "_id": "fbf374902ed7065542fe81a62d7219f4",
-            "tipoexame": [
-                "TEMPO DE TROMBOPLASTINA ATIVADA (PTTA)",
-                "DOSAGEM DE ACIDO URICO",
-                "DOSAGEM DE ALFA-1-GLICOPROTEINA ACIDA",
-                "DOSAGEM DE AMILASE"
-            ],
-            "cnpj": "84.884.884/8171-89",
-            "tipo": "laboratorio",
-            "nome": "Lab LTDA",
-            "telefone": "(55) 51991-9528",
-            "rua": "Av. Presidente Vargas, 285",
-            "numero": "5",
-            "bairro": "asdasd",
-            "complemento": "ap 101",
-            "cidade": "Rio Grande",
-            "estado": "RS",
-            "cep": "96.202-336",
-            "email": "junior_zilles@hotmail.com",
-            "senha": "laboratorio"
         }
     ]
 }

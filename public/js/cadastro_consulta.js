@@ -5,7 +5,9 @@ var verhora =
     verreceita =
     verobservacao = 0;
 $(document).ready(function () {
-    $.get("../tools/pacientes", function (data) {
+    var getUrl = window.location;
+    var baseUrl = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
+    $.get(baseUrl+"/tools/pacientes", function (data) {
         pacientes_autocomplete(data);
         obternomepaciente(data, "#pacienteid", "#pacienteauto", "#datanascimento");
     }, "JSON");

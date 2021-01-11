@@ -29,7 +29,9 @@ $(document).ready(function () {
         esconde_campos();
     });
 
-    $.get("../../tools/cadastro", function (data) {
+    var getUrl = window.location;
+    var baseUrl = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
+    $.get(baseUrl+"/tools/cadastro", function (data) {
         processaojson(data);
     }, "JSON");
 

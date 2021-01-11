@@ -3,7 +3,8 @@
         <div class="card card-signin my-5">
             <div class="card-body">
                 <h5 class="card-title text-center">Login</h5>
-                <form id="loginform" method="POST" action="./login/postLogin">
+                <form id="loginform" method="POST" action="<?php
+                        echo $path.'login/postLogin'; ?>">
                     <div class="form-group">
                         <label for="email">E-mail:</label>
                         <input type="email" id="email" name="email" class="form-control" placeholder="Email de acesso" required autofocus>
