@@ -22,7 +22,7 @@ class Conexao
                     $this->initCollections();
                 }
             } catch (MongoConnectionException $e) {
-                die($e->getMessage());
+                throw new Exception($e->getMessage());
             }
         }
         return self::$db;
