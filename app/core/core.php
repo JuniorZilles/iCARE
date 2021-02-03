@@ -10,7 +10,7 @@
             $parametros = null;
             $usercls = new User();
             $usercls->user();
-            $controller = 'HomeController';
+            $controller = 'LoginController';
             $metodo = 'index';
 
             if (isset($_GET['pag'])){
