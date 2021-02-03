@@ -5,23 +5,28 @@ class LoginController extends Controller
 {
     public function index()
     {
-        if (isset($_SESSION['user'])) {
-            $model = new LoginModel();
-            $r = $model->getUserById($_SESSION['user']);
-            if (count($r) > 0) {
-                $_id = (string)$r['_id'];
-                $_tipo = (string)$r['tipo'];
-            }
+        try {
+            if (isset($_SESSION['user'])) {
+                $model = new LoginModel();
+                $r = $model->getUserById($_SESSION['user']);
+                if (count($r) > 0) {
+                    $_id = (string)$r['_id'];
+                    $_tipo = (string)$r['tipo'];
+                }
 
-            if (empty($_id)) {
-                $this->carregarTemplate('login');
+                if (empty($_id)) {
+                    $this->carregarTemplate('login');
+                } else {
+                    $_SESSION['user'] = $_id;
+                    $_SESSION['tipo'] = $_tipo;
+
+                    header('Location: ../index.php?pag=Home');
+                }
             } else {
-                $_SESSION['user'] = $_id;
-                $_SESSION['tipo'] = $_tipo;
-
-                header('Location: ../index.php?pag=Home');
+                $this->carregarTemplate('login');
             }
-        } else {
+        } catch (Exception $e) {
+            $_SESSION['erro'] = makeerrortoast($e->getMessage());
             $this->carregarTemplate('login');
         }
     }
