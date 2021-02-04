@@ -11,7 +11,7 @@ class Controller
     public function carregarTemplate($nomeView, $dadosModel = array())
     {
         $this->dados = $dadosModel;
-        $path = 'http://localhost/trabalho_si/';
+        $path = $_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['SERVER_NAME'].':'.$_SERVER['SERVER_PORT'].'/124905-124907/';
         require 'app/views/template.php';
     }
 
