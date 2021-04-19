@@ -8,9 +8,9 @@ class Conexao
     public static function getConexao()
     {
         if(!isset(self::$db)){
-            $_server = "192.168.56.101";
+            $_server = "localhost";
             $_user = "root";
-            $_pass = "MongoDB2020";
+            $_pass = "";
             $_port = "27017";
             try {
                 $conn = new MongoClient("mongodb://$_user:$_pass@$_server:$_port");
